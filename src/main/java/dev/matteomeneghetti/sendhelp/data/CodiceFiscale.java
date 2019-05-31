@@ -2,12 +2,14 @@ package dev.matteomeneghetti.sendhelp.data;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Set;
 
 public class CodiceFiscale {
     
     private static final Set<Character> VOCALI = Set.of('A', 'E', 'I', 'O', 'U');
     private static enum MESI {A, B, C, D, E, H, L, M, P, R, S, T};
+    private static HashMap<Character, Integer> tabellaPari;
     
     private String codice;
     private String cognome;
@@ -108,19 +110,42 @@ public class CodiceFiscale {
     }
     
     private String generaComune() {
-        CSVReader csvreader = new CSVReader("/home/mat/NetBeansProjects/progetto-ing-sw/src/main/java/dev/matteomeneghetti/sendhelp/data/lista-comuni.csv");
+        CSVReader csvreader = new CSVReader("resources\\lista-comuni.csv");
         String[] codice = csvreader.find(this.luogoDiNascita);
         return codice[1];
     }
     
-    private String generaCIN() {
-        
-        return null;
+    private char generaCIN() {
+        String dispari = "";
+        String pari = "";
+        for(int i = 0; i < this.codice.length(); i++) {
+            if(i%2 == 0) {
+                //dispari
+                dispari+= this.codice.charAt(i);
+            }
+            else {
+                //pari
+                pari+= this.codice.charAt(i);
+            }
+        }
+        CSVReader csvreader = new CSVReader("resources\\tabella-dispari.csv");
+        int sommaDispari = 0;
+        for(int i = 0; i < dispari.length(); i++) {
+            sommaDispari+=Integer.parseInt(csvreader.find(dispari.substring(i, i+1))[1]);
+        }
+        int sommaPari = 0;
+        csvreader = new CSVReader("resources\\tabella-pari.csv");
+        for(int i = 0; i < pari.length(); i++) {
+            sommaPari+=Integer.parseInt(csvreader.find(pari.substring(i, i+1))[1]);
+        }
+        int somma = sommaPari + sommaDispari;
+        int resto = somma%26;
+        return (char) (resto+65);
     }
     
     public static void main(String[] args) {
-        GregorianCalendar now = new GregorianCalendar(1995, 4, 5);
-        CodiceFiscale myCodice = new CodiceFiscale("Meneghetti", "Matteo", now, 'M', "Trieste");
+        GregorianCalendar now = new GregorianCalendar(1995, 3, 10);
+        CodiceFiscale myCodice = new CodiceFiscale("Saliva", "Marco", now, 'M', "Trieste");
         System.out.println(myCodice.codice);
     }
 }
