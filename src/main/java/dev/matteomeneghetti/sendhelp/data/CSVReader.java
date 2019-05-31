@@ -6,23 +6,25 @@ import java.io.IOException;
 
 public class CSVReader {
     
-    String csvFile;
+    String pathToFile;
 
     public CSVReader(String path) {
-        csvFile = path;
-        
+        pathToFile = path;        
     }
     
     public String[] find(String key) {
-        String line = "";
+        String line;
         String cvsSplitBy = ";";
         
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
             while ((line = br.readLine()) != null) {
                 String[] comune = line.split(cvsSplitBy);
-                if (comune[0].equals(key))
+                if (comune[0].equals(key)){
+                    br.close();
                     return comune;
+                }
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

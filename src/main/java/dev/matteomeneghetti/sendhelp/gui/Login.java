@@ -1,14 +1,18 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.CSVReader;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Arrays;
+
 public class Login extends javax.swing.JFrame {
     
     private Controller defaultController = new Controller();
 
-    /**
-     * Creates new form Login
-     */
     public Login() {
         initComponents();
+        jButton1.addActionListener(new LoginController());
         jButton2.addActionListener(defaultController);
         setVisible(true);
     }
@@ -173,4 +177,26 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    
+    private class LoginController implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String message = e.getActionCommand();
+            switch(message) {
+                case "Conferma":
+                    System.out.println(checkLogin());
+                    break;
+            }
+        }
+        
+        private boolean checkLogin() {
+            String id = jTextField1.getText();
+            CSVReader csvreader = new CSVReader("resources" + File.separator + "dati-login.csv");
+            String[] dati = csvreader.find(id);
+            if(dati == null)
+                return false;
+            return Arrays.equals(dati[1].toCharArray(), jPasswordField1.getPassword());
+        }
+    }
 }

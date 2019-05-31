@@ -1,22 +1,21 @@
 package dev.matteomeneghetti.sendhelp.data;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Set;
 
 public class CodiceFiscale {
     
     private static final Set<Character> VOCALI = Set.of('A', 'E', 'I', 'O', 'U');
     private static enum MESI {A, B, C, D, E, H, L, M, P, R, S, T};
-    private static HashMap<Character, Integer> tabellaPari;
     
     private String codice;
-    private String cognome;
-    private String nome;
-    private GregorianCalendar dataDiNascita;
-    private char sesso;
-    private String luogoDiNascita;
+    private final String cognome;
+    private final String nome;
+    private final GregorianCalendar dataDiNascita;
+    private final char sesso;
+    private final String luogoDiNascita;
     
     public CodiceFiscale(String cognome, String nome, GregorianCalendar dataDiNascita, char sesso, String luogoDiNascita) {
         this.cognome = cognome;
@@ -31,6 +30,11 @@ public class CodiceFiscale {
         codice+=generaData();
         codice+=generaComune();
         codice+=generaCIN();
+    }
+    
+    @Override
+    public String toString() {
+        return this.codice;
     }
     
     private static boolean isVocale(char myChar) {
@@ -110,9 +114,9 @@ public class CodiceFiscale {
     }
     
     private String generaComune() {
-        CSVReader csvreader = new CSVReader("resources\\lista-comuni.csv");
-        String[] codice = csvreader.find(this.luogoDiNascita);
-        return codice[1];
+        CSVReader csvreader = new CSVReader("resources" + File.separator + "lista-comuni.csv");
+        String[] codiceComune = csvreader.find(this.luogoDiNascita);
+        return codiceComune[1];
     }
     
     private char generaCIN() {
@@ -128,24 +132,18 @@ public class CodiceFiscale {
                 pari+= this.codice.charAt(i);
             }
         }
-        CSVReader csvreader = new CSVReader("resources\\tabella-dispari.csv");
+        CSVReader csvreader = new CSVReader("resources" + File.separator + "tabella-dispari.csv");
         int sommaDispari = 0;
         for(int i = 0; i < dispari.length(); i++) {
             sommaDispari+=Integer.parseInt(csvreader.find(dispari.substring(i, i+1))[1]);
         }
         int sommaPari = 0;
-        csvreader = new CSVReader("resources\\tabella-pari.csv");
+        csvreader = new CSVReader("resources" + File.separator + "tabella-pari.csv");
         for(int i = 0; i < pari.length(); i++) {
             sommaPari+=Integer.parseInt(csvreader.find(pari.substring(i, i+1))[1]);
         }
         int somma = sommaPari + sommaDispari;
         int resto = somma%26;
         return (char) (resto+65);
-    }
-    
-    public static void main(String[] args) {
-        GregorianCalendar now = new GregorianCalendar(1995, 3, 10);
-        CodiceFiscale myCodice = new CodiceFiscale("Saliva", "Marco", now, 'M', "Trieste");
-        System.out.println(myCodice.codice);
     }
 }
