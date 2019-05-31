@@ -1,4 +1,4 @@
-package dev.matteomeneghetti.sendhelp;
+package dev.matteomeneghetti.sendhelp.data;
 
 import java.util.Date;
 
