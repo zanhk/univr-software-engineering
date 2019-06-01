@@ -22,7 +22,6 @@ public class Controller implements ActionListener {
                 myFrame.dispose();
                 break;
         }
-        //throw new UnsupportedOperationException("Controller comando " + message +" non ancora supportato");
     }
     
     private Object getRootFrameOrDialog(ActionEvent e){

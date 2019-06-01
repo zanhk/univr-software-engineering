@@ -1,8 +1,11 @@
 package dev.matteomeneghetti.sendhelp.data;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+/*
+Classe che permette la lettura di file CSV
+*/
 
 public class CSVReader {
     

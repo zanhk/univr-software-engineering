@@ -1,9 +1,9 @@
 package dev.matteomeneghetti.sendhelp.data;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Somministrazione {
-    private Date dataSomministrazione;
+    private GregorianCalendar dataSomministrazione;
     private int doseSomministrata;
     private String note;
 }

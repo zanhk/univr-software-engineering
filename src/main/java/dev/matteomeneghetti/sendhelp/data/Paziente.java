@@ -2,6 +2,10 @@ package dev.matteomeneghetti.sendhelp.data;
 
 import java.util.GregorianCalendar;
 
+/*
+La classe Paziente rappresenta un sunto delle generalita' del paziente ricoverato.
+In fase di ricovero, il personale infermieristico si impegna a compilarle.
+*/
 public class Paziente {
     private CodiceFiscale codiceSanitario;     //codice univoco del paziente
     private final String cognome;             //cognome
@@ -33,5 +37,5 @@ public class Paziente {
     
     private void generaCodiceSanitario() {
         codiceSanitario = new CodiceFiscale(cognome, nome, dataDiNascita, genere, luogoDiNascita);
-    }    
+    }
 }
