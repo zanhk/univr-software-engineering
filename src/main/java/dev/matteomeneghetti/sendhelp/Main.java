@@ -1,5 +1,4 @@
 package dev.matteomeneghetti.sendhelp;
-import dev.matteomeneghetti.sendhelp.data.Prescrizione;
 import dev.matteomeneghetti.sendhelp.gui.Login;
 
 public class Main {

@@ -24,6 +24,12 @@ public class Prescrizione {
         @Override
         public Prescrizione build() {
             Prescrizione prescrizione = new Prescrizione();
+            prescrizione.setNomeFarmaco(prescrizioneTmp.getNomeFarmaco());
+            prescrizione.setDataPrescrizione(prescrizioneTmp.getDataPrescrizione());
+            prescrizione.setDataFineTerapia(prescrizioneTmp.getDataFineTerapia());
+            prescrizione.setNumeroDosiGiornaliere(prescrizioneTmp.getNumeroDosiGiornaliere());
+            prescrizione.setQuantitaDose(prescrizioneTmp.getQuantitaDose());
+            prescrizione.setMedico(prescrizioneTmp.getMedico());
             return prescrizione;
         }
 
