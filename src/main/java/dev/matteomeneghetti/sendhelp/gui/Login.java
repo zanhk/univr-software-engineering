@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Arrays;
-import javax.swing.JDialog;
 
 public class Login extends javax.swing.JFrame {
     
@@ -186,8 +185,11 @@ public class Login extends javax.swing.JFrame {
             String message = e.getActionCommand();
             switch(message) {
                 case "Conferma":
-                    if(!checkLogin())
-                        return;
+                    if(!checkLogin()) {
+                        System.out.println("Login fallito");
+                        return;                        
+                    }
+                    System.out.println("Login riuscito");
                     break;
             }
         }
