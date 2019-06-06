@@ -2,6 +2,7 @@ package dev.matteomeneghetti.sendhelp.data;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
@@ -13,11 +14,11 @@ public class CodiceFiscale {
     private String codice;
     private final String cognome;
     private final String nome;
-    private final GregorianCalendar dataDiNascita;
+    private final Date dataDiNascita;
     private final char sesso;
     private final String luogoDiNascita;
     
-    public CodiceFiscale(String cognome, String nome, GregorianCalendar dataDiNascita, char sesso, String luogoDiNascita) {
+    public CodiceFiscale(String cognome, String nome, Date dataDiNascita, char sesso, String luogoDiNascita) {
         this.cognome = cognome;
         this.nome = nome;
         this.dataDiNascita = dataDiNascita;
@@ -25,10 +26,15 @@ public class CodiceFiscale {
         this.luogoDiNascita = luogoDiNascita;
         
         codice = "";
+        if(this.cognome!="")
         codice+=generaCognome();
+        if(this.nome!="")
         codice+=generaNome();
+        if(this.dataDiNascita!=null)
         codice+=generaData();
+        if(this.luogoDiNascita!="")
         codice+=generaComune();
+        if((this.cognome!=null)&&(this.nome!=null)&&(this.dataDiNascita!=null)&&(this.luogoDiNascita!=null))
         codice+=generaCIN();
     }
     
@@ -104,10 +110,9 @@ public class CodiceFiscale {
     }
     
     private String generaData() {
-        String anno = ""+dataDiNascita.get(Calendar.YEAR);
-        anno = anno.substring(2, anno.length());
-        String mese = ""+MESI.values()[dataDiNascita.get(Calendar.MONTH)];
-        String giorno = ""+(isFemale()? dataDiNascita.get(Calendar.DATE)+40 : dataDiNascita.get(Calendar.DATE));
+        String anno = ""+dataDiNascita.getYear();
+        String mese = ""+MESI.values()[dataDiNascita.getMonth()];
+        String giorno = ""+(isFemale()? dataDiNascita.getDate()+40 : dataDiNascita.getDate());
         if(giorno.length()<2)
             giorno = "0" + giorno;
         return anno+mese+giorno;
@@ -116,7 +121,9 @@ public class CodiceFiscale {
     private String generaComune() {
         CSVReader csvreader = new CSVReader("resources" + File.separator + "lista-comuni.csv");
         String[] codiceComune = csvreader.find(this.luogoDiNascita);
+        if(codiceComune!=null)
         return codiceComune[1];
+        else return "";
     }
     
     private char generaCIN() {
