@@ -1,5 +1,6 @@
 package dev.matteomeneghetti.sendhelp.data;
 
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
@@ -119,7 +120,7 @@ public class CodiceFiscale {
     }
     
     private String generaComune() {
-        CSVReader csvreader = new CSVReader("resources" + File.separator + "lista-comuni.csv");
+        CSVManager csvreader = new CSVManager("resources" + File.separator + "lista-comuni.csv");
         String[] codiceComune = csvreader.find(this.luogoDiNascita);
         if(codiceComune!=null)
         return codiceComune[1];
@@ -139,13 +140,13 @@ public class CodiceFiscale {
                 pari+= this.codice.charAt(i);
             }
         }
-        CSVReader csvreader = new CSVReader("resources" + File.separator + "tabella-dispari.csv");
+        CSVManager csvreader = new CSVManager("resources" + File.separator + "tabella-dispari.csv");
         int sommaDispari = 0;
         for(int i = 0; i < dispari.length(); i++) {
             sommaDispari+=Integer.parseInt(csvreader.find(dispari.substring(i, i+1))[1]);
         }
         int sommaPari = 0;
-        csvreader = new CSVReader("resources" + File.separator + "tabella-pari.csv");
+        csvreader = new CSVManager("resources" + File.separator + "tabella-pari.csv");
         for(int i = 0; i < pari.length(); i++) {
             sommaPari+=Integer.parseInt(csvreader.find(pari.substring(i, i+1))[1]);
         }

@@ -1,12 +1,12 @@
 package dev.matteomeneghetti.sendhelp.data;
 
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 public class Somministrazione {
     
     public interface SomministrazioneBuilder {
         Somministrazione build();
-        SomministrazioneBuilder setDataSomministrazione(GregorianCalendar dataSomministrazione);
+        SomministrazioneBuilder setDataSomministrazione(Date dataSomministrazione);
         SomministrazioneBuilder setDoseSomministrata(float doseSomministrata);
         SomministrazioneBuilder setNote(String note);
     }
@@ -29,7 +29,7 @@ public class Somministrazione {
         }
 
         @Override
-        public SomministrazioneBuilder setDataSomministrazione(GregorianCalendar dataSomministrazione) {
+        public SomministrazioneBuilder setDataSomministrazione(Date dataSomministrazione) {
             somministrazioneTmp.setDataSomministrazione(dataSomministrazione);
             return this;
         }
@@ -47,7 +47,7 @@ public class Somministrazione {
         }
         
     }
-    private GregorianCalendar dataSomministrazione;
+    private Date dataSomministrazione;
     private float doseSomministrata;
     private String note;
     
@@ -55,10 +55,10 @@ public class Somministrazione {
         
     }
     
-    public GregorianCalendar getDataSomministrazione() {
+    public Date getDataSomministrazione() {
         return this.dataSomministrazione;
     }
-    public void setDataSomministrazione(GregorianCalendar dataSomministrazione) {
+    public void setDataSomministrazione(Date dataSomministrazione) {
         this.dataSomministrazione = dataSomministrazione;
     }
 

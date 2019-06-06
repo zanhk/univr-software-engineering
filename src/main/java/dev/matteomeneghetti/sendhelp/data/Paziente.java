@@ -1,15 +1,17 @@
 package dev.matteomeneghetti.sendhelp.data;
 
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import java.util.Date;
 
 /*
-La classe Paziente rappresenta un sunto delle generalita' del paziente ricoverato.
-In fase di ricovero, il personale infermieristico si impegna a compilarle.
-Solamente il medico puo' compilare la diagnosi d'ingresso
+    La classe Paziente rappresenta un sunto delle generalita' del paziente ricoverato.
+    In fase di ricovero, il personale infermieristico si impegna a compilarle.
+    Solamente il medico puo' compilare la diagnosi d'ingresso
 */
 public class Paziente {
     
-    private CodiceFiscale codiceSanitario;     //codice univoco del paziente
+    private CodiceFiscale codiceFiscale;
+    private String codiceSanitario;     //codice univoco
     private String cognome;             //cognome
     private String nome;                //nome
     private char genere;
@@ -19,14 +21,21 @@ public class Paziente {
     private String diagnosiDiIngresso;  //diagnosi da compilare a cura del medico
     
     public Paziente() {
-        
+        setCodiceSanitario(generaCodiceSanitario());
     }
 
-    public CodiceFiscale getCodiceSanitario() {
+    public CodiceFiscale getCodiceFiscale() {
+        return codiceFiscale;
+    }
+    public void generaCodiceFiscale() {
+        this.codiceFiscale = new CodiceFiscale(cognome, nome, dataDiNascita, genere, luogoDiNascita);
+    }
+    
+    public String getCodiceSanitario() {
         return codiceSanitario;
     }
-    public void generaCodiceSanitario() {
-        this.codiceSanitario = new CodiceFiscale(cognome, nome, dataDiNascita, genere, luogoDiNascita);
+    public void setCodiceSanitario(String codiceSanitario) {
+        this.codiceSanitario = codiceSanitario;
     }
 
     public String getCognome() {
@@ -69,5 +78,14 @@ public class Paziente {
     }
     public void setDiagnosiDiIngresso(String diagnosiDiIngresso) {
         this.diagnosiDiIngresso = diagnosiDiIngresso;
-    }   
+    }
+    
+    public String generaCodiceSanitario() {
+        CSVManager reader = new CSVManager("resources/lista-pazienti.csv");
+        int numeroRighe = reader.getNumberOfRows()+1;
+        String codice = Integer.toString(numeroRighe);
+        while(codice.length() < 6)
+            codice = "0"+codice;
+        return codice;
+    }
 }

@@ -1,6 +1,8 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
+import static dev.matteomeneghetti.sendhelp.utility.Utility.date2String;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -17,15 +19,19 @@ public class NuovoPaziente extends javax.swing.JPanel {
 
     public NuovoPaziente() {
         initComponents();
-        jButton2.addActionListener(new Controller());
+        
+        annullaButton.addActionListener(new Controller());
+        confermaButton.addActionListener(controller);
         nomeField.getDocument().addDocumentListener(controller);
         cognomeField.getDocument().addDocumentListener(controller);
-        jRadioButton1.addActionListener(controller);
-        jRadioButton2.addActionListener(controller);
+        maschioRadio.addActionListener(controller);
+        femminaRadio.addActionListener(controller);
         luogoField.getDocument().addDocumentListener(controller);        
-        jSpinner1.setEditor(new JSpinner.DateEditor(jSpinner1, "dd/MM/yyyy"));
-        jSpinner1.addChangeListener(controller);
+        dataNascitaSpinner.setEditor(new JSpinner.DateEditor(dataNascitaSpinner, "dd/MM/yyyy"));
+        dataNascitaSpinner.addChangeListener(controller);
+        
         paziente = new Paziente();
+        codiceSanitarioLabel.setText(paziente.getCodiceSanitario());
     }
 
     @SuppressWarnings("unchecked")
@@ -36,19 +42,21 @@ public class NuovoPaziente extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        maschioRadio = new javax.swing.JRadioButton();
+        femminaRadio = new javax.swing.JRadioButton();
         nomeField = new javax.swing.JTextField();
         cognomeField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         luogoField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        confermaButton = new javax.swing.JButton();
+        annullaButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        codiceLabel = new javax.swing.JLabel();
+        codiceFiscaleLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        dataNascitaSpinner = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
+        codiceSanitarioLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(450, 350));
 
@@ -58,13 +66,14 @@ public class NuovoPaziente extends javax.swing.JPanel {
 
         jLabel3.setText("Genere");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Maschio");
-        jRadioButton1.setActionCommand("m");
+        buttonGroup1.add(maschioRadio);
+        maschioRadio.setSelected(true);
+        maschioRadio.setText("Maschio");
+        maschioRadio.setActionCommand("m");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Femmina");
-        jRadioButton2.setActionCommand("f");
+        buttonGroup1.add(femminaRadio);
+        femminaRadio.setText("Femmina");
+        femminaRadio.setActionCommand("f");
 
         nomeField.setColumns(10);
 
@@ -76,17 +85,21 @@ public class NuovoPaziente extends javax.swing.JPanel {
 
         luogoField.setColumns(10);
 
-        jButton1.setText("Conferma");
-        jButton1.setPreferredSize(new java.awt.Dimension(90, 28));
+        confermaButton.setText("Conferma");
+        confermaButton.setPreferredSize(new java.awt.Dimension(90, 28));
 
-        jButton2.setText("Annulla");
-        jButton2.setPreferredSize(new java.awt.Dimension(90, 28));
+        annullaButton.setText("Annulla");
+        annullaButton.setPreferredSize(new java.awt.Dimension(90, 28));
 
-        codiceLabel.setText("codicefiscale");
+        codiceFiscaleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        codiceFiscaleLabel.setFocusable(false);
+        codiceFiscaleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel7.setText("Nuovo Paziente");
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(631148400000L), null, null, java.util.Calendar.DAY_OF_MONTH));
+        dataNascitaSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(631148400000L), null, null, java.util.Calendar.DAY_OF_MONTH));
+
+        jLabel6.setText("Paziente num.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,14 +128,18 @@ public class NuovoPaziente extends javax.swing.JPanel {
                                 .addGap(66, 66, 66)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
+                                        .addComponent(maschioRadio)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton2))
+                                        .addComponent(femminaRadio))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(22, 22, 22)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jSpinner1)
-                                            .addComponent(luogoField))))))
+                                            .addComponent(dataNascitaSpinner)
+                                            .addComponent(luogoField)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(codiceSanitarioLabel)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -131,13 +148,12 @@ public class NuovoPaziente extends javax.swing.JPanel {
                 .addContainerGap(186, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(codiceLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codiceFiscaleLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -156,48 +172,75 @@ public class NuovoPaziente extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(maschioRadio)
+                    .addComponent(femminaRadio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataNascitaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(luogoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(codiceLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(codiceSanitarioLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(codiceFiscaleLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton annullaButton;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel codiceLabel;
+    private javax.swing.JLabel codiceFiscaleLabel;
+    private javax.swing.JLabel codiceSanitarioLabel;
     private javax.swing.JTextField cognomeField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton confermaButton;
+    private javax.swing.JSpinner dataNascitaSpinner;
+    private javax.swing.JRadioButton femminaRadio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField luogoField;
+    private javax.swing.JRadioButton maschioRadio;
     private javax.swing.JTextField nomeField;
     // End of variables declaration//GEN-END:variables
+    
+    private void saveToFile() {
+        if(!canConfirm())
+            return;
+        CSVManager writer = new CSVManager("resources/lista-pazienti.csv");
+                        
+        String linea = paziente.getCodiceSanitario()+";"
+                        +paziente.getCognome()+";"
+                        +paziente.getNome()+";"
+                        +paziente.getLuogoDiNascita()+";"
+                        +date2String(paziente.getDataDiNascita())+";"
+                        +paziente.getCodiceFiscale();
+
+        writer.append(linea);
+    }
+    
+    private boolean canConfirm() {
+        return !nomeField.getText().isEmpty()&&!cognomeField.getText().isEmpty()
+                &&!luogoField.getText().isEmpty();
+    }
+    
     private class NuovoPazienteController implements DocumentListener, ChangeListener, ActionListener {
 
         @Override
@@ -222,20 +265,23 @@ public class NuovoPaziente extends javax.swing.JPanel {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            update();
+            switch(arg0.getActionCommand()) {
+                case "Conferma":
+                    saveToFile();
+                    break;
+                default:
+                    update();
+            }
         }
         
         private void update() {
             paziente.setNome(nomeField.getText());
-            if(buttonGroup1.getSelection()!=null)
-                paziente.setGenere(buttonGroup1.getSelection().getActionCommand().charAt(0));
-            else
-                paziente.setGenere('m');
             paziente.setCognome(cognomeField.getText());
-            paziente.setDataDiNascita((Date)jSpinner1.getValue());
+            paziente.setGenere(buttonGroup1.getSelection().getActionCommand().charAt(0));
+            paziente.setDataDiNascita((Date)dataNascitaSpinner.getValue());
             paziente.setLuogoDiNascita(luogoField.getText());
-            paziente.generaCodiceSanitario();
-            codiceLabel.setText(paziente.getCodiceSanitario().toString());
+            paziente.generaCodiceFiscale();
+            codiceFiscaleLabel.setText(paziente.getCodiceFiscale().toString());
         }
     }
 }

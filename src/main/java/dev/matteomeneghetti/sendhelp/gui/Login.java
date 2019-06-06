@@ -1,6 +1,6 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
-import dev.matteomeneghetti.sendhelp.data.CSVReader;
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -196,7 +196,7 @@ public class Login extends javax.swing.JFrame {
         
         private boolean checkLogin() {
             String id = jTextField1.getText();
-            CSVReader csvreader = new CSVReader("resources" + File.separator + "dati-login.csv");
+            CSVManager csvreader = new CSVManager("resources" + File.separator + "dati-login.csv");
             String[] dati = csvreader.find(id);
             if(dati == null)
                 return false;

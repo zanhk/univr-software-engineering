@@ -1,14 +1,14 @@
 package dev.matteomeneghetti.sendhelp.data;
 
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 public class Prescrizione {
     
     public interface PrescrizioneBuilder {
         Prescrizione build();
         PrescrizioneBuilder setNomeFarmaco(final String nomeFarmaco);
-        PrescrizioneBuilder setDataPrescrizione(final GregorianCalendar dataPrescrizione);
-        PrescrizioneBuilder setDataFineTerapia(final GregorianCalendar dataFineTerapia);
+        PrescrizioneBuilder setDataPrescrizione(final Date dataPrescrizione);
+        PrescrizioneBuilder setDataFineTerapia(final Date dataFineTerapia);
         PrescrizioneBuilder setNumeroDosiGiornaliere(final int numeroDosiGiornaliere);
         PrescrizioneBuilder setQuantitaDose(final float quantitaDose);
         PrescrizioneBuilder setMedico(final String medico);
@@ -40,13 +40,13 @@ public class Prescrizione {
         }
 
         @Override
-        public PrescrizioneBuilder setDataPrescrizione(GregorianCalendar dataPrescrizione) {
+        public PrescrizioneBuilder setDataPrescrizione(Date dataPrescrizione) {
             prescrizioneTmp.setDataPrescrizione(dataPrescrizione);
             return this;
         }
 
         @Override
-        public PrescrizioneBuilder setDataFineTerapia(GregorianCalendar dataFineTerapia) {
+        public PrescrizioneBuilder setDataFineTerapia(Date dataFineTerapia) {
             prescrizioneTmp.setDataFineTerapia(dataFineTerapia);
             return this;
         }
@@ -71,8 +71,8 @@ public class Prescrizione {
     }
     
     private String nomeFarmaco;
-    private GregorianCalendar dataPrescrizione;
-    private GregorianCalendar dataFineTerapia;
+    private Date dataPrescrizione;
+    private Date dataFineTerapia;
     private int numeroDosiGiornaliere;
     private float quantitaDose;
     private String medico;
@@ -88,17 +88,17 @@ public class Prescrizione {
         this.nomeFarmaco = nomeFarmaco;
     }
     
-    public GregorianCalendar getDataPrescrizione() {
+    public Date getDataPrescrizione() {
         return this.dataPrescrizione;
     }
-    public void setDataPrescrizione(GregorianCalendar dataPrescrizione) {
+    public void setDataPrescrizione(Date dataPrescrizione) {
         this.dataPrescrizione = dataPrescrizione;
     }
     
-    public GregorianCalendar getDataFineTerapia() {
+    public Date getDataFineTerapia() {
         return this.dataFineTerapia;
     }
-    public void setDataFineTerapia(GregorianCalendar dataFineTerapia) {
+    public void setDataFineTerapia(Date dataFineTerapia) {
         this.dataFineTerapia = dataFineTerapia;
     }
     
