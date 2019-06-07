@@ -12,18 +12,22 @@ import java.io.IOException;
 public class CSVManager {
     
     String pathToFile;
+    String csvSplitBy;
 
-    public CSVManager(String path) {
-        pathToFile = path;        
+    public CSVManager(String path, String splitBy) {
+        pathToFile = path;   
+        csvSplitBy = splitBy;
     }
     
+    /*
+    Data una chiave, restituisce un array composto da ogni elemento della riga corrispondente
+    */    
     public String[] find(String key) {
         String line;
-        String cvsSplitBy = ";";
         
         try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
             while ((line = br.readLine()) != null) {
-                String[] comune = line.split(cvsSplitBy);
+                String[] comune = line.split(csvSplitBy);
                 if (comune[0].equals(key)){
                     br.close();
                     return comune;
@@ -36,6 +40,9 @@ public class CSVManager {
         return null;
     }
     
+    /*
+    Appende una linea al file
+    */
     public void append(String linea) {
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(pathToFile, true))) {
             wr.write(linea);
@@ -46,9 +53,11 @@ public class CSVManager {
         }
     }
     
+    /*
+    Restituisce il numero di righe del file
+    */
     public int getNumberOfRows() {
         String line;
-        String cvsSplitBy = ";";
         int numberOfRows = 0;
         
         try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {

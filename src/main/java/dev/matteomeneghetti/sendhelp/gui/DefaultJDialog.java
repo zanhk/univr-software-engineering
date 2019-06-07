@@ -2,6 +2,10 @@ package dev.matteomeneghetti.sendhelp.gui;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
+/*
+Classe adibita a a fornire un jDialog pronto all'uso
+*/
+
 
 public class DefaultJDialog extends JDialog {
     

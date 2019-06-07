@@ -1,6 +1,7 @@
 package dev.matteomeneghetti.sendhelp.data;
 
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import java.io.File;
 import java.util.Date;
 
 /*
@@ -10,11 +11,11 @@ import java.util.Date;
 */
 public class Paziente {
     
-    private CodiceFiscale codiceFiscale;
+    private CodiceFiscale codiceFiscale;//codice fiscale
     private String codiceSanitario;     //codice univoco
     private String cognome;             //cognome
     private String nome;                //nome
-    private char genere;
+    private char genere;        
     private Date dataDiNascita;         //data di nascita
     private String luogoDiNascita;      //luogo di nascita
     
@@ -81,7 +82,7 @@ public class Paziente {
     }
     
     public String generaCodiceSanitario() {
-        CSVManager reader = new CSVManager("resources/lista-pazienti.csv");
+        CSVManager reader = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
         int numeroRighe = reader.getNumberOfRows()+1;
         String codice = Integer.toString(numeroRighe);
         while(codice.length() < 6)

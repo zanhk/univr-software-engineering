@@ -5,6 +5,7 @@ import dev.matteomeneghetti.sendhelp.data.Paziente;
 import static dev.matteomeneghetti.sendhelp.utility.Utility.date2String;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Date;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
@@ -15,18 +16,19 @@ import javax.swing.event.DocumentListener;
 public class NuovoPaziente extends javax.swing.JPanel {
     
     private Paziente paziente;
+    private Controller defaultController = new Controller();
     private NuovoPazienteController controller = new NuovoPazienteController();
 
     public NuovoPaziente() {
         initComponents();
-        
-        annullaButton.addActionListener(new Controller());
+
+        annullaButton.addActionListener(defaultController);
         confermaButton.addActionListener(controller);
         nomeField.getDocument().addDocumentListener(controller);
         cognomeField.getDocument().addDocumentListener(controller);
         maschioRadio.addActionListener(controller);
         femminaRadio.addActionListener(controller);
-        luogoField.getDocument().addDocumentListener(controller);        
+        luogoField.getDocument().addDocumentListener(controller);
         dataNascitaSpinner.setEditor(new JSpinner.DateEditor(dataNascitaSpinner, "dd/MM/yyyy"));
         dataNascitaSpinner.addChangeListener(controller);
         
@@ -57,8 +59,10 @@ public class NuovoPaziente extends javax.swing.JPanel {
         dataNascitaSpinner = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
         codiceSanitarioLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
-        setPreferredSize(new java.awt.Dimension(450, 350));
+        setPreferredSize(new java.awt.Dimension(450, 450));
 
         jLabel1.setText("Nome");
 
@@ -101,6 +105,10 @@ public class NuovoPaziente extends javax.swing.JPanel {
 
         jLabel6.setText("Paziente num.");
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,13 +147,14 @@ public class NuovoPaziente extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(codiceSanitarioLabel)))
+                                .addComponent(codiceSanitarioLabel))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(181, 181, 181)
                 .addComponent(jLabel7)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +195,9 @@ public class NuovoPaziente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(codiceSanitarioLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(codiceFiscaleLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,7 +226,9 @@ public class NuovoPaziente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField luogoField;
     private javax.swing.JRadioButton maschioRadio;
     private javax.swing.JTextField nomeField;
@@ -224,15 +237,13 @@ public class NuovoPaziente extends javax.swing.JPanel {
     private void saveToFile() {
         if(!canConfirm())
             return;
-        CSVManager writer = new CSVManager("resources/lista-pazienti.csv");
+        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
                         
         String linea = paziente.getCodiceSanitario()+";"
-                        +paziente.getCognome()+";"
-                        +paziente.getNome()+";"
-                        +paziente.getLuogoDiNascita()+";"
-                        +date2String(paziente.getDataDiNascita())+";"
-                        +paziente.getCodiceFiscale();
-
+                      +paziente.getCognome()+";"
+                      +paziente.getNome()+";"
+                      +paziente.getLuogoDiNascita()+";"
+                      +date2String(paziente.getDataDiNascita());
         writer.append(linea);
     }
     
