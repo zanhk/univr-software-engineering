@@ -4,12 +4,12 @@ import java.util.TreeSet;
 /*
 La cartella clinica e' il cuore pulsante della gestione dei dati.
 Per ogni paziente in fase di ricovero viene aperta una cartella clinica,
-nel quale sono inserite generalita' del paziente in fase di ricovero, 
+nel quale sono inserite generalita' del paziente al momento del ricovero, 
 in seguito possono venire aggiunte prescrizioni di medicinali 
 e un record delle relative somministrazioni.
 Al termine del ricovero, il primario compila una lettera di dimissioni 
-riassuntiva di quanto avvenuto al paziente durante il ricovero e chiude in tal
-modo la cartella clinica del ricovero.
+riassuntiva di quanto avvenuto al paziente durante la permanenza e chiude in tal
+modo la cartella clinica del paziente.
 */
 public class CartellaClinica {
     
@@ -36,8 +36,8 @@ public class CartellaClinica {
     public boolean addPrescrizione(Prescrizione nuovaPrescrizione) {
         return this.prescrizioni.add(nuovaPrescrizione);
     }
-    public boolean removePrescrizione(Prescrizione myPrescrizione) {
-        return this.prescrizioni.remove(myPrescrizione);
+    public boolean removePrescrizione(Prescrizione prescrizioneDaTogliere) {
+        return this.prescrizioni.remove(prescrizioneDaTogliere);
     }    
     
     
@@ -47,8 +47,8 @@ public class CartellaClinica {
     public boolean addSomministrazione(Somministrazione nuovaSomministrazione) {
         return this.somministrazioni.add(nuovaSomministrazione);
     }
-    public boolean removeSomministrazione(Somministrazione mySomministrazione) {
-        return this.somministrazioni.remove(mySomministrazione);
+    public boolean removeSomministrazione(Somministrazione somministrazioneDaTogliere) {
+        return this.somministrazioni.remove(somministrazioneDaTogliere);
     }    
     
 }

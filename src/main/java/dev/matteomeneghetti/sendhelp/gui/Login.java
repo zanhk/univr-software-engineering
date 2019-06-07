@@ -196,7 +196,7 @@ public class Login extends javax.swing.JFrame {
         
         private boolean checkLogin() {
             String id = jTextField1.getText();
-            CSVManager csvreader = new CSVManager("resources" + File.separator + "dati-login.csv");
+            CSVManager csvreader = new CSVManager("resources" + File.separator + "dati-login.csv", ";");
             String[] dati = csvreader.find(id);
             if(dati == null)
                 return false;
