@@ -2,9 +2,7 @@ package dev.matteomeneghetti.sendhelp.data;
 
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import java.io.File;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Set;
 
 public class CodiceFiscale {
@@ -20,21 +18,21 @@ public class CodiceFiscale {
     private final String luogoDiNascita;
     
     public CodiceFiscale(String cognome, String nome, Date dataDiNascita, char sesso, String luogoDiNascita) {
-        this.cognome = cognome;
-        this.nome = nome;
+        this.cognome = cognome.replaceAll("\\s+", "");
+        this.nome = nome.replaceAll("\\s+", "");
         this.dataDiNascita = dataDiNascita;
         this.sesso = sesso;
         this.luogoDiNascita = luogoDiNascita;
         
         codice = "";
-        if(this.cognome!="")
-        codice+=generaCognome();
-        if(this.nome!="")
-        codice+=generaNome();
+        if(!this.cognome.isEmpty())
+            codice+=generaCognome();
+        if(!this.nome.isEmpty())
+            codice+=generaNome();
         if(this.dataDiNascita!=null)
-        codice+=generaData();
-        if(this.luogoDiNascita!="")
-        codice+=generaComune();
+            codice+=generaData();
+        if(!this.luogoDiNascita.isEmpty())
+            codice+=generaComune();
         if((this.cognome!=null)&&(this.nome!=null)&&(this.dataDiNascita!=null)&&(this.luogoDiNascita!=null))
         codice+=generaCIN();
     }
