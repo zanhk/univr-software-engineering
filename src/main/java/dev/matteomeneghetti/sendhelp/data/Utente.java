@@ -26,14 +26,14 @@ public class Utente {
     private static enum RUOLO {BOT, INF, MED, PRM};  //NonAutenticato, Infermiere, Medico, Primario
     private String nome;
     private String cognome;
-    private String ID;
+    private String id;
     private String password;    //oh no
     private RUOLO ruolo;
 
-    public Utente(String nome, String cognome, String ID, String password, RUOLO ruolo) {
+    public Utente(String nome, String cognome, String id, String password, RUOLO ruolo) {
         this.nome = nome;
         this.cognome = cognome;
-        this.ID = ID;
+        this.id = id;
         this.password = password;
         this.ruolo = ruolo;
     }   
@@ -54,12 +54,12 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public String getID() {
-        return ID;
+    public String getid() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setid(String id) {
+        this.id = id;
     }
 
     public String getPassword() {
