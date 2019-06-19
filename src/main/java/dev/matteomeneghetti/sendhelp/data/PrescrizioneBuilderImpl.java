@@ -2,7 +2,7 @@ package dev.matteomeneghetti.sendhelp.data;
 
 import java.util.Date;
 
-public static class PrescrizioneBuilderImpl implements PrescrizioneBuilder {
+public class PrescrizioneBuilderImpl implements PrescrizioneBuilder {
         private Prescrizione prescrizioneTmp;
         
         public PrescrizioneBuilderImpl(){
@@ -13,7 +13,7 @@ public static class PrescrizioneBuilderImpl implements PrescrizioneBuilder {
         public Prescrizione build() {
             Prescrizione prescrizione = new Prescrizione();
             prescrizione.setNomeFarmaco(prescrizioneTmp.getNomeFarmaco());
-            prescrizione.setDatassePrescrizione(prescrizioneTmp.getDataPrescrizione());
+            prescrizione.setDataPrescrizione(prescrizioneTmp.getDataPrescrizione());
             prescrizione.setDataFineTerapia(prescrizioneTmp.getDataFineTerapia());
             prescrizione.setNumeroDosiGiornaliere(prescrizioneTmp.getNumeroDosiGiornaliere());
             prescrizione.setQuantitaDose(prescrizioneTmp.getQuantitaDose());

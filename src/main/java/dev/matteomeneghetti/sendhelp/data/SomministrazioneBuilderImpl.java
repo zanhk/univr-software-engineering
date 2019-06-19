@@ -2,7 +2,7 @@ package dev.matteomeneghetti.sendhelp.data;
 
 import java.util.Date;
 
-public static class SomministrazioneBuilderImpl implements SomministrazioneBuilder {
+public class SomministrazioneBuilderImpl implements SomministrazioneBuilder {
         
         private Somministrazione somministrazioneTmp;
         
