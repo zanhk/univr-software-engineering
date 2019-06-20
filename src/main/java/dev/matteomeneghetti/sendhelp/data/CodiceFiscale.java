@@ -5,6 +5,14 @@ import java.io.File;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * 
+ * Genera il codice fiscale del paziente
+ * @see Paziente
+ * @see <a href="https://www.gazzettaufficiale.it/eli/id/1987/12/31/087U0539/sg">Gazzetta ufficiale n.345 29-12-1976</a>
+ * 
+ */
+
 public class CodiceFiscale {
     
     private static final Set<Character> VOCALI = Set.of('A', 'E', 'I', 'O', 'U');
@@ -16,6 +24,17 @@ public class CodiceFiscale {
     private final Date dataDiNascita;
     private final char sesso;
     private final String luogoDiNascita;
+    
+    /**
+     * 
+     * Costruttore della classe
+     * @param cognome Stringa
+     * @param nome Stringa
+     * @param dataDiNascita Date
+     * @param sesso Attenzione inserire "m","M","f","F" altri casi non gestiti
+     * @param luogoDiNascita Stringa
+     * 
+     */
     
     public CodiceFiscale(String cognome, String nome, Date dataDiNascita, char sesso, String luogoDiNascita) {
         this.cognome = cognome.replaceAll("\\s+", "");
@@ -37,17 +56,31 @@ public class CodiceFiscale {
         codice+=generaCIN();
     }
     
-    @Override
-    public String toString() {
-        return this.codice;
-    }
-    
+    /**
+     * 
+     * Funzione di supporto che analizza se una lettera è una vocale
+     * @param myChar lettera da anilizzare
+     * @return TRUE se è una vocale, FALSE se non lo è
+     * 
+     */
     private static boolean isVocale(char myChar) {
         return VOCALI.contains(Character.toUpperCase(myChar));
     }
+    
+    /**
+     * Funzione di supporto per determinare se il paziente è uomo o donna
+     * @return TRUE se è donna, falso altrimenti
+     */
+    
     private boolean isFemale() {
         return (this.sesso=='f' || this.sesso=='F');
     }
+    
+    /**
+     * Genera dal cognome le lettere necessarie per il codfiscale
+     * @return Una stringa di lunghezza 3
+     * 
+     */
     
     private String generaCognome() {
         char[] cognomeArray = this.cognome.toCharArray();
@@ -69,6 +102,11 @@ public class CodiceFiscale {
         return siglaCognome;
     }
     
+    /**
+     * Genera dal nome le lettere necessarie per il codfiscale
+     * @return Una stringa di lunghezza 3
+     * 
+     */
     private String generaNome() {
         char[] nomeArray = this.nome.toCharArray();
         int numeroConsonanti = 0;
@@ -108,6 +146,11 @@ public class CodiceFiscale {
         return siglaNome;
     }
     
+    /**
+     * Genera dalla data i caratteri necessari per il codfiscale
+     * @return Una stringa
+     * 
+     */
     private String generaData() {
         String anno = ""+dataDiNascita.getYear();
         String mese = ""+MESI.values()[dataDiNascita.getMonth()];
@@ -117,6 +160,12 @@ public class CodiceFiscale {
         return anno+mese+giorno;
     }
     
+    /**
+     * Confronta il comune con il file del database catastale e torna il codice catastale
+     * @return Una stringa lunga 4
+     * 
+     */
+    
     private String generaComune() {
         CSVManager csvreader = new CSVManager("resources" + File.separator + "lista-comuni.csv", ";");
         String[] codiceComune = csvreader.find(this.luogoDiNascita);
@@ -124,6 +173,12 @@ public class CodiceFiscale {
         return codiceComune[1];
         else return "";
     }
+    
+    /**
+     * Genera il carattere di controllo
+     * @return Un char di controllo
+     * 
+     */
     
     private char generaCIN() {
         String dispari = "";
@@ -151,5 +206,10 @@ public class CodiceFiscale {
         int somma = sommaPari + sommaDispari;
         int resto = somma%26;
         return (char) (resto+65);
+    }
+    
+    @Override
+    public String toString() {
+        return this.codice;
     }
 }
