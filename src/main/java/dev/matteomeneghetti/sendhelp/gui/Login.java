@@ -1,10 +1,17 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import dev.matteomeneghetti.sendhelp.utility.Hashing;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 public class Login extends javax.swing.JFrame {
     
@@ -81,9 +88,11 @@ public class Login extends javax.swing.JFrame {
         jPasswordField1.setColumns(10);
 
         jButton1.setText("Conferma");
+        jButton1.setBorderPainted(false);
         jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
 
         jButton2.setText("Esci");
+        jButton2.setBorderPainted(false);
         jButton2.setPreferredSize(new java.awt.Dimension(100, 30));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -185,22 +194,42 @@ public class Login extends javax.swing.JFrame {
             String message = e.getActionCommand();
             switch(message) {
                 case "Conferma":
-                    if(!checkLogin()) {
+                 
+                {
+                    try {
+                        /*
+                        if(!checkLogin()) {
                         System.out.println("Login fallito");
                         return;                        
+                        }
+                        System.out.println("Login riuscito");
+                        break;
+                        */
+                        checkLogin();
+                    } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    System.out.println("Login riuscito");
-                    break;
+                }
+
             }
         }
-        
-        private boolean checkLogin() {
+        //TODO confrontare l'hash di nome e pass con l'hash salvato
+        //TODO cambiare in ritorna il ruolo e il nick
+        private boolean checkLogin() throws NoSuchAlgorithmException, InvalidKeySpecException {
             String id = jTextField1.getText();
             CSVManager csvreader = new CSVManager("resources" + File.separator + "dati-login.csv", ";");
             String[] dati = csvreader.find(id);
+            
             if(dati == null)
-                return false;
-            return Arrays.equals(dati[1].toCharArray(), jPasswordField1.getPassword());
+               JOptionPane.showMessageDialog(null, "Username o password errati", "Errore", JOptionPane.ERROR_MESSAGE   );
+            else
+                new Infermiere();
+            
+            //return Arrays.equals(dati[1].toCharArray(), jPasswordField1.getPassword());
+            return Hashing.validate(Arrays.toString(jPasswordField1.getPassword()), dati[1]);
+            
         }
+        
+        
     }
 }
