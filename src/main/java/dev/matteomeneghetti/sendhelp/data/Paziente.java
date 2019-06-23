@@ -11,13 +11,13 @@ import java.util.Date;
 */
 public class Paziente {
     
-    private CodiceFiscale codiceFiscale;//codice fiscale
-    private String codiceSanitario;     //codice univoco
-    private String cognome;             //cognome
-    private String nome;                //nome
-    private char genere;        
-    private Date dataDiNascita;         //data di nascita
-    private String luogoDiNascita;      //luogo di nascita
+    private CodiceFiscale codiceFiscale;
+    private String codiceSanitario;
+    private String cognome;
+    private String nome;
+    private char genere;
+    private Date dataDiNascita;
+    private String luogoDiNascita;
     
     private String diagnosiDiIngresso;  //diagnosi da compilare a cura del medico
     

@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/*
-    Classe che permette la gestione di file CSV
-*/
+/**
+ *  Classe che permette la gestione di file CSV
+ */
 
 public class CSVManager {
     
@@ -19,9 +19,9 @@ public class CSVManager {
         csvSplitBy = splitBy;
     }
     
-    /*
-    Data una chiave, restituisce un array composto da ogni elemento della riga corrispondente
-    */
+    /**
+     *  Data una chiave, restituisce un array composto da ogni elemento della riga corrispondente
+     */
     public String[] find(String key) {
         String line;
         
@@ -40,9 +40,9 @@ public class CSVManager {
         return null;
     }
     
-    /*
-    Appende una linea al file
-    */
+    /**
+     *  Appende una linea al file
+     */
     public void append(String linea) {
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(pathToFile, true))) {
             wr.write(linea);
@@ -53,9 +53,9 @@ public class CSVManager {
         }
     }
     
-    /*
-    Restituisce il numero di righe del file
-    */
+    /**
+     *  Restituisce il numero di righe del file
+     */
     public int getNumberOfRows() {
         String line;
         int numberOfRows = 0;
