@@ -1,6 +1,7 @@
 package dev.matteomeneghetti.sendhelp;
 import dev.matteomeneghetti.sendhelp.gui.DefaultJDialog;
 import dev.matteomeneghetti.sendhelp.gui.Login;
+import dev.matteomeneghetti.sendhelp.gui.MainWindow;
 import dev.matteomeneghetti.sendhelp.gui.NuovoPaziente;
 import javax.swing.JDialog;
 
