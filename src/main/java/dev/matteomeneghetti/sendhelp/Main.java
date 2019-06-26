@@ -32,7 +32,7 @@ public class Main {
             public void run() {
                 //new Login();
                 //new DefaultJDialog(new NuovoPaziente());
-                new MainWindow();
+              MainWindow main = new MainWindow();
             }
         });
     }

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -246,8 +247,10 @@ public class NuovoPaziente extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     
     private void saveToFile() {
-        if(!canConfirm())
+        if(!canConfirm()){
+            JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
             return;
+        }
         CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
                         
         String linea = paziente.getCodiceSanitario()+";"
@@ -256,6 +259,12 @@ public class NuovoPaziente extends javax.swing.JPanel {
                       +paziente.getLuogoDiNascita()+";"
                       +date2String(paziente.getDataDiNascita());
         writer.append(linea);
+        try{
+            File file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+".csv");
+            file.createNewFile();
+        }catch(Exception e){
+            System.out.println("Impossible creare");
+        }
     }
     
     private boolean canConfirm() {

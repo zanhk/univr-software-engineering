@@ -1,8 +1,10 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
 import dev.matteomeneghetti.sendhelp.data.Utente;
+import dev.matteomeneghetti.sendhelp.utility.Analisi;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
 
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
     
@@ -14,6 +16,21 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jButton1.addActionListener(this);
         jButton2.addActionListener(this);
         setVisible(true);
+        jTable1.setValueAt("RXXLLL90A01A", 0, 0);
+        for(int i=0; i<10; i++){
+            if(jTable1.getValueAt(i, 0) == null)
+                break;
+            else
+                new Analisi((String) jTable1.getValueAt(i, 0), this, i);
+        }
+        Analisi pingo = new Analisi("Matteo", this, 1);
+        Timer c = new Timer();
+        //microsecondi
+        
+        c.schedule(pingo.getB(), 0, 10000);
+        c.schedule(pingo.getPs(), 0, 12000);
+        c.schedule(pingo.getDp(), 0, 15000);
+        c.schedule(pingo.getTemp(), 0, 17000);
     }
 
     @SuppressWarnings("unchecked")
@@ -267,7 +284,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton1)
@@ -312,7 +329,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -405,7 +422,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
@@ -423,6 +440,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }
     
     private Utente doLogin() {
+        
         new Login();
         return null;
     }
