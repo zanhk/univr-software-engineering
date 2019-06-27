@@ -183,8 +183,8 @@ public class Analisi extends TimerTask{
         }
     }
      private class Line extends TimerTask{
-            BufferedWriter wr;
-         public Line(BufferedWriter wr){
+        BufferedWriter wr;
+        public Line(BufferedWriter wr){
              this.wr = wr;
          }
          @Override
