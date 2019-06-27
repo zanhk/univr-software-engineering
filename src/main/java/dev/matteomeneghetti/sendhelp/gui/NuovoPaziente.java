@@ -261,7 +261,13 @@ public class NuovoPaziente extends javax.swing.JPanel {
         writer.append(linea);
         try{
             File file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+".csv");
-            file.createNewFile();
+            if(!file.createNewFile())
+                return;
+            writer.setPathToFile(file.getAbsolutePath());
+            writer.append("SBP");
+            writer.append("DBP");
+            writer.append("BPM");
+            writer.append("TEMP");
         }catch(Exception e){
             System.out.println("Impossible creare");
         }
