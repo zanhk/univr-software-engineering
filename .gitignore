@@ -16,4 +16,4 @@ nb-configuration.xml
 *.ear
 /nbproject/
 
-resource/*
+/resource/*
