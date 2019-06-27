@@ -31,7 +31,7 @@ public class Login extends javax.swing.JPanel {
      */
     public Login() {
         initComponents();
-        jLabel2.setIcon(new javax.swing.ImageIcon("resources"+File.separator+"icons"+File.separator+"loginicon.png"));
+        jLabel2.setIcon(new javax.swing.ImageIcon("icons"+File.separator+"loginicon.png"));
         jButton1.addActionListener(new Login.LoginController());
         jButton2.addActionListener(new Login.LoginController());
         
