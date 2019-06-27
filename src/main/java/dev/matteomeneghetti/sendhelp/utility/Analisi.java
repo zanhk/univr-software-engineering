@@ -72,7 +72,7 @@ public class Analisi extends TimerTask{
         this.paziente = paziente;
     }
     */
-    public Analisi(String paziente, MainWindow mainWindow, int row) throws IOException{
+    public Analisi(String paziente) throws IOException{
         this.paziente = paziente;
         String pathToFile = "resources" + File.separator + "Pazienti" + File.separator + paziente + ".csv";
         CSVManager wr = new CSVManager(pathToFile, ";" );
@@ -81,7 +81,7 @@ public class Analisi extends TimerTask{
         ps = new PressSBP(wr, lines, Path.of(pathToFile));
         dp = new PressDBP(wr, lines, Path.of(pathToFile));
         temp = new Temperatura(wr, lines, Path.of(pathToFile));
-        //line = new Line(wr, lines, Path.of(pathToFile));
+        
         
         
         
@@ -122,6 +122,7 @@ public class Analisi extends TimerTask{
             for(int i = 0; i < riga.length; i++){
                 linea+=riga[i]+";";
             }
+            Observerer.putOnTable(battito.toString(), 1, 1);
             linea+=battito.toString();
             lines.remove(position);
             lines.add(position, linea);

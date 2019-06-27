@@ -2,8 +2,11 @@ package dev.matteomeneghetti.sendhelp.gui;
 
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.Analisi;
+import dev.matteomeneghetti.sendhelp.utility.Observerer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Timer;
 
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
@@ -18,26 +21,33 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jButton2.addActionListener(this);
         jButton3.addActionListener(this);
         setVisible(true);
-        jTable1.setValueAt("LLLBNG90A01H501K", 0, 0);
+        new Observerer(this);
+        riempiTabella();
+        //jTable1.setValueAt("LLLBNG90A01H501K", 0, 0);
         for(int i=0; i<10; i++){
             if(jTable1.getValueAt(i, 0) == null)
                 break;
             else
                 try{
-                new Analisi((String) jTable1.getValueAt(i, 0), this, i);
+                new Analisi((String) jTable1.getValueAt(i, 0));
                 }catch(Exception e)
                 {
                     System.out.println("HELP");
                 }
         }
-       try{
-           Analisi pingo = new Analisi("Matteo", this, 1);
-       }
-       catch(Exception e){
-           System.out.println("HELP2");
-       }
     }
-
+    
+    public void riempiTabella(){
+        String path = "resources" + File.separator + "Pazienti";
+        File file = new File(path);
+        String[] fileList = file.list();
+        int count = 0;
+        for(String name:fileList){
+            String pingo = name.replace(".csv", "");
+            jTable1.setValueAt(pingo, count, 0);
+            count++;
+        }
+    } 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -462,4 +472,5 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     public Utente getUtenteCorrente() {
         return this.utenteCorrente;
     }
+    
 }
