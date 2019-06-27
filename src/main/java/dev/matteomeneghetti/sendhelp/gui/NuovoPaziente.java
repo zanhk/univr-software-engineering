@@ -247,17 +247,23 @@ public class NuovoPaziente extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     
     private void saveToFile() {
-        if(!canConfirm()){
+        
+        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
+        if((paziente.getCodiceFiscale() == null) || (paziente.getCodiceFiscale().toString() == "90A01W" )){
             JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
             return;
         }
-        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
-                        
+        if(!canConfirm(writer, paziente.getCodiceFiscale().toString()) ){
+            JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
+            return;
+        }           
         String linea = paziente.getCodiceSanitario()+";"
                       +paziente.getCognome()+";"
                       +paziente.getNome()+";"
                       +paziente.getLuogoDiNascita()+";"
-                      +date2String(paziente.getDataDiNascita());
+                      +date2String(paziente.getDataDiNascita())
+                      +";" 
+                      +paziente.getCodiceFiscale();
         writer.append(linea);
         try{
             File file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+".csv");
@@ -273,11 +279,11 @@ public class NuovoPaziente extends javax.swing.JPanel {
         }
     }
     
-    private boolean canConfirm() {
-        return !nomeField.getText().isEmpty()&&!cognomeField.getText().isEmpty()
+    private boolean canConfirm(CSVManager writer, String codiceFiscale) {
+        return  !nomeField.getText().isEmpty()
+                &&!cognomeField.getText().isEmpty()
                 &&!luogoField.getText().isEmpty();
     }
-    
     private class NuovoPazienteController implements DocumentListener, ChangeListener, ActionListener {
 
         @Override
