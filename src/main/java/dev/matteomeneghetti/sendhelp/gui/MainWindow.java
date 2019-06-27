@@ -444,7 +444,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     
     private Utente doLogin() {
         
-        new Login();
+        new DefaultJDialog(new Login());
         return null;
     }
     
