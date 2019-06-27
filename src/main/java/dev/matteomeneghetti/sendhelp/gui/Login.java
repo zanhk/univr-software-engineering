@@ -11,8 +11,6 @@ import dev.matteomeneghetti.sendhelp.utility.Hashing;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -21,7 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
@@ -180,11 +177,11 @@ public class Login extends javax.swing.JPanel {
                     utente = new Utente();
                     try {
                         String[] dati = checkLogin();
-                        if(checkLogin() != null) {
+                        if(dati != null) {
                             utente.setNome(dati[0]);
                             utente.setRuolo(Utente.RUOLO.valueOf(dati[2]));
                             main.setUtenteCorrente(utente);
-                            chiudiFinestra(e);                            
+                            chiudiDialog(e);                            
                         }
                     } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -194,7 +191,7 @@ public class Login extends javax.swing.JPanel {
                     new DefaultJDialog(new NuovoUtente());
                     break;
                 case "Esci":
-                    chiudiFinestra(e);
+                    chiudiDialog(e);
             }
         }
         //TODO confrontare l'hash di nome e pass con l'hash salvato
@@ -203,20 +200,22 @@ public class Login extends javax.swing.JPanel {
             CSVManager csvreader = new CSVManager("resources" + File.separator + "dati-login.csv", ";");
             String[] dati = csvreader.find(id);
             
-            boolean loginValue = verifyLogin(dati[1]);
+            if(dati == null)
+                return null;
             
-            if(!loginValue || dati == null) {
+            if(!verifyLogin(dati[1])) {
                JOptionPane.showMessageDialog(null, "Username o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
+               return null;
             }
             return dati;            
         }
         
         private boolean verifyLogin(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
-            return Arrays.equals(password.toCharArray(), jPasswordField1.getPassword());
-            //return Hashing.validate(Arrays.toString(jPasswordField1.getPassword()), password);
+            return Hashing.validate(jPasswordField1.getText(), password);
+            //return Arrays.equals(password.toCharArray(), jPasswordField1.getPassword());
         }
         
-        private void chiudiFinestra(ActionEvent e) {
+        private void chiudiDialog(ActionEvent e) {
             Component component = (Component) e.getSource();
             JDialog thisDialog = (JDialog) SwingUtilities.getRoot(component);
             thisDialog.dispose();            

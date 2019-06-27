@@ -16,6 +16,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         
         jButton1.addActionListener(this);
         jButton2.addActionListener(this);
+        jButton3.addActionListener(this);
         setVisible(true);
         jTable1.setValueAt("RXXLLL90A01A", 0, 0);
         for(int i=0; i<10; i++){
@@ -439,6 +440,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 break;
             case "Login":
                 doLogin();
+                break;
+            case "Aggiungi prescrizione":
+                new DefaultJDialog(new NuovaPrescrizione());
                 break;
         }
     }

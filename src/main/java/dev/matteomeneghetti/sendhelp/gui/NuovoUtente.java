@@ -7,10 +7,16 @@ package dev.matteomeneghetti.sendhelp.gui;
 
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import dev.matteomeneghetti.sendhelp.utility.Hashing;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
@@ -141,17 +147,20 @@ public class NuovoUtente extends javax.swing.JPanel implements ActionListener {
         switch(command) {
             case "Conferma":
                 CSVManager manager = new CSVManager("resources" + File.separator + "dati-login.csv", ";");
-                manager.append(jTextField1.getText()+";"+jPasswordField1.getText()+";"+ Utente.RUOLO.values()[jComboBox1.getSelectedIndex()]+"\n");
-                chiudiFinestra(ae);
+            {
+                try {
+                    manager.append(jTextField1.getText()+";"+Hashing.genHash(jPasswordField1.getText(), Hashing.getSalt())+";"+ Utente.RUOLO.values()[jComboBox1.getSelectedIndex()]);
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(NuovoUtente.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InvalidKeySpecException ex) {
+                Logger.getLogger(NuovoUtente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+                Utility.chiudiDialog(ae);
                 break;
+
             case "Annulla":
-                chiudiFinestra(ae);
+                Utility.chiudiDialog(ae);
         }
-    }
-    
-    private void chiudiFinestra(ActionEvent e) {
-            Component component = (Component) e.getSource();
-            JDialog thisDialog = (JDialog) SwingUtilities.getRoot(component);
-            thisDialog.dispose();            
     }
 }

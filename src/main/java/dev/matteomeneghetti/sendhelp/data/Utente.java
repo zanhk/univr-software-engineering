@@ -80,7 +80,5 @@ public class Utente {
 
     public void setRuolo(RUOLO ruolo) {
         this.ruolo = ruolo;
-    }
-    
-    
+    }   
 }
