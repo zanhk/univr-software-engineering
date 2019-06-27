@@ -274,7 +274,8 @@ public class NuovoPaziente extends javax.swing.JPanel {
     }
     
     private boolean canConfirm() {
-        return !nomeField.getText().isEmpty()&&!cognomeField.getText().isEmpty()
+        return  !nomeField.getText().isEmpty()
+                &&!cognomeField.getText().isEmpty()
                 &&!luogoField.getText().isEmpty();
     }
     
