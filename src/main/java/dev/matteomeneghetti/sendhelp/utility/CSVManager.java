@@ -19,6 +19,9 @@ public class CSVManager {
         csvSplitBy = splitBy;
     }
     
+    public void setPathToFile(String path){
+        this.pathToFile=path;
+    }
     /**
      *  Data una chiave, restituisce un array composto da ogni elemento della riga corrispondente
      */
