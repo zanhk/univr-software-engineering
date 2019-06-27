@@ -27,6 +27,7 @@ public class Analisi extends TimerTask{
     PressDBP dp;
     Temperatura temp;
     String paziente;
+    Line line;
     final int row;
 
     public Battito getB() {
@@ -69,21 +70,24 @@ public class Analisi extends TimerTask{
         this.paziente = paziente;
     }
     
-    public Analisi(String paziente, MainWindow mainWindow, int row){
-        b = new Battito();
-        ps = new PressSBP();
-        dp = new PressDBP();
-        temp = new Temperatura();
+    public Analisi(String paziente, MainWindow mainWindow, int row) throws IOException{
+        String pathToFile = "resources" + File.separator + "Pazienti" + File.separator + paziente + ".csv";
+        BufferedWriter wr = new BufferedWriter(new FileWriter(pathToFile, true));
+        b = new Battito(wr);
+        ps = new PressSBP(wr);
+        dp = new PressDBP(wr);
+        temp = new Temperatura(wr);
+        line = new Line(wr);
         this.paziente = paziente;
         this.row = row;
         
-        CSVManager writer = new CSVManager("resources" + File.separator + "Pazienti" + File.separator + paziente + ".csv", ";");
+        
         Timer timer = new Timer();
         timer.schedule(b, 0, 10000);
         timer.schedule(ps, 0, 12000);
         timer.schedule(dp, 0, 15000);
         timer.schedule(temp, 0, 17000);
-        //timer.schedule(NEW LINE, time);
+        timer.schedule(line, 0, 20000);
         //OGNI TASK AGGIUNGE AL FILE, LA TASK NEW LINE SI ATTIVA OGNI TOT MINUTI E FA UNA NUOVA RIGA
        /* String linea = paziente.getCodiceSanitario()+";"
                       +paziente.getCognome()+";"
@@ -102,18 +106,20 @@ public class Analisi extends TimerTask{
     
     private class Battito extends TimerTask{
         Random rand = new Random();
-        
+        BufferedWriter wr;
+        public Battito(BufferedWriter wr){
+            this.wr = wr;
+        }
         
         @Override
         public void run(){
+            Integer battito = ( rand.nextInt(30) + 60 );
+            System.out.println("Battito:" + battito);
             
-            System.out.println("Battito:" + (rand.nextInt(30)+60));
-            CSVManager writer = new CSVManager("resources" + File.separator + "Pazienti" + File.separator + paziente + ".csv", ";");
-            String pathToFile = "resources" + File.separator + "Pazienti" + File.separator + paziente + ".csv";
-            BufferedWriter wr;
-            try {
-                wr = new BufferedWriter(new FileWriter(pathToFile, true));
-                wr.write("ciao");
+            try{
+                wr.write(battito.toString()+ ";");
+                wr.flush();
+                
             } catch (IOException ex) {
                 Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -121,25 +127,74 @@ public class Analisi extends TimerTask{
         }
     }
      private class PressSBP extends TimerTask{
+        BufferedWriter wr;
+        Random rand = new Random();
+        public PressSBP(BufferedWriter wr){
+            
+            this.wr=wr;
+        }
         
         @Override
         public void run(){
-            System.out.println("Pressione SBP:150");
+            Integer pressione = rand.nextInt(39+30);
+             try {
+                 wr.write( pressione.toString() + ";");
+                 wr.flush();
+             } catch (IOException ex) {
+                 Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
+             }
         }
     }
     private class PressDBP extends TimerTask{
-        
+        BufferedWriter wr;
+        Random rand = new Random();
+        public PressDBP(BufferedWriter wr){
+            this.wr=wr;
+        }
         @Override
         public void run(){
-            System.out.println("Pressione DBP:150");
+             Integer pressione = rand.nextInt(39+30);
+             try {
+                 wr.write( pressione.toString() + ";");
+                 wr.flush();
+             } catch (IOException ex) {
+                 Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
+             }
         }
     }
      private class Temperatura extends TimerTask{
+         BufferedWriter wr;
+         
+         Random rand = new Random();
+         
+        public Temperatura(BufferedWriter wr){
+            this.wr=wr;
+        }
         
         @Override
         public void run(){
-            System.out.println("Temperatura: 35°C");
+           Integer temperatura = rand.nextInt(39+30);
+             try {
+                 wr.write( temperatura.toString() + ";");
+                 wr.flush();
+             } catch (IOException ex) {
+                 Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
+             }
         }
     }
-    
+     private class Line extends TimerTask{
+            BufferedWriter wr;
+         public Line(BufferedWriter wr){
+             this.wr = wr;
+         }
+         @Override
+         public void run(){
+                try {
+                    wr.newLine();
+                    wr.flush();
+                } catch (IOException ex) {
+                    Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+         }
+     }
 }

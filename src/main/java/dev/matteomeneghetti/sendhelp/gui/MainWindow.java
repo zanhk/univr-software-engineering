@@ -21,16 +21,19 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             if(jTable1.getValueAt(i, 0) == null)
                 break;
             else
+                try{
                 new Analisi((String) jTable1.getValueAt(i, 0), this, i);
+                }catch(Exception e)
+                {
+                    System.out.println("HELP");
+                }
         }
-        Analisi pingo = new Analisi("Matteo", this, 1);
-        Timer c = new Timer();
-        //microsecondi
-        
-        c.schedule(pingo.getB(), 0, 10000);
-        c.schedule(pingo.getPs(), 0, 12000);
-        c.schedule(pingo.getDp(), 0, 15000);
-        c.schedule(pingo.getTemp(), 0, 17000);
+       try{
+           Analisi pingo = new Analisi("Matteo", this, 1);
+       }
+       catch(Exception e){
+           System.out.println("HELP2");
+       }
     }
 
     @SuppressWarnings("unchecked")
@@ -329,7 +332,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
