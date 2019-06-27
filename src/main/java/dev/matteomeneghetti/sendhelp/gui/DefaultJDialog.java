@@ -11,6 +11,7 @@ public class DefaultJDialog extends JDialog {
     
     public DefaultJDialog(JPanel contenuto) {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setModal(true);
         setContentPane(contenuto);
         pack();
         setResizable(false);

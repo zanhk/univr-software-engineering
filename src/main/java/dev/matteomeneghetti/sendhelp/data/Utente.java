@@ -23,7 +23,7 @@ package dev.matteomeneghetti.sendhelp.data;
 
 public class Utente {
     
-    public static enum RUOLO {BOT, INF, MED, PRM};  //NonAutenticato, Infermiere, Medico, Primario
+    public static enum RUOLO {INF, MED, PRM};  //Infermiere, Medico, Primario
     private String nome;
     private String cognome;
     private String id;

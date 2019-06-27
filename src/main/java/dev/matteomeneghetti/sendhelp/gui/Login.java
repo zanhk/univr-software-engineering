@@ -8,6 +8,7 @@ package dev.matteomeneghetti.sendhelp.gui;
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Hashing;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -181,7 +182,7 @@ public class Login extends javax.swing.JPanel {
                             utente.setNome(dati[0]);
                             utente.setRuolo(Utente.RUOLO.valueOf(dati[2]));
                             main.setUtenteCorrente(utente);
-                            chiudiDialog(e);                            
+                            Utility.chiudiDialog(e);                            
                         }
                     } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -191,10 +192,10 @@ public class Login extends javax.swing.JPanel {
                     new DefaultJDialog(new NuovoUtente());
                     break;
                 case "Esci":
-                    chiudiDialog(e);
+                    Utility.chiudiDialog(e);
             }
         }
-        //TODO confrontare l'hash di nome e pass con l'hash salvato
+
         private String[] checkLogin() throws NoSuchAlgorithmException, InvalidKeySpecException {
             String id = jTextField1.getText();
             CSVManager csvreader = new CSVManager("resources" + File.separator + "dati-login.csv", ";");
@@ -213,13 +214,6 @@ public class Login extends javax.swing.JPanel {
         private boolean verifyLogin(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
             return Hashing.validate(jPasswordField1.getText(), password);
             //return Arrays.equals(password.toCharArray(), jPasswordField1.getPassword());
-        }
-        
-        private void chiudiDialog(ActionEvent e) {
-            Component component = (Component) e.getSource();
-            JDialog thisDialog = (JDialog) SwingUtilities.getRoot(component);
-            thisDialog.dispose();            
-        }
-        
+        }       
     }
 }
