@@ -5,11 +5,14 @@
  */
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Hashing;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -18,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
@@ -25,15 +29,19 @@ import javax.swing.SwingUtilities;
  * @author mat
  */
 public class Login extends javax.swing.JPanel {
+    
+    MainWindow main;
+    char defaultEchoChar;
+    Utente utente;
 
-    /**
-     * Creates new form NLogin
-     */
-    public Login() {
+    public Login(MainWindow main) {
         initComponents();
+        this.main = main;
+        defaultEchoChar = jPasswordField1.getEchoChar();
         jLabel2.setIcon(new javax.swing.ImageIcon("icons"+File.separator+"loginicon.png"));
         jButton1.addActionListener(new Login.LoginController());
         jButton2.addActionListener(new Login.LoginController());
+        jButton3.addActionListener(new Login.LoginController());
         
     }
 
@@ -53,6 +61,7 @@ public class Login extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
@@ -60,10 +69,8 @@ public class Login extends javax.swing.JPanel {
         jLabel1.setText("Login");
 
         jTextField1.setColumns(10);
-        jTextField1.setText("ID utente");
 
         jPasswordField1.setColumns(10);
-        jPasswordField1.setText("Password");
 
         jLabel4.setText("<html>\nQuesto software prevede che tu disponga delle credenziali di accesso <br />\nper accedere a questo reparto.\n</html>");
 
@@ -77,12 +84,16 @@ public class Login extends javax.swing.JPanel {
         jButton2.setBorderPainted(false);
         jButton2.setPreferredSize(new java.awt.Dimension(100, 30));
 
+        jButton3.setText("Nuovo Utente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,7 +105,8 @@ public class Login extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -129,14 +141,14 @@ public class Login extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 44, Short.MAX_VALUE))
+                        .addGap(0, 61, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)))
@@ -149,6 +161,7 @@ public class Login extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -164,42 +177,50 @@ public class Login extends javax.swing.JPanel {
             String message = e.getActionCommand();
             switch(message) {
                 case "Conferma":
-                 
-                {
+                    utente = new Utente();
                     try {
-                        /*
-                        if(!checkLogin()) {
-                        System.out.println("Login fallito");
-                        return;                        
+                        String[] dati = checkLogin();
+                        if(checkLogin() != null) {
+                            utente.setNome(dati[0]);
+                            utente.setRuolo(Utente.RUOLO.valueOf(dati[2]));
+                            main.setUtenteCorrente(utente);
+                            chiudiFinestra(e);                            
                         }
-                        System.out.println("Login riuscito");
-                        break;
-                        */
-                        checkLogin();
                     } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
+                    break;
+                case "Nuovo Utente":
+                    new DefaultJDialog(new NuovoUtente());
+                    break;
                 case "Esci":
-                    Component component = (Component) e.getSource();
-                    JDialog thisDialog = (JDialog) SwingUtilities.getRoot(component);
-                    thisDialog.dispose();
+                    chiudiFinestra(e);
             }
         }
         //TODO confrontare l'hash di nome e pass con l'hash salvato
-        //TODO cambiare in ritorna il ruolo e il nick
-        private boolean checkLogin() throws NoSuchAlgorithmException, InvalidKeySpecException {
+        private String[] checkLogin() throws NoSuchAlgorithmException, InvalidKeySpecException {
             String id = jTextField1.getText();
             CSVManager csvreader = new CSVManager("resources" + File.separator + "dati-login.csv", ";");
             String[] dati = csvreader.find(id);
             
-            if(dati == null)
-               JOptionPane.showMessageDialog(null, "Username o password errati", "Errore", JOptionPane.ERROR_MESSAGE   );
+            boolean loginValue = verifyLogin(dati[1]);
             
-            //return Arrays.equals(dati[1].toCharArray(), jPasswordField1.getPassword());
-            return Hashing.validate(Arrays.toString(jPasswordField1.getPassword()), dati[1]);
-            
-        }       
+            if(!loginValue || dati == null) {
+               JOptionPane.showMessageDialog(null, "Username o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+            return dati;            
+        }
+        
+        private boolean verifyLogin(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
+            return Arrays.equals(password.toCharArray(), jPasswordField1.getPassword());
+            //return Hashing.validate(Arrays.toString(jPasswordField1.getPassword()), password);
+        }
+        
+        private void chiudiFinestra(ActionEvent e) {
+            Component component = (Component) e.getSource();
+            JDialog thisDialog = (JDialog) SwingUtilities.getRoot(component);
+            thisDialog.dispose();            
+        }
         
     }
 }

@@ -12,6 +12,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
     public MainWindow() {
         initComponents();
+        setLocationRelativeTo(null);
         
         jButton1.addActionListener(this);
         jButton2.addActionListener(this);
@@ -55,10 +56,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        utenteLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        ruoloLabel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -213,13 +214,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jButton1.setText("Login");
 
-        jLabel5.setText("Guest");
+        utenteLabel.setText("Guest");
 
         jLabel4.setText("Ruolo");
 
         jLabel2.setText("Utente");
 
-        jLabel3.setText("Guest");
+        ruoloLabel.setText("Guest");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -232,11 +233,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3))
+                        .addComponent(ruoloLabel))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)))
+                        .addComponent(utenteLabel)))
                 .addContainerGap(189, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -248,12 +249,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(utenteLabel)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel3))
+                    .addComponent(ruoloLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(29, 29, 29))
@@ -408,9 +409,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
@@ -428,6 +427,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     public javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel ruoloLabel;
+    private javax.swing.JLabel utenteLabel;
     // End of variables declaration//GEN-END:variables
 
     public void actionPerformed(ActionEvent e) {
@@ -444,12 +445,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     
     private Utente doLogin() {
         
-        new DefaultJDialog(new Login());
+        new DefaultJDialog(new Login(this));
         return null;
     }
     
     public void setUtenteCorrente(Utente utente) {
         this.utenteCorrente = utente;
+        
+        this.utenteLabel.setText(utente.getNome());
+        this.ruoloLabel.setText(utente.getRuolo().toString());
     }
     public Utente getUtenteCorrente() {
         return this.utenteCorrente;

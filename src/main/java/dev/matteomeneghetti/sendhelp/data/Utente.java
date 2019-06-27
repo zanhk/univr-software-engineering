@@ -23,13 +23,17 @@ package dev.matteomeneghetti.sendhelp.data;
 
 public class Utente {
     
-    private static enum RUOLO {BOT, INF, MED, PRM};  //NonAutenticato, Infermiere, Medico, Primario
+    public static enum RUOLO {BOT, INF, MED, PRM};  //NonAutenticato, Infermiere, Medico, Primario
     private String nome;
     private String cognome;
     private String id;
     private String password;    //oh no
     private RUOLO ruolo;
 
+    public Utente() {
+        
+    }
+    
     public Utente(String nome, String cognome, String id, String password, RUOLO ruolo) {
         this.nome = nome;
         this.cognome = cognome;

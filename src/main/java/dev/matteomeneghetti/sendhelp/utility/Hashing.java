@@ -22,7 +22,7 @@ public class Hashing {
            return  validatePassword(passInserita, passSalvata);
            
        }
-       private static String genHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
+       public static String genHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
             int iterations = 1000;
             char[] chars = password.toCharArray();
             byte[] salt = getSalt();
