@@ -16,7 +16,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jButton1.addActionListener(this);
         jButton2.addActionListener(this);
         setVisible(true);
-        jTable1.setValueAt("RXXLLL90A01A", 0, 0);
+        jTable1.setValueAt("MTTCGR90A01L424I", 0, 0);
         for(int i=0; i<10; i++){
             if(jTable1.getValueAt(i, 0) == null)
                 break;

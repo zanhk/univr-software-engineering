@@ -254,9 +254,10 @@ public class NuovoPaziente extends javax.swing.JPanel {
             return;
         }
         if(!canConfirm(writer, paziente.getCodiceFiscale().toString()) ){
-            JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
+            JOptionPane.showMessageDialog(null, "Dati incompleti o paziente già presente", "Errore", JOptionPane.ERROR_MESSAGE   );
             return;
-        }           
+        }
+        
         String linea = paziente.getCodiceSanitario()+";"
                       +paziente.getCognome()+";"
                       +paziente.getNome()+";"
@@ -280,6 +281,8 @@ public class NuovoPaziente extends javax.swing.JPanel {
     }
     
     private boolean canConfirm(CSVManager writer, String codiceFiscale) {
+        if(writer.exist(codiceFiscale))
+            return false;
         return  !nomeField.getText().isEmpty()
                 &&!cognomeField.getText().isEmpty()
                 &&!luogoField.getText().isEmpty();

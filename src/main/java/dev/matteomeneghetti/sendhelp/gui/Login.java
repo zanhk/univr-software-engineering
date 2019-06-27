@@ -175,15 +175,15 @@ public class Login extends javax.swing.JFrame {
                  
                 {
                     try {
-                        /*
+                        
                         if(!checkLogin()) {
                         System.out.println("Login fallito");
                         return;                        
                         }
                         System.out.println("Login riuscito");
                         break;
-                        */
-                        checkLogin();
+                        
+                       // checkLogin();
                     } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -200,6 +200,7 @@ public class Login extends javax.swing.JFrame {
             
             if(dati == null)
                JOptionPane.showMessageDialog(null, "Username o password errati", "Errore", JOptionPane.ERROR_MESSAGE   );
+            
             
             //return Arrays.equals(dati[1].toCharArray(), jPasswordField1.getPassword());
             return Hashing.validate(Arrays.toString(jPasswordField1.getPassword()), dati[1]);

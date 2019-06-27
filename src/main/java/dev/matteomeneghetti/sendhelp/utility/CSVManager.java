@@ -42,6 +42,24 @@ public class CSVManager {
         }
         return null;
     }
+    public boolean exist(String key){
+        String line;
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
+            while ((line = br.readLine()) != null) {
+                 String[] comune = line.split(csvSplitBy);
+                 for(int i =0; i< comune.length; i++){
+                    if (comune[i].equals(key)) {
+                        return true;
+                    }
+                 }
+            }
+            br.close();
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        }
+        return false;
+    }
     
     /**
      *  Appende una linea al file
