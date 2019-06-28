@@ -7,8 +7,11 @@ package dev.matteomeneghetti.sendhelp.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.lang.Thread.sleep;
 import java.time.Duration;
 import static java.time.temporal.ChronoUnit.SECONDS;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -21,14 +24,44 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
     /**
      * Creates new form Alarm
      */
-    public Alarm(String livello, String nome, int tempoIniziale) {
+    public Alarm(String livello, String nome, int tempoIniziale) throws InterruptedException {
         initComponents();
-        Duration durata = Duration.of((long)tempoIniziale, SECONDS);
+        //Duration durata = Duration.of((long)tempoIniziale, SECONDS);
+        //DURATION NON FUNZIONA
         setVisible(true);
-        this.jLabel3.setText(durata.toString().substring(2));
+        
         this.jLabel5.setText(livello + " TIPO: " + nome);
+        this.jLabel3.setText(tempoIniziale + "minuti");
+        Timer timer = new Timer();
+        timer.schedule(new countDown(this, tempoIniziale), 0, 1000);
+            //this.jLabel3.setText(durata.toString().substring(2));
+                //tempo = (int) durata.getNano();
+               
     }
-    
+    private class countDown extends TimerTask{
+        Alarm alarm;
+        Integer minuti;
+        Integer secondi=0;
+        
+        public countDown(Alarm alarm, int tempoIniziale){
+            this.alarm = alarm;
+            this.minuti = tempoIniziale;
+        }
+        @Override
+        public void run(){
+            
+            if(secondi == 0)
+            {
+                secondi = 59;
+                minuti--;
+            }
+            secondi--;
+            if(minuti == 0)
+                this.alarm.jLabel3.setText(secondi.toString() + " secondi");
+            else
+                this.alarm.jLabel3.setText(minuti.toString() + " minuti e " + secondi.toString());
+        }
+    }
     public void actionPerformed(ActionEvent e) {
             String message = e.getActionCommand();
             switch(message) {

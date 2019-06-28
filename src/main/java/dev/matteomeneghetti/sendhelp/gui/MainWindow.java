@@ -13,7 +13,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     
     private Utente utenteCorrente;
 
-    public MainWindow() {
+    public MainWindow() throws InterruptedException {
         initComponents();
         setLocationRelativeTo(null);
         
@@ -23,7 +23,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         nuovoPazienteButton.addActionListener(this);
         prescrizioneButton.addActionListener(this);
         setVisible(true);
-        new DefaultJDialog( new Alarm("3", "Ipertrifosi", 60));
+        new DefaultJDialog( new Alarm("3", "Ipertrifosi", 1));
         //new Observerer(this);
         //riempiTabella();
         //jTable1.setValueAt("LLLBNG90A01H501K", 0, 0);
