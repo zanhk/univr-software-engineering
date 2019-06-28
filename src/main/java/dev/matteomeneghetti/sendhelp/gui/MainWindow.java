@@ -17,9 +17,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         initComponents();
         setLocationRelativeTo(null);
         
+        setUtenteCorrente(null);
+        
         loginButton.addActionListener(this);
-        jButton2.addActionListener(this);
-        jButton3.addActionListener(this);
+        nuovoPazienteButton.addActionListener(this);
+        prescrizioneButton.addActionListener(this);
         setVisible(true);
         new DefaultJDialog( new Alarm("3", "Ipertrifosi", 60));
         //new Observerer(this);
@@ -64,7 +66,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jLabel7 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        nuovoPazienteButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -74,11 +76,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         ruoloLabel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jButton7 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        prescrizioneButton = new javax.swing.JButton();
+        diagnosiButton = new javax.swing.JButton();
+        dimettiButton = new javax.swing.JButton();
+        somministrazioneButton = new javax.swing.JButton();
+        storicoButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -188,7 +190,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jLabel1.setText("Numero pazienti: 0 ");
 
-        jButton2.setText("Nuovo Paziente");
+        nuovoPazienteButton.setText("Nuovo Paziente");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -201,7 +203,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(nuovoPazienteButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -219,7 +221,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jButton2)))))
+                            .addComponent(nuovoPazienteButton)))))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dati utente", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -276,40 +278,38 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Opzioni medico"));
 
-        jButton3.setText("Aggiungi prescrizione");
+        prescrizioneButton.setText("Aggiungi prescrizione");
 
-        jToggleButton1.setText("Dimetti paziente");
-        jToggleButton1.setEnabled(false);
+        diagnosiButton.setText("Diagnosi");
 
-        jButton7.setText("Diagnosi");
+        dimettiButton.setText("Dimetti paziente");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41))
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(dimettiButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(diagnosiButton, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(prescrizioneButton, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton7)
+                .addComponent(diagnosiButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1)
-                .addContainerGap())
+                .addComponent(prescrizioneButton)
+                .addGap(24, 24, 24)
+                .addComponent(dimettiButton))
         );
 
-        jButton5.setText("Aggiungi somministrazione");
+        somministrazioneButton.setText("Aggiungi somministrazione");
 
-        jButton4.setText("Visualizza storico");
+        storicoButton.setText("Visualizza storico");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -318,8 +318,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4))
+                    .addComponent(somministrazioneButton)
+                    .addComponent(storicoButton))
                 .addGap(90, 90, 90)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -331,9 +331,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4)
+                        .addComponent(storicoButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
+                        .addComponent(somministrazioneButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -345,7 +345,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -412,12 +412,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton diagnosiButton;
+    private javax.swing.JButton dimettiButton;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -437,9 +434,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton loginButton;
+    private javax.swing.JButton nuovoPazienteButton;
+    private javax.swing.JButton prescrizioneButton;
     private javax.swing.JLabel ruoloLabel;
+    private javax.swing.JButton somministrazioneButton;
+    private javax.swing.JButton storicoButton;
     private javax.swing.JLabel utenteLabel;
     // End of variables declaration//GEN-END:variables
 
@@ -447,7 +447,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         String actionCommand = e.getActionCommand();
         switch(actionCommand) {
             case "Nuovo Paziente":
-                new DefaultJDialog(new NuovoPaziente());
+                new DefaultJDialog(new NuovoPaziente(utenteCorrente));
                 break;
             case "Login":
                 doLogin();
@@ -483,7 +483,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         if(utenteCorrente != null) {
             this.utenteLabel.setText(utenteCorrente.getNome());
             this.ruoloLabel.setText(utenteCorrente.getRuolo().toString());
-            
             loginButton.setText("Logout");
         }
         else {
@@ -493,7 +492,34 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
     
+    private void updateButtons() {     
+        
+        if(utenteCorrente == null) {
+            dimettiButton.setEnabled(false);
+            diagnosiButton.setEnabled(false);
+            prescrizioneButton.setEnabled(false);
+            storicoButton.setEnabled(false);
+            somministrazioneButton.setEnabled(false);
+            nuovoPazienteButton.setEnabled(false);
+            return;
+        }
+            
+        switch (utenteCorrente.getRuolo()) {
+            case PRM:
+                dimettiButton.setEnabled(true);
+            case MED:
+                diagnosiButton.setEnabled(true);
+                prescrizioneButton.setEnabled(true);
+            case INF:
+                storicoButton.setEnabled(true);
+                somministrazioneButton.setEnabled(true);
+                nuovoPazienteButton.setEnabled(true);
+                break;
+        }
+    }
+    
     public void updateGUI() {
         updateUtente();
+        updateButtons();
     }    
 }

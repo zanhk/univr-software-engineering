@@ -2,6 +2,7 @@ package dev.matteomeneghetti.sendhelp.gui;
 
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
+import dev.matteomeneghetti.sendhelp.data.Utente;
 import static dev.matteomeneghetti.sendhelp.utility.Utility.date2String;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +21,10 @@ public class NuovoPaziente extends javax.swing.JPanel {
     private Controller defaultController = new Controller();
     private NuovoPazienteController controller = new NuovoPazienteController();
 
-    public NuovoPaziente() {
+    public NuovoPaziente(Utente utente) {
         initComponents();
+        
+        isMedico(utente);
 
         annullaButton.addActionListener(defaultController);
         confermaButton.addActionListener(controller);
@@ -61,7 +64,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         codiceSanitarioLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        diagnosiField = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(450, 490));
@@ -108,10 +111,10 @@ public class NuovoPaziente extends javax.swing.JPanel {
 
         jLabel6.setText("Paziente num.");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        diagnosiField.setColumns(20);
+        diagnosiField.setRows(5);
+        diagnosiField.setEnabled(false);
+        jScrollPane1.setViewportView(diagnosiField);
 
         jLabel8.setText("Diagnosi di ingresso");
 
@@ -229,6 +232,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
     private javax.swing.JTextField cognomeField;
     private javax.swing.JButton confermaButton;
     private javax.swing.JSpinner dataNascitaSpinner;
+    private javax.swing.JTextArea diagnosiField;
     private javax.swing.JRadioButton femminaRadio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -240,7 +244,6 @@ public class NuovoPaziente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField luogoField;
     private javax.swing.JRadioButton maschioRadio;
     private javax.swing.JTextField nomeField;
@@ -277,6 +280,10 @@ public class NuovoPaziente extends javax.swing.JPanel {
         return  !nomeField.getText().isEmpty()
                 &&!cognomeField.getText().isEmpty()
                 &&!luogoField.getText().isEmpty();
+    }
+    
+    private void isMedico(Utente utente) {
+        diagnosiField.setEnabled(!(utente.getRuolo() == Utente.RUOLO.INF));
     }
     
     private class NuovoPazienteController implements DocumentListener, ChangeListener, ActionListener {
