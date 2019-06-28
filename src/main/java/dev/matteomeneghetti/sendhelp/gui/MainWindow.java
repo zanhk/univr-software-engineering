@@ -21,15 +21,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jButton2.addActionListener(this);
         jButton3.addActionListener(this);
         setVisible(true);
-        new Observerer(this);
-        riempiTabella();
+        new DefaultJDialog( new Alarm("3", "Ipertrifosi", 60));
+        //new Observerer(this);
+        //riempiTabella();
         //jTable1.setValueAt("LLLBNG90A01H501K", 0, 0);
         for(int i=0; i<10; i++){
             if(jTable1.getValueAt(i, 0) == null)
                 break;
             else
                 try{
-                new Analisi((String) jTable1.getValueAt(i, 0));
+               // new Analisi((String) jTable1.getValueAt(i, 0));
                 }catch(Exception e)
                 {
                     System.out.println("HELP");
