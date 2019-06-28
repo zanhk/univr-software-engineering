@@ -17,7 +17,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         initComponents();
         setLocationRelativeTo(null);
         
-        jButton1.addActionListener(this);
+        loginButton.addActionListener(this);
         jButton2.addActionListener(this);
         jButton3.addActionListener(this);
         setVisible(true);
@@ -67,7 +67,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         utenteLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -224,7 +224,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dati utente", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jButton1.setText("Login");
+        loginButton.setText("Login");
 
         utenteLabel.setText("Guest");
 
@@ -253,7 +253,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(189, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
         jPanel5Layout.setVerticalGroup(
@@ -268,7 +268,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jLabel4)
                     .addComponent(ruoloLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(loginButton)
                 .addGap(29, 29, 29))
         );
 
@@ -300,7 +300,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton1)
@@ -345,7 +345,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -412,7 +412,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -439,6 +438,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     public javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton loginButton;
     private javax.swing.JLabel ruoloLabel;
     private javax.swing.JLabel utenteLabel;
     // End of variables declaration//GEN-END:variables
@@ -452,26 +452,48 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             case "Login":
                 doLogin();
                 break;
+            case "Logout":
+                doLogout();
+                break;
             case "Aggiungi prescrizione":
                 new DefaultJDialog(new NuovaPrescrizione());
                 break;
         }
     }
     
-    private Utente doLogin() {
-        
+    private void doLogin() {       
         new DefaultJDialog(new Login(this));
-        return null;
+    }
+    
+    private void doLogout() {
+        utenteCorrente = null;
+        updateGUI();
     }
     
     public void setUtenteCorrente(Utente utente) {
         this.utenteCorrente = utente;
-        
-        this.utenteLabel.setText(utente.getNome());
-        this.ruoloLabel.setText(utente.getRuolo().toString());
+        updateGUI();
     }
+
     public Utente getUtenteCorrente() {
         return this.utenteCorrente;
     }
     
+    private void updateUtente() {
+        if(utenteCorrente != null) {
+            this.utenteLabel.setText(utenteCorrente.getNome());
+            this.ruoloLabel.setText(utenteCorrente.getRuolo().toString());
+            
+            loginButton.setText("Logout");
+        }
+        else {
+            utenteLabel.setText("Guest");
+            ruoloLabel.setText("Guest");
+            loginButton.setText("Login");
+        }
+    }
+    
+    public void updateGUI() {
+        updateUtente();
+    }    
 }
