@@ -3,6 +3,7 @@ package dev.matteomeneghetti.sendhelp.gui;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import static dev.matteomeneghetti.sendhelp.utility.Utility.date2String;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -249,13 +250,13 @@ public class NuovoPaziente extends javax.swing.JPanel {
     private javax.swing.JTextField nomeField;
     // End of variables declaration//GEN-END:variables
     
-    private void saveToFile() {
+    private boolean saveToFile() {
         if(!canConfirm()){
             JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
-            return;
+            return false;
         }
-        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
-                        
+        
+        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");                        
         String linea = paziente.getCodiceSanitario()+";"
                       +paziente.getCognome()+";"
                       +paziente.getNome()+";"
@@ -265,7 +266,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
         try{
             File file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+".csv");
             if(!file.createNewFile())
-                return;
+                return false;
             writer.setPathToFile(file.getAbsolutePath());
             writer.append("SBP");
             writer.append("DBP");
@@ -273,7 +274,9 @@ public class NuovoPaziente extends javax.swing.JPanel {
             writer.append("TEMP");
         }catch(Exception e){
             System.out.println("Impossible creare");
+            return false;
         }
+        return true;
     }
     
     private boolean canConfirm() {
@@ -312,7 +315,8 @@ public class NuovoPaziente extends javax.swing.JPanel {
         public void actionPerformed(ActionEvent arg0) {
             switch(arg0.getActionCommand()) {
                 case "Conferma":
-                    saveToFile();
+                    if(saveToFile())
+                        Utility.chiudiDialog(arg0);
                     break;
                 default:
                     update();
