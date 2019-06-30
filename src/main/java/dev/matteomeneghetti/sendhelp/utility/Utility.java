@@ -35,7 +35,7 @@ public class Utility {
                         +paziente.getGenere()+";"
                         +paziente.getLuogoDiNascita()+";"
                         +date2String(paziente.getDataDiNascita())+";"
-                        +paziente.getCodiceFiscale()+";";
+                        +paziente.getCodiceFiscale();
         return stringa;
     }
     

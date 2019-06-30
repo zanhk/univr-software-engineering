@@ -257,11 +257,15 @@ public class NuovoPaziente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
             return false;
         }
-          try{
-            File file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+".csv");
-            if(!file.createNewFile())
+        
+        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
+        String linea = Utility.paziente2String(paziente);
+        writer.append(linea);
+        try{
+            boolean file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()).mkdirs();
+            if(!file)
                 return false;
-            writer.setPathToFile(file.getAbsolutePath());
+            writer.setPathToFile("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+File.separator+"Analisi.csv");
             writer.append(linea);
             writer.append("SBP");
             writer.append("DBP");
@@ -271,11 +275,6 @@ public class NuovoPaziente extends javax.swing.JPanel {
             System.out.println("Impossible creare");
             return false;
         }
-        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
-        String linea = Utility.paziente2String(paziente);
-        writer.append(linea);
-      
-        
         return true;
     }
     

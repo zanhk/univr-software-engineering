@@ -1,15 +1,55 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.Paziente;
+import dev.matteomeneghetti.sendhelp.data.PrescrizioneBuilderImpl;
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 
-public class NuovaSomministrazione extends javax.swing.JPanel {
+public class NuovaSomministrazione extends javax.swing.JPanel implements ActionListener{
 
     MainWindow main;
     public NuovaSomministrazione(MainWindow main) {
         this.main = main;
         initComponents();
+        jButton1.addActionListener(this);
+        DefaultListModel model = new DefaultListModel();
+        String paziente  =  (String) jComboBox1.getSelectedItem();
+        String path = "resource" + File.separator + "Pazienti" + File.separator + paziente + File.separator + "Prescrizioni.csv" ;
+        CSVManager wr = new CSVManager(path, ";");
+        listaPrescrizioni.setModel(model);
+        int rows = wr.getNumberOfRows();
+        for (int i=0; i<= rows; i++)
+           //listaPrescrizioni.getModel().addElement(wr.getLineAt(i));
+      //  modificaGUI();
+        setVisible(true);
+        
+    }
+    
+    public void modificaGUI(){
+        
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String command = ae.getActionCommand();
+        switch (command) {
+            case "Conferma":
+                   // salvaSomministrazione(creaSomministrazione());
+                    Utility.chiudiDialog(ae);
+                
+                break;
+            case "Annulla":
+                Utility.chiudiDialog(ae);
+                break;
+        }
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,10 +136,11 @@ public class NuovaSomministrazione extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

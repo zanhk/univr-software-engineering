@@ -3,6 +3,7 @@ package dev.matteomeneghetti.sendhelp.gui;
 import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
+import dev.matteomeneghetti.sendhelp.utility.Analisi;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
    
@@ -26,8 +29,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         prescrizioneButton.addActionListener(this);
         somministrazioneButton.addActionListener(this);
         setVisible(true);
-        
+        try {
+            new DefaultJDialog(new Alarm("3", "ipertrifosi", 2));
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         updateGUI();
+       
     }
     
 
@@ -513,18 +521,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     // Aggiorna l'oggetto che contiene le persone al momento in fase di ricovero
     private void aggiornaPazienti() {
         pazientiInCura = new ArrayList<>();
-        String[] fileList = null;
         String path = null;
         try {
             path = "resources" + File.separator + "Pazienti";
-            File file = new File(path);
-            fileList = file.list();
-            } catch(Exception e) {
-            e.printStackTrace();
-        }
-        for(String name : fileList) {
-            String dataPaziente = new CSVManager(path+File.separator+name , ";").getLineAt(0);
+            File[] file = new File(path).listFiles(File::isDirectory);
+
+        for(File name : file) {
+            String dataPaziente = new CSVManager(path+File.separator+name.getName()+File.separator+"Analisi.csv", ";").getLineAt(0);
             pazientiInCura.add(new CartellaClinica(Utility.string2Paziente(dataPaziente)));
+            new Analisi(name.getName(), this);
+        }
+         } catch(Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -549,6 +557,28 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }
     
     // Aggiorna tutta la grafica
+    //public void updateAnalisi(int position, String key){
+    public void updateAnalisi(String path, int position, String key){
+        CSVManager wr = new CSVManager(path, ";");
+        for(int i=0; i<=10; i++)
+        {
+            if(tabellaPazienti.getValueAt(i,0) != null ){
+                String[] pingu = wr.find(key);
+                int lenght = pingu.length;
+                Integer number = Integer.parseInt(pingu[lenght-1]);
+                for(int j=1; j<=5; j++)
+                {
+                    if( key == tabellaPazienti.getValueAt(0, j ))
+                            tabellaPazienti.setValueAt(number, i, position);
+                }
+            }
+            else
+                break;
+        }
+       
+       
+    }
+    
     public void updateGUI() {
         updateUtente();
         updateButtons();

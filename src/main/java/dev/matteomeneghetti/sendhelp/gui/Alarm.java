@@ -5,6 +5,7 @@
  */
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.lang.Thread.sleep;
@@ -12,6 +13,7 @@ import java.time.Duration;
 import static java.time.temporal.ChronoUnit.SECONDS;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -26,6 +28,7 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
      */
     public Alarm(String livello, String nome, int tempoIniziale) throws InterruptedException {
         initComponents();
+        jButton1.addActionListener(this);
         //Duration durata = Duration.of((long)tempoIniziale, SECONDS);
         //DURATION NON FUNZIONA
         setVisible(true);
@@ -66,10 +69,11 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
             String message = e.getActionCommand();
             switch(message) {
                 case "Conferma":
-                   //if(canConferm())
-                       System.out.println("GOOD");
-                 //else
-                       System.out.println("BAD");
+                   if(canConferm())
+                       Utility.chiudiDialog(e);      
+                   else
+                       JOptionPane.showMessageDialog(null, "Non è stata inserita l'operazione effettuata sul paziente.", "Errore", JOptionPane.ERROR_MESSAGE);
+                break;
             }
     }
     

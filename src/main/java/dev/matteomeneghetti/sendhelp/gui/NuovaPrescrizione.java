@@ -267,7 +267,7 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .setDataFineTerapia((Date) dataFineSpinner.getValue())
                 .setNumeroDosiGiornaliere((int) numeroDosiSpinnner.getValue())
                 .setQuantitaDose((float) quantitaDoseSpinner.getValue())
-                .setMedico(main.getUtenteCorrente().toString())
+                .setMedico(main.getUtenteCorrente().getNome())
                 .build();
         return prescrizione;
     }

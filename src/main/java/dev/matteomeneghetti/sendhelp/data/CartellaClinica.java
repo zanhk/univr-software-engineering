@@ -1,5 +1,7 @@
 package dev.matteomeneghetti.sendhelp.data;
 
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.TreeSet;
 /** 
@@ -87,6 +89,8 @@ public class CartellaClinica {
         }
         else {
             this.prescrizioni.add(prescrizione);
+            System.out.println("Help");
+            pSaveToFile(prescrizione);
             return true;
         }
     }
@@ -133,6 +137,8 @@ public class CartellaClinica {
         }
         else {
             somministrazioni.add(somministrazione);
+            //saveToFile(somministrazione.toString());
+            System.out.println("Help");
             return true;
         }
     }
@@ -149,6 +155,17 @@ public class CartellaClinica {
 
     public void removeSomministrazione(Somministrazione somministrazione) {
         this.somministrazioni.remove(somministrazione);
-    }    
+    }
+    
+    public void pSaveToFile(Prescrizione prescrizione){
+        String path = "resources" + File.separator + "Pazienti" + File.separator + this.paziente.getCodiceFiscale().toString() + File.separator + "Prescrizioni.csv";
+        CSVManager wr= new CSVManager(path, ";");
+        String linea = prescrizione.getDataFineTerapia()+";"
+                + prescrizione.getMedico()+";"
+                + prescrizione.getDataPrescrizione()+";"
+                + prescrizione.getNomeFarmaco()+";"
+                + prescrizione.getQuantitaDose()+";";
+        wr.append(linea);
+    }
     
 }
