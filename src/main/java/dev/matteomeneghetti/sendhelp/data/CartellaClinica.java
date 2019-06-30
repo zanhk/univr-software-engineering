@@ -41,6 +41,11 @@ public class CartellaClinica {
         return this.paziente;
     }
 
+    @Override
+    public String toString() {
+        return this.paziente.toString();
+    }
+
     /** 
      * 
      *Modifica il paziente per questa cartella clinica

@@ -14,7 +14,7 @@ import java.util.List;
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
     
     private Utente utenteCorrente;  //utente loggato, null se ospite
-    private List<CartellaClinica> pazientiInCura;
+    public List<CartellaClinica> pazientiInCura;
 
     public MainWindow() {
         initComponents();
@@ -24,6 +24,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         loginButton.addActionListener(this);
         nuovoPazienteButton.addActionListener(this);
         prescrizioneButton.addActionListener(this);
+        somministrazioneButton.addActionListener(this);
         setVisible(true);        
 
         updateGUI();
@@ -43,7 +44,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabellaTelemetria = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        pazienteLabel = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         nuovoPazienteButton = new javax.swing.JButton();
@@ -133,7 +134,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jLabel6.setText("Paziente: ");
 
-        jLabel7.setText("XXX");
+        pazienteLabel.setText("selezionare paz.");
 
         jButton6.setText("Ferma allarme");
         jButton6.setEnabled(false);
@@ -145,11 +146,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
+                        .addComponent(pazienteLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton6)))
                 .addContainerGap())
@@ -160,7 +161,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7)
+                    .addComponent(pazienteLabel)
                     .addComponent(jButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -398,7 +399,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -413,6 +413,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton nuovoPazienteButton;
+    private javax.swing.JLabel pazienteLabel;
     private javax.swing.JButton prescrizioneButton;
     private javax.swing.JLabel ruoloLabel;
     private javax.swing.JButton somministrazioneButton;
@@ -437,6 +438,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 break;
             case "Aggiungi prescrizione":
                 new DefaultJDialog(new NuovaPrescrizione());
+                updateGUI();
+                break;
+            case "Aggiungi somministrazione":
+                new DefaultJDialog(new NuovaSomministrazione(this));
                 updateGUI();
                 break;
         }
@@ -529,10 +534,21 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
     
+    private void updateTelemetria() {
+        if (tabellaPazienti.getSelectedRow() < 0)
+            return;
+        int row = tabellaPazienti.getSelectedRow();
+        int column = 0;
+        Paziente paziente = (Paziente)tabellaPazienti.getValueAt(row, column);
+        if (paziente!= null)
+            pazienteLabel.setText(paziente.toString());
+    }
+    
     // Aggiorna tutta la grafica
     public void updateGUI() {
         updateUtente();
         updateButtons();
         updateTable();
+        updateTelemetria();
     }
 }
