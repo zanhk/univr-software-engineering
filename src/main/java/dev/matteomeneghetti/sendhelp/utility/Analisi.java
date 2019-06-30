@@ -80,7 +80,7 @@ public class Analisi extends TimerTask{
             } catch (IOException ex) {
                 Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //main.updateAnalisi(path.toString(),position,key);
+           main.updateAnalisi(path.toString(),position,key);
         }
     }
      private class PressSBP extends TimerTask{
@@ -101,7 +101,7 @@ public class Analisi extends TimerTask{
         
         @Override
         public void run(){
-            Integer pressione = rand.nextInt(39+30);
+            Integer pressione = rand.nextInt(40)+80;
             String[] riga = wr.find(key);
             String linea="";
             for(int i = 0; i < riga.length; i++){
@@ -115,7 +115,7 @@ public class Analisi extends TimerTask{
             } catch (IOException ex) {
                 Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //main.updateAnalisi(path.toString(),position,key);
+            main.updateAnalisi(path.toString(),position,key);
         }
     }
     private class PressDBP extends TimerTask{
@@ -135,7 +135,7 @@ public class Analisi extends TimerTask{
         
         @Override
         public void run(){
-             Integer pressione = rand.nextInt(39+30);
+            Integer pressione = rand.nextInt(10)+70;
             String[] riga = wr.find(key);
             String linea="";
             for(int i = 0; i < riga.length; i++){
@@ -149,7 +149,7 @@ public class Analisi extends TimerTask{
             } catch (IOException ex) {
                 Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
             }
-           // main.updateAnalisi(path.toString(),position,key);
+           main.updateAnalisi(path.toString(),position,key);
         }
     }
      private class Temperatura extends TimerTask{
@@ -169,7 +169,7 @@ public class Analisi extends TimerTask{
         }
         @Override
         public void run(){
-           Integer temperatura = rand.nextInt(39+30);
+           Integer temperatura = rand.nextInt(39)+30;
             String[] riga = wr.find(key);
             String linea="";
             for(int i = 0; i < riga.length; i++){
@@ -183,7 +183,7 @@ public class Analisi extends TimerTask{
             } catch (IOException ex) {
                 Logger.getLogger(Analisi.class.getName()).log(Level.SEVERE, null, ex);
             }
-           main.updateAnalisi(path.toString(),position,key);
+            main.updateAnalisi(path.toString(),position,key);
         }
         
     }

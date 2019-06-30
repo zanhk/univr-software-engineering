@@ -112,6 +112,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }
         });
         tabellaPazienti.getTableHeader().setReorderingAllowed(false);
+        tabellaPazienti.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabellaPazientiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabellaPazienti);
         if (tabellaPazienti.getColumnModel().getColumnCount() > 0) {
             tabellaPazienti.getColumnModel().getColumn(0).setPreferredWidth(150);
@@ -293,7 +298,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(diagnosiButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(prescrizioneButton)
                 .addGap(24, 24, 24)
                 .addComponent(dimettiButton))
@@ -337,7 +342,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -403,6 +408,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tabellaPazientiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabellaPazientiMouseClicked
+        // TODO add your handling code here:
+        updateTelemetria();
+        
+    }//GEN-LAST:event_tabellaPazientiMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton diagnosiButton;
     private javax.swing.JButton dimettiButton;
@@ -456,6 +467,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 new DefaultJDialog(new NuovaSomministrazione(this));
                 updateGUI();
                 break;
+            
         }
     }
     
@@ -560,20 +572,19 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     //public void updateAnalisi(int position, String key){
     public void updateAnalisi(String path, int position, String key){
         CSVManager wr = new CSVManager(path, ";");
+        String paziente = path.substring(19, path.length()-12);
+        
         for(int i=0; i<=10; i++)
         {
-            if(tabellaPazienti.getValueAt(i,0) != null ){
+            if(tabellaPazienti.getValueAt(i,0).toString().equals(paziente)){
                 String[] pingu = wr.find(key);
                 int lenght = pingu.length;
                 Integer number = Integer.parseInt(pingu[lenght-1]);
-                for(int j=1; j<=5; j++)
-                {
-                    if( key == tabellaPazienti.getValueAt(0, j ))
-                            tabellaPazienti.setValueAt(number, i, position);
+                tabellaPazienti.setValueAt(number, i, position);
+                return;
                 }
-            }
-            else
-                break;
+            
+                
         }
        
        
