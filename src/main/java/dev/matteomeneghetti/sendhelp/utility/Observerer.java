@@ -18,7 +18,7 @@ public class Observerer {
         this.mainWindow = mainWindow;
     }
     public void putOnTable(String stringa, int row, int colums){
-        mainWindow.jTable1.setValueAt(stringa, row, colums);
+        mainWindow.tabellaPazienti.setValueAt(stringa, row, colums);
     }
     
 }

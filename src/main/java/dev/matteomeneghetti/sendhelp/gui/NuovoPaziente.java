@@ -18,14 +18,16 @@ import javax.swing.event.DocumentListener;
 
 public class NuovoPaziente extends javax.swing.JPanel {
     
+    private MainWindow main;
     private Paziente paziente;
     private Controller defaultController = new Controller();
     private NuovoPazienteController controller = new NuovoPazienteController();
 
-    public NuovoPaziente(Utente utente) {
+    public NuovoPaziente(MainWindow main) {
         initComponents();
+        this.main = main;
         
-        isMedico(utente);
+        isMedico(this.main.getUtenteCorrente());
 
         annullaButton.addActionListener(defaultController);
         confermaButton.addActionListener(controller);
@@ -256,18 +258,15 @@ public class NuovoPaziente extends javax.swing.JPanel {
             return false;
         }
         
-        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");                        
-        String linea = paziente.getCodiceSanitario()+";"
-                      +paziente.getCognome()+";"
-                      +paziente.getNome()+";"
-                      +paziente.getLuogoDiNascita()+";"
-                      +date2String(paziente.getDataDiNascita());
+        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
+        String linea = Utility.paziente2String(paziente);
         writer.append(linea);
         try{
             File file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+".csv");
             if(!file.createNewFile())
                 return false;
             writer.setPathToFile(file.getAbsolutePath());
+            writer.append(linea);
             writer.append("SBP");
             writer.append("DBP");
             writer.append("BPM");

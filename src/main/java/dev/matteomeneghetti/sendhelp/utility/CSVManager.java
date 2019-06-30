@@ -43,6 +43,22 @@ public class CSVManager {
         return null;
     }
     
+    public String getLineAt(int key) {
+        String line;        
+        try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
+            int lineNumber = 0;
+            while ((line = br.readLine()) != null) {
+                if(lineNumber == key) {
+                    return line;
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
+    
     /**
      *  Appende una linea al file
      */

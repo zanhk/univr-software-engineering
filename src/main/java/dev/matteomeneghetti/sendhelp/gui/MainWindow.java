@@ -1,56 +1,39 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
-import dev.matteomeneghetti.sendhelp.utility.Analisi;
-import dev.matteomeneghetti.sendhelp.utility.Observerer;
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.nio.file.Path;
-import java.util.Timer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
     
-    private Utente utenteCorrente;
+    private Utente utenteCorrente;  //utente loggato, null se ospite
+    private List<Paziente> pazientiInCura;
 
-    public MainWindow() throws InterruptedException {
+    public MainWindow() {
         initComponents();
-        setLocationRelativeTo(null);
-        
+        setLocationRelativeTo(null);        
         setUtenteCorrente(null);
         
         loginButton.addActionListener(this);
         nuovoPazienteButton.addActionListener(this);
         prescrizioneButton.addActionListener(this);
         setVisible(true);
-        new DefaultJDialog( new Alarm("3", "Ipertrifosi", 1));
-        //new Observerer(this);
+        
+
+        updateGUI();
+        
+        //new DefaultJDialog( new Alarm("3", "Ipertrifosi", 1));
         //riempiTabella();
-        //jTable1.setValueAt("LLLBNG90A01H501K", 0, 0);
-        for(int i=0; i<10; i++){
-            if(jTable1.getValueAt(i, 0) == null)
-                break;
-            else
-                try{
-               // new Analisi((String) jTable1.getValueAt(i, 0));
-                }catch(Exception e)
-                {
-                    System.out.println("HELP");
-                }
-        }
     }
     
-    public void riempiTabella(){
-        String path = "resources" + File.separator + "Pazienti";
-        File file = new File(path);
-        String[] fileList = file.list();
-        int count = 0;
-        for(String name:fileList){
-            String pingo = name.replace(".csv", "");
-            jTable1.setValueAt(pingo, count, 0);
-            count++;
-        }
-    } 
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,10 +41,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabellaPazienti = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabellaTelemetria = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -87,11 +70,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Send Help");
-        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 500));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabellaPazienti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -123,11 +105,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabellaPazienti);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Telemetria Paziente"));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabellaTelemetria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -149,8 +131,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setShowHorizontalLines(false);
-        jScrollPane2.setViewportView(jTable2);
+        tabellaTelemetria.setShowHorizontalLines(false);
+        jScrollPane2.setViewportView(tabellaTelemetria);
 
         jLabel6.setText("Paziente: ");
 
@@ -432,14 +414,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton nuovoPazienteButton;
     private javax.swing.JButton prescrizioneButton;
     private javax.swing.JLabel ruoloLabel;
     private javax.swing.JButton somministrazioneButton;
     private javax.swing.JButton storicoButton;
+    public javax.swing.JTable tabellaPazienti;
+    private javax.swing.JTable tabellaTelemetria;
     private javax.swing.JLabel utenteLabel;
     // End of variables declaration//GEN-END:variables
 
@@ -447,7 +429,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         String actionCommand = e.getActionCommand();
         switch(actionCommand) {
             case "Nuovo Paziente":
-                new DefaultJDialog(new NuovoPaziente(utenteCorrente));
+                new DefaultJDialog(new NuovoPaziente(this));
+                updateGUI();
                 break;
             case "Login":
                 doLogin();
@@ -457,12 +440,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 break;
             case "Aggiungi prescrizione":
                 new DefaultJDialog(new NuovaPrescrizione());
+                updateGUI();
                 break;
         }
     }
     
     private void doLogin() {       
         new DefaultJDialog(new Login(this));
+        updateGUI();
     }
     
     private void doLogout() {
@@ -472,14 +457,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     
     public void setUtenteCorrente(Utente utente) {
         this.utenteCorrente = utente;
-        updateGUI();
     }
 
     public Utente getUtenteCorrente() {
         return this.utenteCorrente;
     }
     
-    private void updateUtente() {
+    private void updateUtente() {   // Aggiorna dati utente loggato
         if(utenteCorrente != null) {
             this.utenteLabel.setText(utenteCorrente.getNome());
             this.ruoloLabel.setText(utenteCorrente.getRuolo().toString());
@@ -492,7 +476,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
     
-    private void updateButtons() {     
+    private void updateButtons() {  //Aggiorna pulsanti in base all'utente loggato
         
         if(utenteCorrente == null) {
             dimettiButton.setEnabled(false);
@@ -518,8 +502,35 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
     
+    public void aggiornaPazienti() {
+        pazientiInCura = new ArrayList<>();
+        String[] fileList = null;
+        String path = null;
+        try {
+            path = "resources" + File.separator + "Pazienti";
+            File file = new File(path);
+            fileList = file.list();
+            } catch(Exception e) {
+            e.printStackTrace();
+        }
+        for(String name : fileList) {
+            String dataPaziente = new CSVManager(path+File.separator+name , ";").getLineAt(0);
+            pazientiInCura.add(Utility.string2Paziente(dataPaziente));
+        }
+    }
+    
+    public void updateTable(){
+        aggiornaPazienti();
+        int count = 0;
+        for(Paziente paziente : pazientiInCura) {
+            tabellaPazienti.setValueAt(paziente, count, 0);
+            count++;
+        }
+    }
+    
     public void updateGUI() {
         updateUtente();
         updateButtons();
-    }    
+        updateTable();
+    }
 }

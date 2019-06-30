@@ -1,15 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dev.matteomeneghetti.sendhelp.utility;
 
-import dev.matteomeneghetti.sendhelp.gui.MainWindow;
-import static dev.matteomeneghetti.sendhelp.utility.Utility.date2String;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,53 +16,12 @@ import java.util.logging.Logger;
  * @author Stefano
  */
 public class Analisi extends TimerTask{
-     Battito b;
+    Battito b;
     PressSBP ps;
     PressDBP dp;
     Temperatura temp;
     String paziente;
-    
-    /*
-    public Battito getB() {
-        return b;
-    }
 
-    public void setB(Battito b) {
-        this.b = b;
-    }
-
-    public PressSBP getPs() {
-        return ps;
-    }
-
-    public void setPs(PressSBP ps) {
-        this.ps = ps;
-    }
-
-    public PressDBP getDp() {
-        return dp;
-    }
-
-    public void setDp(PressDBP dp) {
-        this.dp = dp;
-    }
-
-    public Temperatura getTemp() {
-        return temp;
-    }
-
-    public void setTemp(Temperatura temp) {
-        this.temp = temp;
-    }
-
-    public String getPaziente() {
-        return paziente;
-    }
-
-    public void setPaziente(String paziente) {
-        this.paziente = paziente;
-    }
-    */
     public Analisi(String paziente) throws IOException{
         this.paziente = paziente;
         String pathToFile = "resources" + File.separator + "Pazienti" + File.separator + paziente + ".csv";
@@ -80,11 +30,7 @@ public class Analisi extends TimerTask{
         b = new Battito(wr, lines, Path.of(pathToFile));
         ps = new PressSBP(wr, lines, Path.of(pathToFile));
         dp = new PressDBP(wr, lines, Path.of(pathToFile));
-        temp = new Temperatura(wr, lines, Path.of(pathToFile));
-        
-        
-        
-        
+        temp = new Temperatura(wr, lines, Path.of(pathToFile));       
         
         Timer timer = new Timer();
         timer.schedule(b, 0, 10000);
@@ -122,7 +68,7 @@ public class Analisi extends TimerTask{
             for(int i = 0; i < riga.length; i++){
                 linea+=riga[i]+";";
             }
-            Observerer.putOnTable(battito.toString(), 1, 1);
+            //Observerer.putOnTable(battito.toString(), 1, 1);
             linea+=battito.toString();
             lines.remove(position);
             lines.add(position, linea);

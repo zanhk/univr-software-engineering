@@ -1,9 +1,5 @@
 package dev.matteomeneghetti.sendhelp;
-import dev.matteomeneghetti.sendhelp.gui.DefaultJDialog;
-import dev.matteomeneghetti.sendhelp.gui.Login;
 import dev.matteomeneghetti.sendhelp.gui.MainWindow;
-import dev.matteomeneghetti.sendhelp.gui.NuovoPaziente;
-import javax.swing.JDialog;
 
 public class Main {
     
@@ -30,8 +26,6 @@ public class Main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new Login();
-                //new DefaultJDialog(new NuovoPaziente());
               MainWindow main = new MainWindow();
             }
         });

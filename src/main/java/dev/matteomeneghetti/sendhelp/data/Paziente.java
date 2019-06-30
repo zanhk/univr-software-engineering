@@ -20,6 +20,11 @@ public class Paziente {
     private String luogoDiNascita;
     
     private String diagnosiDiIngresso;  //diagnosi da compilare a cura del medico
+
+    @Override
+    public String toString() {
+        return getCodiceFiscale().toString();
+    }    
     
     public Paziente() {
         setCodiceSanitario(generaCodiceSanitario());
