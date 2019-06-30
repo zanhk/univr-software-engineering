@@ -1,5 +1,6 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
@@ -13,7 +14,7 @@ import java.util.List;
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
     
     private Utente utenteCorrente;  //utente loggato, null se ospite
-    private List<Paziente> pazientiInCura;
+    private List<CartellaClinica> pazientiInCura;
 
     public MainWindow() {
         initComponents();
@@ -23,13 +24,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         loginButton.addActionListener(this);
         nuovoPazienteButton.addActionListener(this);
         prescrizioneButton.addActionListener(this);
-        setVisible(true);
-        
+        setVisible(true);        
 
         updateGUI();
-        
-        //new DefaultJDialog( new Alarm("3", "Ipertrifosi", 1));
-        //riempiTabella();
     }
     
 
@@ -463,7 +460,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         return this.utenteCorrente;
     }
     
-    private void updateUtente() {   // Aggiorna dati utente loggato
+    // Aggiorna i dati su schermo dell'utente loggato, null = guest
+    private void updateUtente() {
         if(utenteCorrente != null) {
             this.utenteLabel.setText(utenteCorrente.getNome());
             this.ruoloLabel.setText(utenteCorrente.getRuolo().toString());
@@ -475,7 +473,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             loginButton.setText("Login");
         }
     }
-    
+
+    // Aggiorna lo stato dei pulsanti in base ai privilegi dell'utente loggato
     private void updateButtons() {  //Aggiorna pulsanti in base all'utente loggato
         
         if(utenteCorrente == null) {
@@ -502,7 +501,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
     
-    public void aggiornaPazienti() {
+    // Aggiorna l'oggetto che contiene le persone al momento in fase di ricovero
+    private void aggiornaPazienti() {
         pazientiInCura = new ArrayList<>();
         String[] fileList = null;
         String path = null;
@@ -515,19 +515,21 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
         for(String name : fileList) {
             String dataPaziente = new CSVManager(path+File.separator+name , ";").getLineAt(0);
-            pazientiInCura.add(Utility.string2Paziente(dataPaziente));
+            pazientiInCura.add(new CartellaClinica(Utility.string2Paziente(dataPaziente)));
         }
     }
     
-    public void updateTable(){
+    // Aggiorna la tabella principale con i dati dell'oggetto
+    private void updateTable(){
         aggiornaPazienti();
         int count = 0;
-        for(Paziente paziente : pazientiInCura) {
-            tabellaPazienti.setValueAt(paziente, count, 0);
+        for(CartellaClinica cartella : pazientiInCura) {
+            tabellaPazienti.setValueAt(cartella.getPaziente(), count, 0);
             count++;
         }
     }
     
+    // Aggiorna tutta la grafica
     public void updateGUI() {
         updateUtente();
         updateButtons();
