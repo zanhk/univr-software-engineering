@@ -257,11 +257,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
             return false;
         }
-        
-        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
-        String linea = Utility.paziente2String(paziente);
-        writer.append(linea);
-        try{
+          try{
             File file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+".csv");
             if(!file.createNewFile())
                 return false;
@@ -275,6 +271,11 @@ public class NuovoPaziente extends javax.swing.JPanel {
             System.out.println("Impossible creare");
             return false;
         }
+        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
+        String linea = Utility.paziente2String(paziente);
+        writer.append(linea);
+      
+        
         return true;
     }
     
