@@ -1,5 +1,6 @@
 package dev.matteomeneghetti.sendhelp.data;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 /** 
  *La cartella clinica e' il cuore pulsante della gestione dei dati.
@@ -14,8 +15,8 @@ import java.util.TreeSet;
 public class CartellaClinica {
     
     private Paziente paziente;
-    private TreeSet<Prescrizione> prescrizioni;
-    private TreeSet<Somministrazione> somministrazioni;
+    private ArrayList<Prescrizione> prescrizioni;
+    private ArrayList<Somministrazione> somministrazioni;
     
     /**
      *Costruttore per la classe Cartella Clinica
@@ -25,8 +26,8 @@ public class CartellaClinica {
      
     public CartellaClinica(Paziente paziente) {
         setPaziente(paziente);
-        this.prescrizioni = new TreeSet<Prescrizione>();
-        this.somministrazioni = new TreeSet<Somministrazione>();
+        this.prescrizioni = new ArrayList<Prescrizione>();
+        this.somministrazioni = new ArrayList<Somministrazione>();
     }
 
     /** 
@@ -66,7 +67,7 @@ public class CartellaClinica {
      *
      */
     
-    public TreeSet<Prescrizione> getPrescrizioni() {
+    public ArrayList<Prescrizione> getPrescrizioni() {
         return this.prescrizioni;
     }    
 
@@ -81,7 +82,13 @@ public class CartellaClinica {
      */
 
     public boolean addPrescrizione(Prescrizione prescrizione) {
-        return this.prescrizioni.add(prescrizione);
+        if (prescrizioni.contains(prescrizione)) {
+            return false;
+        }
+        else {
+            this.prescrizioni.add(prescrizione);
+            return true;
+        }
     }
 
      /** 
@@ -94,8 +101,8 @@ public class CartellaClinica {
      *
      */
 
-    public boolean removePrescrizione(Prescrizione prescrizione) {
-        return this.prescrizioni.remove(prescrizione);
+    public void removePrescrizione(Prescrizione prescrizione) {
+        this.prescrizioni.remove(prescrizione);
     }    
 
     /** 
@@ -106,7 +113,7 @@ public class CartellaClinica {
      *
      */
     
-    public TreeSet<Somministrazione> getSomministrazioni() {
+    public ArrayList<Somministrazione> getSomministrazioni() {
         return this.somministrazioni;
     }
 
@@ -121,7 +128,13 @@ public class CartellaClinica {
      */
 
     public boolean addSomministrazione(Somministrazione somministrazione) {
-        return this.somministrazioni.add(somministrazione);
+        if(somministrazioni.contains(somministrazione)) {
+            return false;
+        }
+        else {
+            somministrazioni.add(somministrazione);
+            return true;
+        }
     }
 
     /** 
@@ -134,8 +147,8 @@ public class CartellaClinica {
      *
      */
 
-    public boolean removeSomministrazione(Somministrazione somministrazione) {
-        return this.somministrazioni.remove(somministrazione);
+    public void removeSomministrazione(Somministrazione somministrazione) {
+        this.somministrazioni.remove(somministrazione);
     }    
     
 }

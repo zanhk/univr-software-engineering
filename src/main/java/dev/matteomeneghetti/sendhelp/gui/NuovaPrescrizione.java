@@ -1,14 +1,27 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
+import dev.matteomeneghetti.sendhelp.data.Prescrizione;
+import dev.matteomeneghetti.sendhelp.data.PrescrizioneBuilderImpl;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSpinner;
 
-public class NuovaPrescrizione extends javax.swing.JPanel {
+public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListener {
+    
+    MainWindow main;
 
-    public NuovaPrescrizione() {
+    public NuovaPrescrizione(MainWindow main) {
+        this.main = main;
         initComponents();
         
-        jSpinner1.setEditor(new JSpinner.DateEditor(jSpinner1, "dd/MM/yyyy"));
-        jSpinner2.setEditor(new JSpinner.DateEditor(jSpinner2, "dd/MM/yyyy"));
+        dataInizioSpinner.setEditor(new JSpinner.DateEditor(dataInizioSpinner, "dd/MM/yyyy"));
+        dataFineSpinner.setEditor(new JSpinner.DateEditor(dataFineSpinner, "dd/MM/yyyy"));
+        confermaButton.addActionListener(this);
+        annullaButton.addActionListener(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -17,21 +30,21 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        farmacoField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        dataInizioSpinner = new javax.swing.JSpinner();
+        dataFineSpinner = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jSpinner4 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        quantitaDoseSpinner = new javax.swing.JSpinner();
+        numeroDosiSpinnner = new javax.swing.JSpinner();
+        confermaButton = new javax.swing.JButton();
+        annullaButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        pazienteCombo = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(600, 330));
 
@@ -46,9 +59,9 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
 
         jLabel4.setText("Data fine");
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+        dataInizioSpinner.setModel(new javax.swing.SpinnerDateModel());
 
-        jSpinner2.setModel(new javax.swing.SpinnerDateModel());
+        dataFineSpinner.setModel(new javax.swing.SpinnerDateModel());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,8 +74,8 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinner2)
-                    .addComponent(jSpinner1))
+                    .addComponent(dataFineSpinner)
+                    .addComponent(dataInizioSpinner))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -71,11 +84,11 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataInizioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataFineSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -85,9 +98,9 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
 
         jLabel5.setText("Numero dosi");
 
-        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(1.0f, 0.0f, null, 0.1f));
+        quantitaDoseSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0f, 0.0f, null, 0.1f));
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        numeroDosiSpinnner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,11 +112,11 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(numeroDosiSpinnner, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(quantitaDoseSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(44, 44, 44))
         );
         jPanel2Layout.setVerticalGroup(
@@ -112,21 +125,21 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numeroDosiSpinnner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(quantitaDoseSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Conferma");
+        confermaButton.setText("Conferma");
 
-        jButton2.setText("Annulla");
+        annullaButton.setText("Annulla");
 
         jLabel7.setText("Paziente");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pazienteCombo.setModel(new DefaultComboBoxModel(this.main.pazientiInCura.toArray()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -140,9 +153,9 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
                 .addGap(38, 38, 38))
             .addGroup(layout.createSequentialGroup()
                 .addGap(121, 121, 121)
-                .addComponent(jButton1)
+                .addComponent(confermaButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(127, 127, 127))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,8 +169,8 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jComboBox1, 0, 144, Short.MAX_VALUE))))
+                            .addComponent(farmacoField)
+                            .addComponent(pazienteCombo, 0, 144, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -174,25 +187,27 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(farmacoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pazienteCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(confermaButton)
+                    .addComponent(annullaButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton annullaButton;
+    private javax.swing.JButton confermaButton;
+    private javax.swing.JSpinner dataFineSpinner;
+    private javax.swing.JSpinner dataInizioSpinner;
+    private javax.swing.JTextField farmacoField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -202,10 +217,67 @@ public class NuovaPrescrizione extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSpinner numeroDosiSpinnner;
+    private javax.swing.JComboBox<String> pazienteCombo;
+    private javax.swing.JSpinner quantitaDoseSpinner;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String command = ae.getActionCommand();
+        switch (command) {
+            case "Conferma":
+                if(convalidaCampi()) {
+                    salvaPrescrizione(creaPrescrizione());
+                    Utility.chiudiDialog(ae);
+                }
+                break;
+            case "Annulla":
+                Utility.chiudiDialog(ae);
+                break;
+        }
+    }
+    
+    private boolean convalidaCampi() {
+        return convalidaNome() && convalidaData();
+    }
+    
+    private boolean convalidaNome() {
+        String nomeFarmaco = farmacoField.getText();
+        if (nomeFarmaco.isBlank())
+            return false;
+        else
+            return true;
+    }
+    
+    private boolean convalidaData() {
+        Date dataInizio = (Date) dataInizioSpinner.getValue();
+        Date dataFine = (Date) dataFineSpinner.getValue();
+        if(dataInizio.after(dataFine))
+            return false;
+        else
+            return true;        
+    }
+    
+    private Prescrizione creaPrescrizione() {
+        Prescrizione prescrizione;
+        prescrizione = new PrescrizioneBuilderImpl()
+                .setNomeFarmaco(farmacoField.getText())
+                .setDataPrescrizione((Date)dataInizioSpinner.getValue())
+                .setDataFineTerapia((Date) dataFineSpinner.getValue())
+                .setNumeroDosiGiornaliere((int) numeroDosiSpinnner.getValue())
+                .setQuantitaDose((float) quantitaDoseSpinner.getValue())
+                .setMedico(main.getUtenteCorrente().toString())
+                .build();
+        return prescrizione;
+    }
+    
+    private void salvaPrescrizione(Prescrizione prescrizione) {
+        CartellaClinica cartellaPaziente = (CartellaClinica) pazienteCombo.getSelectedItem();
+        for (CartellaClinica cartella : main.pazientiInCura) {
+            if (cartellaPaziente.equals(cartella)) {
+                cartella.addPrescrizione(prescrizione);
+            }
+        }
+    }
 }

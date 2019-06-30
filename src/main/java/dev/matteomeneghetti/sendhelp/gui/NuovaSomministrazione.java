@@ -21,7 +21,7 @@ public class NuovaSomministrazione extends javax.swing.JPanel {
 
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listaPrescrizioni = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -34,12 +34,12 @@ public class NuovaSomministrazione extends javax.swing.JPanel {
 
         jComboBox1.setModel(new DefaultComboBoxModel(this.main.pazientiInCura.toArray()));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listaPrescrizioni.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listaPrescrizioni);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dosologia"));
 
@@ -142,10 +142,10 @@ public class NuovaSomministrazione extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JList<String> listaPrescrizioni;
     // End of variables declaration//GEN-END:variables
 }

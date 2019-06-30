@@ -12,21 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
-    
+   
     private Utente utenteCorrente;  //utente loggato, null se ospite
     public List<CartellaClinica> pazientiInCura;
 
     public MainWindow() {
         initComponents();
-        setLocationRelativeTo(null);        
+        setLocationRelativeTo(null);
         setUtenteCorrente(null);
         
         loginButton.addActionListener(this);
         nuovoPazienteButton.addActionListener(this);
         prescrizioneButton.addActionListener(this);
         somministrazioneButton.addActionListener(this);
-        setVisible(true);        
-
+        setVisible(true);
+        
         updateGUI();
     }
     
@@ -103,7 +103,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 return canEdit [columnIndex];
             }
         });
+        tabellaPazienti.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabellaPazienti);
+        if (tabellaPazienti.getColumnModel().getColumnCount() > 0) {
+            tabellaPazienti.getColumnModel().getColumn(0).setPreferredWidth(150);
+        }
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Telemetria Paziente"));
 
@@ -437,7 +441,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 doLogout();
                 break;
             case "Aggiungi prescrizione":
-                new DefaultJDialog(new NuovaPrescrizione());
+                new DefaultJDialog(new NuovaPrescrizione(this));
                 updateGUI();
                 break;
             case "Aggiungi somministrazione":
