@@ -559,13 +559,39 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }
     
     private void updateTelemetria() {
+        String path = "resources" + File.separator + "Pazienti" + File.separator;
         if (tabellaPazienti.getSelectedRow() < 0)
             return;
         int row = tabellaPazienti.getSelectedRow();
-        int column = 0;
-        Paziente paziente = (Paziente)tabellaPazienti.getValueAt(row, column);
-        if (paziente!= null)
-            pazienteLabel.setText(paziente.toString());
+        String paziente = tabellaPazienti.getValueAt(row, 0).toString();
+        if (paziente!= null){
+            pazienteLabel.setText(paziente);
+            path+=paziente + File.separator + "Analisi.csv";
+            CSVManager wr = new CSVManager(path, ";");
+            String[] sbp = wr.find("SBP");
+            String[] dbp = wr.find("DBP");
+            String[] bpm = wr.find("BPM");
+            String[] temp = wr.find("TEMP");
+            int n;
+            if(sbp.length<=59){
+               n=sbp.length-1;
+               
+               System.out.println(sbp.length);
+            }
+            else
+                n=60;
+                n=7;
+            //tabellaTelemetria.setValueAt(Integer.parseInt(sbp[1]), 0, 0);
+            for(int i=n; i>0; i--){
+                tabellaTelemetria.setValueAt(Integer.parseInt(sbp[i]), i-1, 0);
+                tabellaTelemetria.setValueAt(Integer.parseInt(dbp[i]), i-1, 1);
+                tabellaTelemetria.setValueAt(Integer.parseInt(bpm[i]), i-1, 2);
+                tabellaTelemetria.setValueAt(Integer.parseInt(temp[i]), i-1, 3);
+            }
+        }
+            
+        
+        
     }
     
     // Aggiorna tutta la grafica
@@ -581,13 +607,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 int lenght = pingu.length;
                 Integer number = Integer.parseInt(pingu[lenght-1]);
                 tabellaPazienti.setValueAt(number, i, position);
+                if(tabellaPazienti.getSelectedRow() == i)
+                    updateTelemetria();
                 return;
                 }
-            
-                
         }
-       
-       
     }
     
     public void updateGUI() {
