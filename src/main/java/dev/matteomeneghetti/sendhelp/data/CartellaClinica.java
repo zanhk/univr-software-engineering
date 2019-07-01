@@ -1,6 +1,7 @@
 package dev.matteomeneghetti.sendhelp.data;
 
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -160,12 +161,11 @@ public class CartellaClinica {
     public void pSaveToFile(Prescrizione prescrizione){
         String path = "resources" + File.separator + "Pazienti" + File.separator + this.paziente.getCodiceFiscale().toString() + File.separator + "Prescrizioni.csv";
         CSVManager wr= new CSVManager(path, ";");
-        String linea = prescrizione.getDataFineTerapia()+";"
+        String linea = Utility.date2String(prescrizione.getDataFineTerapia())+";"
                 + prescrizione.getMedico()+";"
-                + prescrizione.getDataPrescrizione()+";"
+                + Utility.date2String(prescrizione.getDataPrescrizione())+";"
                 + prescrizione.getNomeFarmaco()+";"
                 + prescrizione.getQuantitaDose()+";";
         wr.append(linea);
     }
-    
 }
