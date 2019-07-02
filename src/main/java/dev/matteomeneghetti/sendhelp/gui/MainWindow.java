@@ -556,6 +556,32 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
     
+    private void updateTelemetria(int position, String key) {
+        String path = "resources" + File.separator + "Pazienti" + File.separator;
+        if (tabellaPazienti.getSelectedRow() < 0)
+            return;
+        int row = tabellaPazienti.getSelectedRow();
+        String paziente = tabellaPazienti.getValueAt(row, 0).toString();
+        if (paziente!= null){
+            pazienteLabel.setText(paziente);
+            path+=paziente + File.separator + "Analisi.csv";
+            CSVManager wr = new CSVManager(path, ";");
+            String[] str = wr.find(key);
+            int n;
+            if(str.length<=59){
+               n=str.length-1;
+               
+               System.out.println(str.length);
+            }
+            else
+                n=60;
+                n=7;
+            //tabellaTelemetria.setValueAt(Integer.parseInt(sbp[1]), 0, 0);
+            
+                tabellaTelemetria.setValueAt(Integer.parseInt(str[str.length-1]), n-1, position);
+            
+        }        
+    }
     private void updateTelemetria() {
         String path = "resources" + File.separator + "Pazienti" + File.separator;
         if (tabellaPazienti.getSelectedRow() < 0)
@@ -573,18 +599,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             int n;
             if(sbp.length<=59){
                n=sbp.length-1;
-               
                System.out.println(sbp.length);
             }
             else
                 n=60;
+            
                 n=7;
             //tabellaTelemetria.setValueAt(Integer.parseInt(sbp[1]), 0, 0);
             for(int i=n; i>0; i--){
-                tabellaTelemetria.setValueAt(Integer.parseInt(sbp[i]), i-1, 0);
-                tabellaTelemetria.setValueAt(Integer.parseInt(dbp[i]), i-1, 1);
-                tabellaTelemetria.setValueAt(Integer.parseInt(bpm[i]), i-1, 2);
-                tabellaTelemetria.setValueAt(Integer.parseInt(temp[i]), i-1, 3);
+                tabellaTelemetria.setValueAt(Integer.parseInt(sbp[sbp.length-i]), i-1, 0);
+                tabellaTelemetria.setValueAt(Integer.parseInt(dbp[dbp.length-i]), i-1, 1);
+                tabellaTelemetria.setValueAt(Integer.parseInt(bpm[bpm.length-i]), i-1, 2);
+                tabellaTelemetria.setValueAt(Integer.parseInt(temp[temp.length-i]), i-1, 3);
             }
         }        
     }
@@ -602,7 +628,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 Integer number = Integer.parseInt(pingu[lenght-1]);
                 tabellaPazienti.setValueAt(number, i, position);
                 if(tabellaPazienti.getSelectedRow() == i)
-                    updateTelemetria();
+                    updateTelemetria(position, key);
                 return;
             }
         }
