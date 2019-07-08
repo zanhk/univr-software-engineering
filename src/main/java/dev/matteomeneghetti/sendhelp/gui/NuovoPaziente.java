@@ -327,9 +327,15 @@ public class NuovoPaziente extends javax.swing.JPanel {
             paziente.setCognome(cognomeField.getText());
             paziente.setGenere(buttonGroup1.getSelection().getActionCommand().charAt(0));
             paziente.setDataDiNascita((Date)dataNascitaSpinner.getValue());
-            paziente.setLuogoDiNascita(luogoField.getText());
-            paziente.generaCodiceFiscale();
-            codiceFiscaleLabel.setText(paziente.getCodiceFiscale().toString());
+            try{
+                paziente.setLuogoDiNascita(luogoField.getText().toLowerCase());
+                paziente.generaCodiceFiscale();
+                codiceFiscaleLabel.setText(paziente.getCodiceFiscale().toString());
+            }catch(Exception e){
+                codiceFiscaleLabel.setText("CF");
+                paziente.setLuogoDiNascita("Roma");
+            }
+            
         }
     }
 }

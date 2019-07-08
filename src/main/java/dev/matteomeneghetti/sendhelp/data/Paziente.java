@@ -76,7 +76,9 @@ public class Paziente {
         return luogoDiNascita;
     }
     public void setLuogoDiNascita(String luogoDiNascita) {
-        this.luogoDiNascita = luogoDiNascita;
+        String iniziale = "" +luogoDiNascita.substring(0,1);
+        String inizialeMaiuscola = iniziale.toUpperCase();
+        this.luogoDiNascita = inizialeMaiuscola + luogoDiNascita.substring(1);
     }
 
     public String getDiagnosiDiIngresso() {
