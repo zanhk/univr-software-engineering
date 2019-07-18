@@ -109,7 +109,11 @@
                           <Component id="jScrollPane1" min="-2" pref="592" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="numeroPazientiLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="storicoButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="nuovoPazienteButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -133,6 +137,8 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="nuovoPazienteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="storicoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="numeroPazientiLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -227,7 +233,7 @@
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="pazienteLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                                  <EmptySpace pref="71" max="32767" attributes="0"/>
                                   <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -320,12 +326,22 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Numero pazienti: 0 "/>
+                <Property name="text" type="java.lang.String" value="Numero pazienti: "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="nuovoPazienteButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuovo Paziente"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="storicoButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Visualizza storico"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="numeroPazientiLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -454,10 +470,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="somministrazioneButton" min="-2" max="-2" attributes="0"/>
-                              <Component id="storicoButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="somministrazioneButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -467,17 +480,13 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jPanel7" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="storicoButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="somministrazioneButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jPanel7" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="somministrazioneButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -541,11 +550,6 @@
                 <Component class="javax.swing.JButton" name="somministrazioneButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Aggiungi somministrazione"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="storicoButton">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Visualizza storico"/>
                   </Properties>
                 </Component>
               </SubComponents>

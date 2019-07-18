@@ -28,6 +28,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         nuovoPazienteButton.addActionListener(this);
         prescrizioneButton.addActionListener(this);
         somministrazioneButton.addActionListener(this);
+        storicoButton.addActionListener(this);
         setVisible(true);
         try {
             new DefaultJDialog(new Alarm("3", "ipertrifosi", 2));
@@ -54,6 +55,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         nuovoPazienteButton = new javax.swing.JButton();
+        storicoButton = new javax.swing.JButton();
+        numeroPazientiLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -67,7 +70,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         diagnosiButton = new javax.swing.JButton();
         dimettiButton = new javax.swing.JButton();
         somministrazioneButton = new javax.swing.JButton();
-        storicoButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -165,7 +167,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pazienteLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(jButton6)))
                 .addContainerGap())
         );
@@ -182,9 +184,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Numero pazienti: 0 ");
+        jLabel1.setText("Numero pazienti: ");
 
         nuovoPazienteButton.setText("Nuovo Paziente");
+
+        storicoButton.setText("Visualizza storico");
+
+        numeroPazientiLabel.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -196,7 +202,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numeroPazientiLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(storicoButton)
+                        .addGap(18, 18, 18)
                         .addComponent(nuovoPazienteButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -214,7 +224,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(nuovoPazienteButton)))))
+                            .addComponent(nuovoPazienteButton)
+                            .addComponent(storicoButton)
+                            .addComponent(numeroPazientiLabel)))))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dati utente", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -303,17 +315,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         somministrazioneButton.setText("Aggiungi somministrazione");
 
-        storicoButton.setText("Visualizza storico");
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(somministrazioneButton)
-                    .addComponent(storicoButton))
+                .addComponent(somministrazioneButton)
                 .addGap(90, 90, 90)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -321,15 +329,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(storicoButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(somministrazioneButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(somministrazioneButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -431,6 +436,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton loginButton;
+    private javax.swing.JLabel numeroPazientiLabel;
     private javax.swing.JButton nuovoPazienteButton;
     private javax.swing.JLabel pazienteLabel;
     private javax.swing.JButton prescrizioneButton;
@@ -463,7 +469,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 new DefaultJDialog(new NuovaSomministrazione(this));
                 updateGUI();
                 break;
-
+            case "Visualizza storico":
+                new DefaultJDialog(new Storico());
+                break;
         }
     }
 
@@ -541,6 +549,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        numeroPazientiLabel.setText(Integer.toString(pazientiInCura.size()));
     }
 
     // Aggiorna la tabella principale con i dati dell'oggetto
