@@ -2,6 +2,7 @@ package dev.matteomeneghetti.sendhelp.utility;
 
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Prescrizione;
+import dev.matteomeneghetti.sendhelp.data.Somministrazione;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -60,6 +61,27 @@ public class Utility {
                 + Utility.date2String(prescrizione.getDataPrescrizione()) + ";"
                 + Utility.date2String(prescrizione.getDataFineTerapia()) + ";"
                 + prescrizione.getMedico();
+        return stringa;
+    }
+    
+    public static Somministrazione string2Somministrazione(String stringa) {
+        String[] campi = stringa.split(";");
+        Somministrazione somministrazione = new Somministrazione();
+        somministrazione.setNomeFarmaco(campi[0]);
+        somministrazione.setDoseSomministrata(Float.parseFloat(campi[1]));
+        somministrazione.setDataSomministrazione(Utility.string2Date(campi[2]));
+        somministrazione.setNote(campi[3]);
+        
+        return somministrazione;
+    }
+    
+    public static String somministrazione2String(Somministrazione somministrazione) {
+        String stringa = ""
+                + somministrazione.getNomeFarmaco() + ";"
+                + somministrazione.getDoseSomministrata() + ";"
+                + Utility.date2String(somministrazione.getDataSomministrazione()) + ";"
+                + somministrazione.getNote();
+        
         return stringa;
     }
     
