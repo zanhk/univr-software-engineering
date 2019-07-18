@@ -51,6 +51,7 @@ public class CSVManager {
                 if(lineNumber == key) {
                     return line;
                 }
+                lineNumber++;
             }
             br.close();
         } catch (IOException e) {
