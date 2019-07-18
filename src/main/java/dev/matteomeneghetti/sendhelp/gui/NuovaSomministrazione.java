@@ -24,18 +24,12 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         initComponents();
 
         confermaButton.addActionListener(this);
+        pazientiBox.addActionListener(this);
         listaPrescrizioni.addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent arg0) {
-                DefaultListModel listModel = (DefaultListModel) listaPrescrizioni.getModel();
-                Prescrizione currPres = (Prescrizione) listModel.getElementAt(listaPrescrizioni.getSelectedIndex());
-                farmacoLabel.setText(currPres.getNomeFarmaco());
-                doseLabel.setText(String.valueOf(currPres.getQuantitaDose()));
-                dataInizioLabel.setText(Utility.date2String(currPres.getDataPrescrizione()));
-                dataFineLabel.setText(Utility.date2String(currPres.getDataFineTerapia()));
-                medicoLabel.setText(currPres.getMedico());
-
+                aggiornaDati();
             }
         });
         aggiornaListaPrescrizioni();
@@ -256,11 +250,16 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         String command = ae.getActionCommand();
         switch (command) {
             case "Conferma":
-                // salvaSomministrazione(creaSomministrazione());
-                Utility.chiudiDialog(ae);
+                if (listaPrescrizioni.getSelectedIndex() >= 0) {
+                    salvaSomministrazione(creaSomministrazione());
+                    Utility.chiudiDialog(ae);
+                }
                 break;
             case "Annulla":
                 Utility.chiudiDialog(ae);
+                break;
+            case "comboBoxChanged":
+                aggiornaListaPrescrizioni();
                 break;
         }
     }
@@ -268,6 +267,7 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
     private Somministrazione creaSomministrazione() {
         Somministrazione somministrazione;
         somministrazione = new SomministrazioneBuilderImpl()
+                .setNomeFarmaco(farmacoLabel.getText())
                 .setDataSomministrazione(new Date())
                 .setDoseSomministrata(1.0f)
                 .setNote(noteTextArea.getText())
@@ -286,6 +286,8 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
 
     private void aggiornaListaPrescrizioni() {
         DefaultListModel listModel = (DefaultListModel) listaPrescrizioni.getModel();
+        listaPrescrizioni.clearSelection();
+        listModel.removeAllElements();
         CartellaClinica cartellaBox = (CartellaClinica) pazientiBox.getSelectedItem();
         String path = "resources" + File.separator + "Pazienti" + File.separator + cartellaBox.getPaziente().getCodiceFiscale() + File.separator + "Prescrizioni.csv";
         CSVManager wr = new CSVManager(path, ";");
@@ -293,5 +295,18 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         for (int i = 0; i < rows; i++) {
             listModel.add(i, Utility.string2Prescrizione(wr.getLineAt(i)));
         }
+    }
+
+    private void aggiornaDati() {
+        DefaultListModel listModel = (DefaultListModel) listaPrescrizioni.getModel();
+        if (listaPrescrizioni.getSelectedIndex() < 0) {
+            return;
+        }
+        Prescrizione currPres = (Prescrizione) listModel.getElementAt(listaPrescrizioni.getSelectedIndex());
+        farmacoLabel.setText(currPres.getNomeFarmaco());
+        doseLabel.setText(String.valueOf(currPres.getQuantitaDose()));
+        dataInizioLabel.setText(Utility.date2String(currPres.getDataPrescrizione()));
+        dataFineLabel.setText(Utility.date2String(currPres.getDataFineTerapia()));
+        medicoLabel.setText(currPres.getMedico());
     }
 }
