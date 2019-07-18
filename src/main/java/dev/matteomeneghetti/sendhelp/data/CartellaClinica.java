@@ -4,7 +4,6 @@ import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.TreeSet;
 
 /**
  * La cartella clinica e' il cuore pulsante della gestione dei dati. Per ogni

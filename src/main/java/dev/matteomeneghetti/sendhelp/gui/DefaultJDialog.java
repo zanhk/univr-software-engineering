@@ -3,9 +3,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 /*
-Classe adibita a a fornire un jDialog pronto all'uso
+    Classe adibita a a fornire un jDialog pronto all'uso
 */
-
 
 public class DefaultJDialog extends JDialog {
     

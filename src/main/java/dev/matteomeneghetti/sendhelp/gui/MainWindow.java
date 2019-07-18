@@ -404,9 +404,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabellaPazientiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabellaPazientiMouseClicked
-        // TODO add your handling code here:
-        updateTelemetria();
 
+        updateTelemetria();
     }//GEN-LAST:event_tabellaPazientiMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

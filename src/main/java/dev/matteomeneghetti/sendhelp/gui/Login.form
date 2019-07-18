@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" pref="215" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -27,7 +27,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="53" max="32767" attributes="0"/>
+                      <EmptySpace min="53" pref="58" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -61,7 +61,7 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -93,7 +93,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt; Questo software prevede che tu disponga delle credenziali di accesso &lt;br /&gt; per accedere a questo reparto. &lt;br /&gt;Nel caso in cui non si disponga di un account e&apos; possibile crearne uno &lt;br /&gt;premendo il pulsante Nuovo Utente.&lt;br /&gt;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt; Questo software prevede che l&apos;utente disponga delle credenziali di accesso &lt;br /&gt; per accedere a questo reparto. &lt;br /&gt;Nel caso in cui non si disponga di un account e&apos; possibile crearne uno &lt;br /&gt;premendo il pulsante Nuovo Utente.&lt;br /&gt;&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
