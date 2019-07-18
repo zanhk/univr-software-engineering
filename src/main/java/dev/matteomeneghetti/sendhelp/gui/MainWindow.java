@@ -30,13 +30,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         somministrazioneButton.addActionListener(this);
         storicoButton.addActionListener(this);
         setVisible(true);
-        try {
-            new DefaultJDialog(new Alarm("3", "ipertrifosi", 2));
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
         updateGUI();
-
     }
 
     @SuppressWarnings("unchecked")
