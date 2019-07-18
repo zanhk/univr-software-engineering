@@ -91,7 +91,9 @@ public class CartellaClinica {
         else {
             this.prescrizioni.add(prescrizione);
             System.out.println("Help");
-            pSaveToFile(prescrizione);
+            String path = "resources" + File.separator + "Pazienti" + File.separator + this.paziente.getCodiceFiscale().toString() + File.separator + "Prescrizioni.csv";
+            CSVManager wr= new CSVManager(path, ";");
+            wr.append(Utility.prescrizione2String(prescrizione));
             return true;
         }
     }
@@ -156,16 +158,5 @@ public class CartellaClinica {
 
     public void removeSomministrazione(Somministrazione somministrazione) {
         this.somministrazioni.remove(somministrazione);
-    }
-    
-    public void pSaveToFile(Prescrizione prescrizione){
-        String path = "resources" + File.separator + "Pazienti" + File.separator + this.paziente.getCodiceFiscale().toString() + File.separator + "Prescrizioni.csv";
-        CSVManager wr= new CSVManager(path, ";");
-        String linea = Utility.date2String(prescrizione.getDataFineTerapia())+";"
-                + prescrizione.getMedico()+";"
-                + Utility.date2String(prescrizione.getDataPrescrizione())+";"
-                + prescrizione.getNomeFarmaco()+";"
-                + prescrizione.getQuantitaDose()+";";
-        wr.append(linea);
     }
 }

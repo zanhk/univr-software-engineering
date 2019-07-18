@@ -1,8 +1,6 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
 import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
-import dev.matteomeneghetti.sendhelp.data.Paziente;
-import dev.matteomeneghetti.sendhelp.data.PrescrizioneBuilderImpl;
 import dev.matteomeneghetti.sendhelp.data.Somministrazione;
 import dev.matteomeneghetti.sendhelp.data.SomministrazioneBuilderImpl;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
@@ -14,27 +12,17 @@ import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
-public class NuovaSomministrazione extends javax.swing.JPanel implements ActionListener{
+public class NuovaSomministrazione extends javax.swing.JPanel implements ActionListener {
 
     MainWindow main;
 
     public NuovaSomministrazione(MainWindow main) {
         this.main = main;
         initComponents();
-        
-        confermaButton.addActionListener(this);
-        DefaultListModel model = new DefaultListModel();
-        
-        CartellaClinica cartellaBox  =  (CartellaClinica) pazientiBox.getSelectedItem();
 
-        String path = "resource" + File.separator + "Pazienti" + File.separator + cartellaBox.getPaziente().getCodiceFiscale() + File.separator + "Prescrizioni.csv" ;
-        CSVManager wr = new CSVManager(path, ";");
-        listaPrescrizioni.setModel(model);
-        int rows = wr.getNumberOfRows();
-        for (int i=0; i<= rows; i++) {
-            model.add(i, wr.getLineAt(i));
-        }
-        setVisible(true);   
+        confermaButton.addActionListener(this);
+        aggiornaListaPrescrizioni();
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -53,14 +41,13 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         noteTextArea = new javax.swing.JTextArea();
         confermaButton = new javax.swing.JButton();
         annullaButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        doseSpinner = new javax.swing.JSpinner();
 
         pazientiBox.setModel(new DefaultComboBoxModel(this.main.pazientiInCura.toArray()));
 
-        listaPrescrizioni.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        listaPrescrizioni.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(listaPrescrizioni);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dosologia"));
@@ -82,7 +69,7 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(farmacoLabel)
                     .addComponent(doseLabel))
@@ -91,7 +78,7 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(farmacoLabel))
@@ -111,43 +98,62 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
 
         annullaButton.setText("Annulla");
 
+        jLabel3.setText("Paziente");
+
+        jLabel4.setText("Dose somministrata");
+
+        doseSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0f, 0.0f, null, 0.1f));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(confermaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(annullaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(131, 131, 131))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pazientiBox, 0, 180, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pazientiBox, 0, 188, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(confermaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(34, 34, 34)
-                        .addComponent(annullaButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                        .addGap(131, 131, 131)))
-                .addGap(22, 22, 22))
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(doseSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(doseSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pazientiBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(pazientiBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confermaButton)
                     .addComponent(annullaButton))
@@ -160,9 +166,12 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
     private javax.swing.JButton annullaButton;
     private javax.swing.JButton confermaButton;
     private javax.swing.JLabel doseLabel;
+    private javax.swing.JSpinner doseSpinner;
     private javax.swing.JLabel farmacoLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -176,15 +185,15 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         String command = ae.getActionCommand();
         switch (command) {
             case "Conferma":
-                   // salvaSomministrazione(creaSomministrazione());
-                    Utility.chiudiDialog(ae);                
+                // salvaSomministrazione(creaSomministrazione());
+                Utility.chiudiDialog(ae);
                 break;
             case "Annulla":
                 Utility.chiudiDialog(ae);
                 break;
         }
     }
-    
+
     private Somministrazione creaSomministrazione() {
         Somministrazione somministrazione;
         somministrazione = new SomministrazioneBuilderImpl()
@@ -194,13 +203,24 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
                 .build();
         return somministrazione;
     }
-    
+
     private void salvaSomministrazione(Somministrazione somministrazione) {
         CartellaClinica cartellaPaziente = (CartellaClinica) pazientiBox.getSelectedItem();
         for (CartellaClinica cartella : main.pazientiInCura) {
             if (cartellaPaziente.equals(cartella)) {
                 cartella.addSomministrazione(somministrazione);
             }
+        }
+    }
+
+    private void aggiornaListaPrescrizioni() {
+        DefaultListModel listModel = (DefaultListModel) listaPrescrizioni.getModel();
+        CartellaClinica cartellaBox = (CartellaClinica) pazientiBox.getSelectedItem();
+        String path = "resources" + File.separator + "Pazienti" + File.separator + cartellaBox.getPaziente().getCodiceFiscale() + File.separator + "Prescrizioni.csv";
+        CSVManager wr = new CSVManager(path, ";");
+        int rows = wr.getNumberOfRows();
+        for (int i = 0; i < rows; i++) {
+            listModel.add(i, Utility.string2Prescrizione(wr.getLineAt(i)));
         }
     }
 }

@@ -1,33 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dev.matteomeneghetti.sendhelp.gui;
 
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Hashing;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
-/**
- *
- * @author mat
- */
 public class Login extends javax.swing.JPanel {
-    
+
     MainWindow main;
     char defaultEchoChar;
     Utente utente;
@@ -36,11 +23,10 @@ public class Login extends javax.swing.JPanel {
         initComponents();
         this.main = main;
         defaultEchoChar = jPasswordField1.getEchoChar();
-        //jLabel2.setIcon(new javax.swing.ImageIcon("icons"+File.separator+"loginicon.png"));
         jButton1.addActionListener(new Login.LoginController());
         jButton2.addActionListener(new Login.LoginController());
         jButton3.addActionListener(new Login.LoginController());
-        
+
     }
 
     /**
@@ -75,11 +61,9 @@ public class Login extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(224, 224, 224));
 
         jButton1.setText("Conferma");
-        jButton1.setBorderPainted(false);
         jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
 
         jButton2.setText("Esci");
-        jButton2.setBorderPainted(false);
         jButton2.setPreferredSize(new java.awt.Dimension(100, 30));
 
         jButton3.setText("Nuovo Utente");
@@ -174,16 +158,16 @@ public class Login extends javax.swing.JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             String message = e.getActionCommand();
-            switch(message) {
+            switch (message) {
                 case "Conferma":
                     utente = new Utente();
                     try {
                         String[] dati = checkLogin();
-                        if(dati != null) {
+                        if (dati != null) {
                             utente.setNome(dati[0]);
                             utente.setRuolo(Utente.RUOLO.valueOf(dati[2]));
                             main.setUtenteCorrente(utente);
-                            Utility.chiudiDialog(e);                            
+                            Utility.chiudiDialog(e);
                         }
                     } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,20 +185,20 @@ public class Login extends javax.swing.JPanel {
             String id = jTextField1.getText();
             CSVManager csvreader = new CSVManager("resources" + File.separator + "dati-login.csv", ";");
             String[] dati = csvreader.find(id);
-            
-            if(dati == null)
+
+            if (dati == null) {
                 return null;
-            
-            if(!verifyLogin(dati[1])) {
-               JOptionPane.showMessageDialog(null, "Username o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
-               return null;
             }
-            return dati;            
+
+            if (!verifyLogin(dati[1])) {
+                JOptionPane.showMessageDialog(null, "Username o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+            return dati;
         }
-        
+
         private boolean verifyLogin(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
             return Hashing.validate(jPasswordField1.getText(), password);
-            //return Arrays.equals(password.toCharArray(), jPasswordField1.getPassword());
-        }       
+        }
     }
 }

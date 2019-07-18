@@ -11,7 +11,7 @@ public class Somministrazione {
     public Somministrazione() {
         
     }
-    
+
     public Date getDataSomministrazione() {
         return this.dataSomministrazione;
     }

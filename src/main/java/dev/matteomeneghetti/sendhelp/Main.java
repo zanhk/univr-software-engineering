@@ -1,13 +1,14 @@
 package dev.matteomeneghetti.sendhelp;
+
 import dev.matteomeneghetti.sendhelp.gui.MainWindow;
 
 public class Main {
-    
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("GTK+".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -23,12 +24,7 @@ public class Main {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-              MainWindow main = new MainWindow();
-            }
-        });
+        new MainWindow();
     }
-    
+
 }

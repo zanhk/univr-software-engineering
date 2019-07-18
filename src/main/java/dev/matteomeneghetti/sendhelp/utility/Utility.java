@@ -1,8 +1,10 @@
 package dev.matteomeneghetti.sendhelp.utility;
 
 import dev.matteomeneghetti.sendhelp.data.Paziente;
+import dev.matteomeneghetti.sendhelp.data.Prescrizione;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
@@ -28,6 +30,7 @@ public class Utility {
         paziente.generaCodiceFiscale();
         return paziente;
     }
+    
     public static String paziente2String(Paziente paziente) {
         String stringa = paziente.getCodiceSanitario()+";"
                         +paziente.getCognome()+";"
@@ -36,6 +39,27 @@ public class Utility {
                         +paziente.getLuogoDiNascita()+";"
                         +date2String(paziente.getDataDiNascita())+";"
                         +paziente.getCodiceFiscale();
+        return stringa;
+    }
+    
+    public static Prescrizione string2Prescrizione(String stringa) {
+        String[] campi = stringa.split(";");
+        Prescrizione prescrizione = new Prescrizione();
+        prescrizione.setNomeFarmaco(campi[0]);
+        prescrizione.setQuantitaDose(Float.parseFloat(campi[1]));
+        prescrizione.setDataPrescrizione(Utility.string2Date(campi[2]));
+        prescrizione.setDataFineTerapia(Utility.string2Date(campi[3]));
+        prescrizione.setMedico(campi[4]);
+        
+        return prescrizione;
+    }
+    
+    public static String prescrizione2String(Prescrizione prescrizione) {
+        String stringa = prescrizione.getNomeFarmaco() + ";"
+                + prescrizione.getQuantitaDose() + ";"
+                + Utility.date2String(prescrizione.getDataPrescrizione()) + ";"
+                + Utility.date2String(prescrizione.getDataFineTerapia()) + ";"
+                + prescrizione.getMedico();
         return stringa;
     }
     
