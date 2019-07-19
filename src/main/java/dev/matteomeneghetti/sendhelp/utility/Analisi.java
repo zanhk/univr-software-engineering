@@ -12,10 +12,6 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Stefano
- */
 public class Analisi extends TimerTask{
     Battito b;
     PressSBP ps;
@@ -23,7 +19,7 @@ public class Analisi extends TimerTask{
     Temperatura temp;
     String paziente;
 
-    public Analisi(String paziente, MainWindow main) throws IOException{
+    public Analisi(String paziente, MainWindow main) throws IOException {
         this.paziente = paziente;
         String pathToFile = "resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator + "Analisi.csv";
         CSVManager wr = new CSVManager(pathToFile, ";" );

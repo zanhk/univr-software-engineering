@@ -557,27 +557,19 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
     private void updateTelemetria(int position, String key) {
         String path = "resources" + File.separator + "Pazienti" + File.separator;
-        if (tabellaPazienti.getSelectedRow() < 0) {
+        int row = tabellaPazienti.getSelectedRow();
+        if (row < 0) {
             return;
         }
-        int row = tabellaPazienti.getSelectedRow();
-        String paziente = tabellaPazienti.getValueAt(row, 0).toString();
+        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
         if (paziente != null) {
-            pazienteLabel.setText(paziente);
+            String nomePaziente = paziente.toString();
+            pazienteLabel.setText(nomePaziente);
             path += paziente + File.separator + "Analisi.csv";
             CSVManager wr = new CSVManager(path, ";");
             String[] str = wr.find(key);
-            int n;
-            if (str.length <= 59) {
-                n = str.length - 1;
-
-                System.out.println(str.length);
-            } else {
-                n = 60;
-            }
-            n = 7;
+            int n = 7;
             //tabellaTelemetria.setValueAt(Integer.parseInt(sbp[1]), 0, 0);
-
             tabellaTelemetria.setValueAt(Integer.parseInt(str[str.length - 1]), n - 1, position);
 
         }

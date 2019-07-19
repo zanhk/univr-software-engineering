@@ -3,7 +3,6 @@ package dev.matteomeneghetti.sendhelp.gui;
 import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
 import dev.matteomeneghetti.sendhelp.data.Prescrizione;
 import dev.matteomeneghetti.sendhelp.data.Somministrazione;
-import dev.matteomeneghetti.sendhelp.data.SomministrazioneBuilderImpl;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
@@ -24,6 +23,7 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         initComponents();
 
         confermaButton.addActionListener(this);
+        annullaButton.addActionListener(this);
         pazientiBox.addActionListener(this);
         listaPrescrizioni.addListSelectionListener(new ListSelectionListener() {
 
@@ -266,7 +266,7 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
 
     private Somministrazione creaSomministrazione() {
         Somministrazione somministrazione;
-        somministrazione = new SomministrazioneBuilderImpl()
+        somministrazione = new Somministrazione.SomministrazioneBuilderImpl()
                 .setNomeFarmaco(farmacoLabel.getText())
                 .setDataSomministrazione(new Date())
                 .setDoseSomministrata(1.0f)
