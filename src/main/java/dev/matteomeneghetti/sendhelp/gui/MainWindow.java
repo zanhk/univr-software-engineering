@@ -9,20 +9,20 @@ import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
     private Utente utenteCorrente;  //utente loggato, null se ospite
-    public List<CartellaClinica> pazientiInCura;
+    public List<CartellaClinica> pazientiInCura = new ArrayList<>();
 
     public MainWindow() {
         initComponents();
         setLocationRelativeTo(null);
         setUtenteCorrente(null);
+        loadPazienti();
 
         loginButton.addActionListener(this);
         nuovoPazienteButton.addActionListener(this);
@@ -500,7 +500,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }
 
     // Aggiorna lo stato dei pulsanti in base ai privilegi dell'utente loggato
-    private void updateButtons() {  //Aggiorna pulsanti in base all'utente loggato
+    private void updateButtons() {
 
         if (utenteCorrente == null) {
             dimettiButton.setEnabled(false);
@@ -526,35 +526,46 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
 
-    // Aggiorna l'oggetto che contiene le persone al momento in fase di ricovero
-    private void aggiornaPazienti() {
-        pazientiInCura = new ArrayList<>();
-        String path = null;
+    /*
+        Funzione da usare al primo avvio dell'applicazione, carica i pazienti precedentemente salvati
+     */
+    private void loadPazienti() {
+        String path = path = "resources" + File.separator + "Pazienti";
         try {
-            path = "resources" + File.separator + "Pazienti";
             File[] file = new File(path).listFiles(File::isDirectory);
-
             for (File name : file) {
                 String dataPaziente = new CSVManager(path + File.separator + name.getName() + File.separator + "Analisi.csv", ";").getLineAt(0);
-                pazientiInCura.add(new CartellaClinica(Utility.string2Paziente(dataPaziente)));
+                CartellaClinica paziente = new CartellaClinica(Utility.string2Paziente(dataPaziente));
+                pazientiInCura.add(paziente);
                 new Analisi(name.getName(), this);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        numeroPazientiLabel.setText(Integer.toString(pazientiInCura.size()));
+    }
+
+    /*
+        Funzione da usare per aggiungere a runtime un paziente alla lista dei pazienti in cura
+     */
+    public void aggiungiPazienteInCura(CartellaClinica paziente) {
+        pazientiInCura.add(paziente);
+        try {
+            new Analisi(paziente.getPaziente().toString(), this);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
     }
 
     // Aggiorna la tabella principale con i dati dell'oggetto
     private void updateTable() {
-        aggiornaPazienti();
         int count = 0;
         for (CartellaClinica cartella : pazientiInCura) {
             tabellaPazienti.setValueAt(cartella.getPaziente(), count, 0);
             count++;
         }
     }
-
+    /*
     private void updateTelemetria(int position, String key) {
         String path = "resources" + File.separator + "Pazienti" + File.separator;
         int row = tabellaPazienti.getSelectedRow();
@@ -569,37 +580,27 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             CSVManager wr = new CSVManager(path, ";");
             String[] str = wr.find(key);
             int n = 7;
-            //tabellaTelemetria.setValueAt(Integer.parseInt(sbp[1]), 0, 0);
-            tabellaTelemetria.setValueAt(Integer.parseInt(str[str.length - 1]), n - 1, position);
-
+            tabellaTelemetria.setValueAt(Integer.parseInt(str[str.length - 1]), n - 1, position-1);
         }
-    }
+    }*/
 
     private void updateTelemetria() {
         String path = "resources" + File.separator + "Pazienti" + File.separator;
-        if (tabellaPazienti.getSelectedRow() < 0) {
+        int row = tabellaPazienti.getSelectedRow();
+        if (row < 0) {
             return;
         }
-        int row = tabellaPazienti.getSelectedRow();
-        String paziente = tabellaPazienti.getValueAt(row, 0).toString();
+        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
         if (paziente != null) {
-            pazienteLabel.setText(paziente);
+            String nomePaziente = paziente.toString();
+            pazienteLabel.setText(nomePaziente);
             path += paziente + File.separator + "Analisi.csv";
             CSVManager wr = new CSVManager(path, ";");
             String[] sbp = wr.find("SBP");
             String[] dbp = wr.find("DBP");
             String[] bpm = wr.find("BPM");
             String[] temp = wr.find("TEMP");
-            int n;
-            if (sbp.length <= 59) {
-                n = sbp.length - 1;
-                System.out.println(sbp.length);
-            } else {
-                n = 60;
-            }
-
-            n = 7;
-            //tabellaTelemetria.setValueAt(Integer.parseInt(sbp[1]), 0, 0);
+            int n = 7;
             for (int i = n; i > 0; i--) {
                 tabellaTelemetria.setValueAt(Integer.parseInt(sbp[sbp.length - i]), i - 1, 0);
                 tabellaTelemetria.setValueAt(Integer.parseInt(dbp[dbp.length - i]), i - 1, 1);
@@ -609,21 +610,22 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
 
-    //public void updateAnalisi(int position, String key){
     public void updateAnalisi(String path, int position, String key) {
         CSVManager wr = new CSVManager(path, ";");
-        String paziente = path.substring(19, path.length() - 12);
+        String nomePaziente = path.substring(19, path.length() - 12);
 
-        for (int i = 0; i <= 10; i++) {
-            if (tabellaPazienti.getValueAt(i, 0).toString().equals(paziente)) {
-                String[] pingu = wr.find(key);
-                int lenght = pingu.length;
-                Integer number = Integer.parseInt(pingu[lenght - 1]);
-                tabellaPazienti.setValueAt(number, i, position);
-                if (tabellaPazienti.getSelectedRow() == i) {
-                    updateTelemetria(position, key);
+        for (int i = 0; i < 10; i++) {
+            Paziente paziente = (Paziente) tabellaPazienti.getValueAt(i, 0);
+            if (paziente != null) {
+                if (paziente.toString().equals(nomePaziente)) {
+                    String[] pingu = wr.find(key);
+                    int number = Integer.parseInt(pingu[pingu.length - 1]);
+                    tabellaPazienti.setValueAt(number, i, position);
+                    if (tabellaPazienti.getSelectedRow() == i) {
+                        updateTelemetria();
+                    }
+                    return;
                 }
-                return;
             }
         }
     }

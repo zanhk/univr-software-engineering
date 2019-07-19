@@ -22,8 +22,8 @@ public class CartellaClinica {
 
     public CartellaClinica(Paziente paziente) {
         setPaziente(paziente);
-        this.prescrizioni = new ArrayList<Prescrizione>();
-        this.somministrazioni = new ArrayList<Somministrazione>();
+        this.prescrizioni = new ArrayList<>();
+        this.somministrazioni = new ArrayList<>();
     }
 
     public Paziente getPaziente() {

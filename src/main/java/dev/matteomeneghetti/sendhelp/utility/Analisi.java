@@ -12,7 +12,8 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Analisi extends TimerTask{
+public class Analisi extends TimerTask {
+
     Battito b;
     PressSBP ps;
     PressDBP dp;
@@ -43,7 +44,7 @@ public class Analisi extends TimerTask{
         System.out.println("Ciao ne è passato di tempo");
     }
     
-    private class Battito extends TimerTask{
+    private class Battito extends TimerTask {
         Random rand = new Random();
         CSVManager wr;
         int position = 3;

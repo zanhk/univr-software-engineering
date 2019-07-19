@@ -1,5 +1,6 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
@@ -271,8 +272,9 @@ public class NuovoPaziente extends javax.swing.JPanel {
             writer.append("DBP");
             writer.append("BPM");
             writer.append("TEMP");
-        }catch(Exception e){
-            System.out.println("Impossible creare");
+            main.aggiungiPazienteInCura(new CartellaClinica(paziente));
+        } catch(Exception e) {
+            System.out.println("Impossible creare nuovo paziente");
             return false;
         }
         return true;
