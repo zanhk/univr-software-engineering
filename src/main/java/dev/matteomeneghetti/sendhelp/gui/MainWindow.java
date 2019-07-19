@@ -18,6 +18,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private Utente utenteCorrente;  //utente loggato, null se ospite
     public List<CartellaClinica> pazientiInCura = new ArrayList<>();
 
+    private TelemetriaDettagliata telemetriaDettagliata = null;
+
     public MainWindow() {
         initComponents();
         setLocationRelativeTo(null);
@@ -29,6 +31,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         prescrizioneButton.addActionListener(this);
         somministrazioneButton.addActionListener(this);
         storicoButton.addActionListener(this);
+        rapportoButton.addActionListener(this);
         setVisible(true);
         updateGUI();
     }
@@ -46,7 +49,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         tabellaTelemetria = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         pazienteLabel = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        rapportoButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         nuovoPazienteButton = new javax.swing.JButton();
         storicoButton = new javax.swing.JButton();
@@ -146,8 +149,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         pazienteLabel.setText("selezionare paz.");
 
-        jButton6.setText("Ferma allarme");
-        jButton6.setEnabled(false);
+        rapportoButton.setText("Rapp. dettagliato");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -161,8 +163,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pazienteLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                        .addComponent(jButton6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addComponent(rapportoButton)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -172,7 +174,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(pazienteLabel)
-                    .addComponent(jButton6))
+                    .addComponent(rapportoButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -254,7 +256,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(209, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
         jPanel5Layout.setVerticalGroup(
@@ -411,7 +413,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton diagnosiButton;
     private javax.swing.JButton dimettiButton;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -433,6 +434,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton nuovoPazienteButton;
     private javax.swing.JLabel pazienteLabel;
     private javax.swing.JButton prescrizioneButton;
+    private javax.swing.JButton rapportoButton;
     private javax.swing.JLabel ruoloLabel;
     private javax.swing.JButton somministrazioneButton;
     private javax.swing.JButton storicoButton;
@@ -465,6 +467,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             case "Visualizza storico":
                 new DefaultJDialog(new Storico());
                 break;
+            case "Rapp. dettagliato":
+                doTelemetriaDettagliata();
+                break;
         }
     }
 
@@ -476,6 +481,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void doLogout() {
         utenteCorrente = null;
         updateGUI();
+    }
+
+    private void doTelemetriaDettagliata() {
+        int row = tabellaPazienti.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
+        if (paziente != null) {
+            telemetriaDettagliata = new TelemetriaDettagliata(paziente);
+            new DefaultJDialog(telemetriaDettagliata, "Telemetria " + paziente.toString());
+        }
     }
 
     public void setUtenteCorrente(Utente utente) {
@@ -520,6 +537,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 prescrizioneButton.setEnabled(true);
             case INF:
                 storicoButton.setEnabled(true);
+                rapportoButton.setEnabled(true);
                 somministrazioneButton.setEnabled(true);
                 nuovoPazienteButton.setEnabled(true);
                 break;
@@ -564,7 +582,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             tabellaPazienti.setValueAt(cartella.getPaziente(), count, 0);
             count++;
         }
+        numeroPazientiLabel.setText(String.valueOf(count));
     }
+
     /*
     private void updateTelemetria(int position, String key) {
         String path = "resources" + File.separator + "Pazienti" + File.separator;
@@ -583,7 +603,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             tabellaTelemetria.setValueAt(Integer.parseInt(str[str.length - 1]), n - 1, position-1);
         }
     }*/
-
     private void updateTelemetria() {
         String path = "resources" + File.separator + "Pazienti" + File.separator;
         int row = tabellaPazienti.getSelectedRow();
@@ -600,12 +619,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             String[] dbp = wr.find("DBP");
             String[] bpm = wr.find("BPM");
             String[] temp = wr.find("TEMP");
-            int n = 7;
-            for (int i = n; i > 0; i--) {
-                tabellaTelemetria.setValueAt(Integer.parseInt(sbp[sbp.length - i]), i - 1, 0);
-                tabellaTelemetria.setValueAt(Integer.parseInt(dbp[dbp.length - i]), i - 1, 1);
-                tabellaTelemetria.setValueAt(Integer.parseInt(bpm[bpm.length - i]), i - 1, 2);
-                tabellaTelemetria.setValueAt(Integer.parseInt(temp[temp.length - i]), i - 1, 3);
+
+            for (int i = 0; i < 7 && i < sbp.length - 1; i++) {
+                tabellaTelemetria.setValueAt(Integer.parseInt(sbp[sbp.length - i - 1]), i, 0);
+            }
+            for (int i = 0; i < 7 && i < dbp.length - 1; i++) {
+                tabellaTelemetria.setValueAt(Integer.parseInt(dbp[dbp.length - i - 1]), i, 1);
+            }
+            for (int i = 0; i < 7 && i < bpm.length - 1; i++) {
+                tabellaTelemetria.setValueAt(Integer.parseInt(bpm[bpm.length - i - 1]), i, 2);
+            }
+            for (int i = 0; i < 7 && i < temp.length - 1; i++) {
+                tabellaTelemetria.setValueAt(Integer.parseInt(temp[temp.length - i - 1]), i, 3);
             }
         }
     }
@@ -621,8 +646,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     String[] pingu = wr.find(key);
                     int number = Integer.parseInt(pingu[pingu.length - 1]);
                     tabellaPazienti.setValueAt(number, i, position);
+
                     if (tabellaPazienti.getSelectedRow() == i) {
                         updateTelemetria();
+                    }
+
+                    if (telemetriaDettagliata != null) {
+                        if (telemetriaDettagliata.getPaziente().toString().equals(nomePaziente)) {
+                            telemetriaDettagliata.aggiorna();
+                        }
                     }
                     return;
                 }
