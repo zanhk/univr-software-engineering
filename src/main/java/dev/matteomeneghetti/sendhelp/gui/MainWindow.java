@@ -32,6 +32,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         somministrazioneButton.addActionListener(this);
         storicoButton.addActionListener(this);
         rapportoButton.addActionListener(this);
+        dimettiButton.addActionListener(this);
         setVisible(true);
         updateGUI();
     }
@@ -470,6 +471,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             case "Rapp. dettagliato":
                 doTelemetriaDettagliata();
                 break;
+            case "Dimetti paziente":
+                doDimettiPaziente();
+                updateGUI();
+                break;
         }
     }
 
@@ -493,6 +498,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             telemetriaDettagliata = new TelemetriaDettagliata(paziente);
             new DefaultJDialog(telemetriaDettagliata, "Telemetria " + paziente.toString());
         }
+    }
+
+    private void doDimettiPaziente() {
+        int row = tabellaPazienti.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
+        if(paziente != null)
+            new DefaultJDialog(new DimettiPaziente(this, paziente), "Dimetti paziente");
     }
 
     public void setUtenteCorrente(Utente utente) {
@@ -574,6 +589,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
 
     }
+    
+    public void rimuoviPazienteInCura(Paziente paziente) {
+        CartellaClinica cartellaDaRimuovere = null;
+        for (CartellaClinica cartella : pazientiInCura) {
+            if(cartella.getPaziente().toString().equals(paziente.toString())) {
+                cartellaDaRimuovere = cartella;
+            }
+        }
+        pazientiInCura.remove(cartellaDaRimuovere);
+    }
 
     // Aggiorna la tabella principale con i dati dell'oggetto
     private void updateTable() {
@@ -583,6 +608,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             count++;
         }
         numeroPazientiLabel.setText(String.valueOf(count));
+        for (int i = count; i < 10; i++) {
+            tabellaPazienti.setValueAt(null, i, 0);
+            tabellaPazienti.setValueAt(null, i, 1);
+            tabellaPazienti.setValueAt(null, i, 2);
+            tabellaPazienti.setValueAt(null, i, 3);
+            tabellaPazienti.setValueAt(null, i, 4);
+            tabellaPazienti.setValueAt(null, i, 5);
+        }
     }
 
     /*
