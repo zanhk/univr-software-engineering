@@ -37,6 +37,7 @@ public class Utility {
         paziente.setGenere(campi[3].charAt(0));
         paziente.setLuogoDiNascita(campi[4]);
         paziente.setDataDiNascita(string2Date(campi[5]));
+        paziente.setDataDiRicovero(string2Date(campi[6]));
         paziente.generaCodiceFiscale();
         return paziente;
     }
@@ -48,6 +49,7 @@ public class Utility {
                         +paziente.getGenere()+";"
                         +paziente.getLuogoDiNascita()+";"
                         +date2String(paziente.getDataDiNascita())+";"
+                        +date2String(paziente.getDataDiRicovero())+";"
                         +paziente.getCodiceFiscale();
         return stringa;
     }

@@ -257,6 +257,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
             return false;
         }
+        paziente.setDataDiRicovero(new Date());
         
         CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
         String linea = Utility.paziente2String(paziente);
