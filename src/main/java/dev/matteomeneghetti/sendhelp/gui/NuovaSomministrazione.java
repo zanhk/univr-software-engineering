@@ -289,12 +289,8 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         listaPrescrizioni.clearSelection();
         listModel.removeAllElements();
         CartellaClinica cartellaBox = (CartellaClinica) pazientiBox.getSelectedItem();
-        String path = "resources" + File.separator + "Pazienti" + File.separator + cartellaBox.getPaziente().getCodiceFiscale() + File.separator + "Prescrizioni.csv";
-        CSVManager wr = new CSVManager(path, ";");
-        int rows = wr.getNumberOfRows();
-        for (int i = 0; i < rows; i++) {
-            listModel.add(i, Utility.string2Prescrizione(wr.getLineAt(i)));
-        }
+        for (Prescrizione prescrizione : cartellaBox.getPrescrizioni())
+            listModel.addElement(prescrizione);
     }
 
     private void aggiornaDati() {

@@ -13,6 +13,13 @@ public class Somministrazione {
 
     }
 
+    @Override
+    public String toString() {
+        return nomeFarmaco + String.valueOf(doseSomministrata);
+    }
+    
+    
+
     public String getNomeFarmaco() {
         return nomeFarmaco;
     }

@@ -26,6 +26,8 @@ public class CartellaClinica {
         setPaziente(paziente);
         this.prescrizioni = new ArrayList<>();
         this.somministrazioni = new ArrayList<>();
+        loadPrescrizioni();
+        loadSomministrazioni();
     }
 
     public Paziente getPaziente() {
@@ -43,6 +45,15 @@ public class CartellaClinica {
 
     public ArrayList<Prescrizione> getPrescrizioni() {
         return this.prescrizioni;
+    }
+
+    private void loadPrescrizioni() {
+        String path = "resources" + File.separator + "Pazienti" + File.separator + paziente.getCodiceFiscale() + File.separator + "Prescrizioni.csv";
+        CSVManager wr = new CSVManager(path, ";");
+        int rows = wr.getNumberOfRows();
+        for (int i = 0; i < rows; i++) {
+            prescrizioni.add(Utility.string2Prescrizione(wr.getLineAt(i)));
+        }
     }
 
     public boolean addPrescrizione(Prescrizione prescrizione) {
@@ -63,6 +74,15 @@ public class CartellaClinica {
 
     public ArrayList<Somministrazione> getSomministrazioni() {
         return this.somministrazioni;
+    }
+
+    private void loadSomministrazioni() {
+        String path = "resources" + File.separator + "Pazienti" + File.separator + paziente.getCodiceFiscale() + File.separator + "Somministrazioni.csv";
+        CSVManager wr = new CSVManager(path, ";");
+        int rows = wr.getNumberOfRows();
+        for (int i = 0; i < rows; i++) {
+            somministrazioni.add(Utility.string2Somministrazione(wr.getLineAt(i)));
+        }
     }
 
     public boolean addSomministrazione(Somministrazione somministrazione) {
@@ -87,5 +107,5 @@ public class CartellaClinica {
 
     public void setManager(AnalisiManager manager) {
         this.manager = manager;
-    }    
+    }
 }

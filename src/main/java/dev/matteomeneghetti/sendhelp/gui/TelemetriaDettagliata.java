@@ -1,16 +1,24 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
+import dev.matteomeneghetti.sendhelp.data.Somministrazione;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import java.io.File;
+import javax.swing.DefaultListModel;
 
 public class TelemetriaDettagliata extends javax.swing.JPanel {
 
     Paziente paziente;
+    MainWindow main;
+    DefaultListModel model;
 
-    public TelemetriaDettagliata(Paziente paziente) {
+    public TelemetriaDettagliata(Paziente paziente, MainWindow main) {
         initComponents();
+        this.model = (DefaultListModel) listaPrescrizioni.getModel();
         this.paziente = paziente;
+        this.main = main;
+        aggiornaListaSomministrazioni();
         aggiorna();
     }
 
@@ -20,6 +28,10 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tabella = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaPrescrizioni = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
 
         tabella.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,37 +118,77 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         tabella.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabella);
 
+        jLabel1.setText("Paziente");
+
+        listaPrescrizioni.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(listaPrescrizioni);
+
+        jLabel2.setText("Telemetria ultime 2 ore");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listaPrescrizioni;
     private javax.swing.JTable tabella;
     // End of variables declaration//GEN-END:variables
 
-    
     public Paziente getPaziente() {
         return paziente;
     }
-    
+
     public void inserisciValore(Integer valore, int riga, int colonna) {
         tabella.setValueAt(valore, riga, colonna);
+    }
+
+    private CartellaClinica getCartella() {
+        for (CartellaClinica cartella : main.pazientiInCura) {
+            if (cartella.getPaziente().toString().equals(paziente.toString())) {
+                return cartella;
+            }
+        }
+        return null;
+    }
+
+    private void aggiornaListaSomministrazioni() {
+        CartellaClinica cartella = getCartella();
+        for (Somministrazione somministrazione : cartella.getSomministrazioni())
+            model.addElement(somministrazione);
     }
 
     public void aggiorna() {

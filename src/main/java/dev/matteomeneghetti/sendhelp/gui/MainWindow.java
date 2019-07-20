@@ -452,7 +452,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
         Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
         if (paziente != null) {
-            telemetriaDettagliata = new TelemetriaDettagliata(paziente);
+            telemetriaDettagliata = new TelemetriaDettagliata(paziente, this);
             new DefaultJDialog(telemetriaDettagliata, "Telemetria " + paziente.toString());
         }
     }
