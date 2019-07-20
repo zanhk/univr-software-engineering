@@ -9,7 +9,7 @@ public class TEMPMessage implements Message {
     @Override
     public void generaValore() {
         Random rand = new Random();
-        value = rand.nextInt(10)+30;
+        value = rand.nextInt(5)+34;
     }
 
     @Override

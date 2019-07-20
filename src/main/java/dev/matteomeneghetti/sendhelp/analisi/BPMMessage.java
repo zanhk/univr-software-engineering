@@ -9,7 +9,7 @@ public class BPMMessage implements Message {
     @Override
     public void generaValore() {
         Random rand = new Random();
-        value = rand.nextInt(30) + 60;
+        value = rand.nextInt(80) + 40;
     }
 
     @Override

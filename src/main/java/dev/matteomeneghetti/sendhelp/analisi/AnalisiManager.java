@@ -1,6 +1,8 @@
 package dev.matteomeneghetti.sendhelp.analisi;
 
 import dev.matteomeneghetti.sendhelp.data.Paziente;
+import dev.matteomeneghetti.sendhelp.gui.Alarm;
+import dev.matteomeneghetti.sendhelp.gui.DefaultJDialog;
 import dev.matteomeneghetti.sendhelp.gui.MainWindow;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import java.io.File;
@@ -23,7 +25,7 @@ public class AnalisiManager extends Thread {
         this.paziente = paziente;
         this.main = main;
     }
-    
+
     public Timer getTimer() {
         return timer;
     }
@@ -31,10 +33,10 @@ public class AnalisiManager extends Thread {
     @Override
     public void run() {
         timer = new Timer();
-        timer.schedule(new SendMessage("BPM"), 0, 3000);
-        timer.schedule(new SendMessage("SBP"), 0, 1200);
-        timer.schedule(new SendMessage("DBP"), 0, 1200);
-        timer.schedule(new SendMessage("TEMP"), 0, 1800);
+        timer.schedule(new SendMessage("BPM"), 0, 300000);
+        timer.schedule(new SendMessage("SBP"), 0, 120000);
+        timer.schedule(new SendMessage("DBP"), 0, 120000);
+        timer.schedule(new SendMessage("TEMP"), 0, 180000);
     }
 
     public class SendMessage extends TimerTask {
@@ -91,7 +93,34 @@ public class AnalisiManager extends Thread {
         }
 
         private void notifica(Message msg) {
-            //main.updateAnalisi(path.toString(), position, key);
+            Integer value = msg.getValore();
+            switch (type) {
+                case "TEMP":
+                    if (value >= 38) {
+                        new DefaultJDialog(new Alarm(2, "Ipertermia"), "Allarme IPERTERMIA");
+                    } else if (value <= 34) {
+                        new DefaultJDialog(new Alarm(2, "Ipotermia"), "Allarme IPOTERMIA");
+                    }
+                    break;
+                case "BPM":
+                    if (value >= 120) {
+                        new DefaultJDialog(new Alarm(3, "Fibrillazione ventricolare"), "Allarme FIBRILLAZIONE VENTRICOLARE");
+                    } else if (value >= 110) {
+                        new DefaultJDialog(new Alarm(1, "Tachicardia"), "Allarme TACHICARDIA");
+                    } else if (value < 60) {
+                        new DefaultJDialog(new Alarm(1, "Brachicardia"), "Allarme BRACHICARDIA");
+                    }
+                    break;
+                case "DBP":
+                    if (value >= 140) {
+                        new DefaultJDialog(new Alarm(2, "Ipertensione"), "Allarme IPERTENSIONE");
+                    }
+                    break;
+                case "SBP":
+                    if (value <= 60) {
+                        new DefaultJDialog(new Alarm(2, "Ipotensione"), "Allarme IPOTENSIONE");
+                    }
+            }
         }
 
         @Override
@@ -99,6 +128,7 @@ public class AnalisiManager extends Thread {
             Message msg = generaMessaggio();
             msg.generaValore();
             salvaSuFile(msg);
+            notifica(msg);
         }
 
     }
