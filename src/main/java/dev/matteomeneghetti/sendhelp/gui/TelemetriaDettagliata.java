@@ -280,10 +280,6 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         return paziente;
     }
 
-    public void inserisciValore(Integer valore, int riga, int colonna) {
-        tabella.setValueAt(valore, riga, colonna);
-    }
-
     private CartellaClinica getCartella() {
         for (CartellaClinica cartella : main.pazientiInCura) {
             if (cartella.getPaziente().toString().equals(paziente.toString())) {
@@ -325,20 +321,22 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         }
         String path = "resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator;
         CSVManager wr = new CSVManager(path + "SBP.csv", ";");
-        for (int i = 0; i < 60 && i < wr.getNumberOfRows(); i++) {
-            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 0);
-        }
+        helper(wr, 0);
         wr.setPathToFile(path + "DBP.csv");
-        for (int i = 0; i < 60 && i < wr.getNumberOfRows(); i++) {
-            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 1);
-        }
+        helper(wr, 1);
         wr.setPathToFile(path + "BPM.csv");
-        for (int i = 0; i < 60 && i < wr.getNumberOfRows(); i++) {
-            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 2);
-        }
+        helper(wr, 2);
         wr.setPathToFile(path + "TEMP.csv");
+        helper(wr, 3);
+    }
+
+    private void helper(CSVManager wr, int colonna) {
         for (int i = 0; i < 60 && i < wr.getNumberOfRows(); i++) {
-            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 3);
+            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, colonna);
         }
+    }
+
+    public void inserisciValore(Integer valore, int riga, int colonna) {
+        tabella.setValueAt(valore, riga, colonna);
     }
 }
