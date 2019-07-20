@@ -5,6 +5,7 @@ import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import dev.matteomeneghetti.sendhelp.utility.Report;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -431,6 +432,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 break;
             case "Diagnosi":
                 doDiagnosi();
+                break;
+            case "Report settimanale":
+                new Report(this);
                 break;
         }
     }
