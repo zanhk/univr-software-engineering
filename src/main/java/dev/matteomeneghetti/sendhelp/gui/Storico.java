@@ -32,6 +32,7 @@ public class Storico extends javax.swing.JPanel {
         cognomeLabel = new javax.swing.JLabel();
         dataNascitaLabel = new javax.swing.JLabel();
         dataDimissioneLabel = new javax.swing.JLabel();
+        dataRicoveroLabel = new javax.swing.JLabel();
 
         listaPazienti.setModel(new DefaultListModel());
         listaPazienti.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -61,6 +62,8 @@ public class Storico extends javax.swing.JPanel {
 
         dataDimissioneLabel.setText("jLabel8");
 
+        dataRicoveroLabel.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,19 +73,18 @@ public class Storico extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dataDimissioneLabel)
-                            .addComponent(dataNascitaLabel)
-                            .addComponent(cognomeLabel)
-                            .addComponent(nomeLabel))))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dataRicoveroLabel)
+                    .addComponent(dataDimissioneLabel)
+                    .addComponent(dataNascitaLabel)
+                    .addComponent(cognomeLabel)
+                    .addComponent(nomeLabel))
                 .addContainerGap(168, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
@@ -112,7 +114,9 @@ public class Storico extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(dataNascitaLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(dataRicoveroLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -130,6 +134,7 @@ public class Storico extends javax.swing.JPanel {
     private javax.swing.JLabel cognomeLabel;
     private javax.swing.JLabel dataDimissioneLabel;
     private javax.swing.JLabel dataNascitaLabel;
+    private javax.swing.JLabel dataRicoveroLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -161,9 +166,10 @@ public class Storico extends javax.swing.JPanel {
         Paziente pazienteSelezionato = (Paziente) model.getElementAt(listaPazienti.getSelectedIndex());
         nomeLabel.setText(pazienteSelezionato.getNome());
         cognomeLabel.setText(pazienteSelezionato.getCognome());
-        dataNascitaLabel.setText(Utility.date2String(pazienteSelezionato.getDataDiNascita()));
+        dataNascitaLabel.setText(Utility.date2ReadableString(pazienteSelezionato.getDataDiNascita()));
+        dataRicoveroLabel.setText(Utility.date2ReadableString(pazienteSelezionato.getDataDiRicovero()));
         
         CSVManager wr = new CSVManager("resources" + File.separator + "Pazienti_dimessi" + File.separator + pazienteSelezionato + File.separator + "Dimissione.txt",";");
-        dataDimissioneLabel.setText(wr.getLineAt(0));
+        dataDimissioneLabel.setText(Utility.date2ReadableString(Utility.string2Date(wr.getLineAt(0))));
     }
 }

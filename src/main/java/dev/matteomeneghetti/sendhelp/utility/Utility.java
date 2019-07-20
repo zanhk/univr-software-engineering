@@ -6,6 +6,7 @@ import dev.matteomeneghetti.sendhelp.data.Somministrazione;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
@@ -26,6 +27,12 @@ public class Utility {
         String[] stringaSplittata = stringa.split("/");
         return new Date(Integer.parseInt(stringaSplittata[2]), Integer.parseInt(stringaSplittata[1]), Integer.parseInt(stringaSplittata[0]),
                 Integer.parseInt(stringaSplittata[3]), Integer.parseInt(stringaSplittata[4]));
+    }
+    
+    public static String date2ReadableString(Date date) {
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(date);
     }
     
     public static Paziente string2Paziente(String stringa) {
