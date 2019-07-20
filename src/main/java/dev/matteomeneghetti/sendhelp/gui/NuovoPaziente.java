@@ -272,6 +272,8 @@ public class NuovoPaziente extends javax.swing.JPanel {
             writer.append("DBP");
             writer.append("BPM");
             writer.append("TEMP");
+            writer.setPathToFile("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+File.separator+"Diagnosi.txt");
+            writer.append(diagnosiField.getText());
             main.aggiungiPazienteInCura(new CartellaClinica(paziente));
         } catch(Exception e) {
             System.out.println("Impossible creare nuovo paziente");
