@@ -406,7 +406,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 updateGUI();
                 break;
             case "Visualizza storico":
-                new DefaultJDialog(new Storico());
+                new DefaultJDialog(new Storico(), "Storico pazienti");
                 break;
             case "Rapp. dettagliato":
                 doTelemetriaDettagliata();

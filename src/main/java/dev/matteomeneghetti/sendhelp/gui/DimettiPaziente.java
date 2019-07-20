@@ -6,11 +6,7 @@ import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.util.Date;
 
 public class DimettiPaziente extends javax.swing.JPanel implements ActionListener {
 
@@ -140,6 +136,7 @@ public class DimettiPaziente extends javax.swing.JPanel implements ActionListene
     
     private void generaLettera() {
         CSVManager wr = new CSVManager("resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator + "Dimissione.txt",";");
+        wr.append(Utility.date2String(new Date()));
         wr.append(textArea.getText());
     }
 

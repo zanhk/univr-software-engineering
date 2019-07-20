@@ -5,7 +5,6 @@ import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
-import static dev.matteomeneghetti.sendhelp.utility.Utility.date2String;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
