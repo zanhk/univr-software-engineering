@@ -31,12 +31,12 @@ public class AnalisiManager extends Thread {
     }
 
     @Override
-    public void run() {
+    public void run() {        
         timer = new Timer();
-        timer.schedule(new SendMessage("BPM"), 0, 300000);
-        timer.schedule(new SendMessage("SBP"), 0, 120000);
-        timer.schedule(new SendMessage("DBP"), 0, 120000);
-        timer.schedule(new SendMessage("TEMP"), 0, 180000);
+        timer.schedule(new SendMessage("BPM"), 0, 3000);
+        timer.schedule(new SendMessage("SBP"), 0, 1200);
+        timer.schedule(new SendMessage("DBP"), 0, 1200);
+        timer.schedule(new SendMessage("TEMP"), 0, 1800);
     }
 
     public class SendMessage extends TimerTask {
@@ -53,9 +53,8 @@ public class AnalisiManager extends Thread {
         }
 
         private void salvaSuFile(Message msg) {
-            String pathToFile = "resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator + "Analisi.csv";
+            String pathToFile = "resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator + type + ".csv";
             CSVManager wr = new CSVManager(pathToFile, ";");
-            String[] riga = wr.find(type);
             int position = -1;
             switch (type) {
                 case "SBP":
@@ -72,24 +71,9 @@ public class AnalisiManager extends Thread {
                     break;
             }
             String linea = "";
-            for (int i = 0; i < riga.length; i++) {
-                linea += riga[i] + ";";
-            }
             linea += String.valueOf(msg.getValore());
-            List<String> lines = null;
-            try {
-                lines = Files.readAllLines(Path.of(pathToFile));
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
-            lines.remove(position);
-            lines.add(position, linea);
-            try {
-                Files.write(Path.of(pathToFile), lines);
-            } catch (IOException ex) {
-                Logger.getLogger(AnalisiManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            main.updateAnalisi(pathToFile, position, type);
+            wr.append(linea);
+            main.updateAnalisi(pathToFile, position, type, paziente.toString());
         }
 
         private void notifica(Message msg) {
@@ -128,7 +112,7 @@ public class AnalisiManager extends Thread {
             Message msg = generaMessaggio();
             msg.generaValore();
             salvaSuFile(msg);
-            notifica(msg);
+            //notifica(msg);
         }
 
     }

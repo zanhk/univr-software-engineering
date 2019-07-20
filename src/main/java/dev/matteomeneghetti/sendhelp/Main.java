@@ -1,6 +1,7 @@
 package dev.matteomeneghetti.sendhelp;
 
 import dev.matteomeneghetti.sendhelp.gui.MainWindow;
+import javax.swing.SwingUtilities;
 
 public class Main {
 
@@ -23,8 +24,11 @@ public class Main {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        new MainWindow();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new MainWindow();
+            }
+        });
     }
 
 }

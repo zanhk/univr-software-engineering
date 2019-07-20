@@ -268,10 +268,6 @@ public class NuovoPaziente extends javax.swing.JPanel {
                 return false;
             writer.setPathToFile("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+File.separator+"Analisi.csv");
             writer.append(linea);
-            writer.append("SBP");
-            writer.append("DBP");
-            writer.append("BPM");
-            writer.append("TEMP");
             writer.setPathToFile("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+File.separator+"Diagnosi.txt");
             writer.append(diagnosiField.getText());
             main.aggiungiPazienteInCura(new CartellaClinica(paziente));

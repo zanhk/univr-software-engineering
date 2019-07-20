@@ -19,7 +19,7 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         this.model = (DefaultListModel) listaSomministrazioni.getModel();
         this.paziente = paziente;
         this.main = main;
-        
+
         pazienteLabel.setText(paziente.toString());
         aggiornaListaSomministrazioni();
         aggiorna();
@@ -296,16 +296,17 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
     private void aggiornaListaSomministrazioni() {
         CartellaClinica cartella = getCartella();
         for (Somministrazione somministrazione : cartella.getSomministrazioni()) {
-            if (isLast2Days(somministrazione))
+            if (isLast2Days(somministrazione)) {
                 model.addElement(somministrazione);
+            }
         }
     }
-    
+
     private boolean isLast2Days(Somministrazione somministrazione) {
         Date adesso = new Date();
         Date dataSomministrazione = somministrazione.getDataSomministrazione();
         long diff = adesso.getTime() - dataSomministrazione.getTime();
-        return ((diff/1000) <= 172800);
+        return ((diff / 1000) <= 172800);
     }
 
     private void aggiornaDatiSomministrazione() {
@@ -322,24 +323,22 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         if (paziente == null) {
             return;
         }
-        String path = "resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator + "Analisi.csv";
-        CSVManager wr = new CSVManager(path, ";");
-        String[] SBP = wr.find("SBP");
-        String[] DBP = wr.find("DBP");
-        String[] BPM = wr.find("BPM");
-        String[] temperature = wr.find("TEMP");
-
-        for (int i = 0; i < 60 && i < SBP.length - 1; i++) {
-            inserisciValore(Integer.parseInt(SBP[SBP.length - i - 1]), i, 0);
+        String path = "resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator;
+        CSVManager wr = new CSVManager(path + "SBP.csv", ";");
+        for (int i = 0; i < 60 && i < wr.getNumberOfRows(); i++) {
+            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 0);
         }
-        for (int i = 0; i < 60 && i < DBP.length - 1; i++) {
-            inserisciValore(Integer.parseInt(DBP[DBP.length - i - 1]), i, 1);
+        wr.setPathToFile(path + "DBP.csv");
+        for (int i = 0; i < 60 && i < wr.getNumberOfRows(); i++) {
+            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 1);
         }
-        for (int i = 0; i < 60 && i < BPM.length - 1; i++) {
-            inserisciValore(Integer.parseInt(BPM[BPM.length - i - 1]), i, 2);
+        wr.setPathToFile(path + "BPM.csv");
+        for (int i = 0; i < 60 && i < wr.getNumberOfRows(); i++) {
+            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 2);
         }
-        for (int i = 0; i < 60 && i < temperature.length - 1; i++) {
-            inserisciValore(Integer.parseInt(temperature[temperature.length - i - 1]), i, 3);
+        wr.setPathToFile(path + "TEMP.csv");
+        for (int i = 0; i < 60 && i < wr.getNumberOfRows(); i++) {
+            inserisciValore(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 3);
         }
     }
 }
