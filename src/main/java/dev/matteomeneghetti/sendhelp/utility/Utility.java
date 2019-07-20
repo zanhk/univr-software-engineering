@@ -19,6 +19,15 @@ public class Utility {
         return new Date(Integer.parseInt(stringaSplittata[2]), Integer.parseInt(stringaSplittata[1]), Integer.parseInt(stringaSplittata[0]));
     }
     
+    public static String date2StringDettagliata(Date data) {
+        return data.getDate()+"/"+data.getMonth()+"/"+data.getYear()+"/"+data.getHours()+"/"+data.getMinutes();
+    }
+    public static Date string2DateDettagliata(String stringa) {
+        String[] stringaSplittata = stringa.split("/");
+        return new Date(Integer.parseInt(stringaSplittata[2]), Integer.parseInt(stringaSplittata[1]), Integer.parseInt(stringaSplittata[0]),
+                Integer.parseInt(stringaSplittata[3]), Integer.parseInt(stringaSplittata[4]));
+    }
+    
     public static Paziente string2Paziente(String stringa) {
         String[] campi = stringa.split(";");
         Paziente paziente = new Paziente();
@@ -69,7 +78,7 @@ public class Utility {
         Somministrazione somministrazione = new Somministrazione();
         somministrazione.setNomeFarmaco(campi[0]);
         somministrazione.setDoseSomministrata(Float.parseFloat(campi[1]));
-        somministrazione.setDataSomministrazione(Utility.string2Date(campi[2]));
+        somministrazione.setDataSomministrazione(Utility.string2DateDettagliata(campi[2]));
         somministrazione.setNote(campi[3]);
         
         return somministrazione;
@@ -79,7 +88,7 @@ public class Utility {
         String stringa = ""
                 + somministrazione.getNomeFarmaco() + ";"
                 + somministrazione.getDoseSomministrata() + ";"
-                + Utility.date2String(somministrazione.getDataSomministrazione()) + ";"
+                + Utility.date2StringDettagliata(somministrazione.getDataSomministrazione()) + ";"
                 + somministrazione.getNote();
         
         return stringa;
