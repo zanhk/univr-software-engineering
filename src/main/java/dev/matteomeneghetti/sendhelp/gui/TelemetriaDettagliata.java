@@ -296,16 +296,16 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
     private void aggiornaListaSomministrazioni() {
         CartellaClinica cartella = getCartella();
         for (Somministrazione somministrazione : cartella.getSomministrazioni()) {
-            if (isLast2Hours(somministrazione))
+            if (isLast2Days(somministrazione))
                 model.addElement(somministrazione);
         }
     }
     
-    private boolean isLast2Hours(Somministrazione somministrazione) {
+    private boolean isLast2Days(Somministrazione somministrazione) {
         Date adesso = new Date();
         Date dataSomministrazione = somministrazione.getDataSomministrazione();
         long diff = adesso.getTime() - dataSomministrazione.getTime();
-        return ((diff/1000) <= 7200);
+        return ((diff/1000) <= 172800);
     }
 
     private void aggiornaDatiSomministrazione() {
