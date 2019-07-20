@@ -1,15 +1,14 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.analisi.AnalisiManager;
 import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
-import dev.matteomeneghetti.sendhelp.utility.Analisi;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -541,8 +540,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             for (File name : file) {
                 String dataPaziente = new CSVManager(path + File.separator + name.getName() + File.separator + "Analisi.csv", ";").getLineAt(0);
                 CartellaClinica paziente = new CartellaClinica(Utility.string2Paziente(dataPaziente));
+                
+                AnalisiManager manager = new AnalisiManager(paziente.getPaziente(), this);
+                paziente.setManager(manager);
                 pazientiInCura.add(paziente);
-                new Analisi(name.getName(), this);
+                manager.start();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -553,13 +555,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         Funzione da usare per aggiungere a runtime un paziente alla lista dei pazienti in cura
      */
     public void aggiungiPazienteInCura(CartellaClinica paziente) {
+        AnalisiManager manager = new AnalisiManager(paziente.getPaziente(), this);
+        paziente.setManager(manager);
         pazientiInCura.add(paziente);
-        try {
-            new Analisi(paziente.getPaziente().toString(), this);
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-
+        manager.start();
     }
 
     public void rimuoviPazienteInCura(Paziente paziente) {
@@ -569,6 +568,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 cartellaDaRimuovere = cartella;
             }
         }
+        cartellaDaRimuovere.getManager().getTimer().cancel();
         pazientiInCura.remove(cartellaDaRimuovere);
     }
 

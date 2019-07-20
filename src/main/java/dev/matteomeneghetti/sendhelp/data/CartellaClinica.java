@@ -1,5 +1,6 @@
 package dev.matteomeneghetti.sendhelp.data;
 
+import dev.matteomeneghetti.sendhelp.analisi.AnalisiManager;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.io.File;
@@ -19,6 +20,7 @@ public class CartellaClinica {
     private Paziente paziente;
     private ArrayList<Prescrizione> prescrizioni;
     private ArrayList<Somministrazione> somministrazioni;
+    private AnalisiManager manager;
 
     public CartellaClinica(Paziente paziente) {
         setPaziente(paziente);
@@ -78,4 +80,12 @@ public class CartellaClinica {
     public void removeSomministrazione(Somministrazione somministrazione) {
         this.somministrazioni.remove(somministrazione);
     }
+
+    public AnalisiManager getManager() {
+        return manager;
+    }
+
+    public void setManager(AnalisiManager manager) {
+        this.manager = manager;
+    }    
 }
