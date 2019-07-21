@@ -88,28 +88,28 @@ public class AnalisiManager extends Thread {
             switch (type) {
                 case "TEMP":
                     if (value >= 38) {
-                        new DefaultJDialog(new Alarm(2, "Ipertermia", main), "Allarme IPERTERMIA", false);
+                        new DefaultJDialog(new Alarm(paziente, 2, "Ipertermia", main), "Allarme IPERTERMIA", false);
                     } else if (value <= 34) {
-                        new DefaultJDialog(new Alarm(2, "Ipotermia", main), "Allarme IPOTERMIA", false);
+                        new DefaultJDialog(new Alarm(paziente, 2, "Ipotermia", main), "Allarme IPOTERMIA", false);
                     }
                     break;
                 case "BPM":
                     if (value >= 120) {
-                        new DefaultJDialog(new Alarm(3, "Fibrillazione ventricolare", main), "Allarme FIBRILLAZIONE VENTRICOLARE", false);
+                        new DefaultJDialog(new Alarm(paziente, 3, "Fibrillazione ventricolare", main), "Allarme FIBRILLAZIONE VENTRICOLARE", false);
                     } else if (value >= 110) {
-                        new DefaultJDialog(new Alarm(1, "Tachicardia", main), "Allarme TACHICARDIA", false);
+                        new DefaultJDialog(new Alarm(paziente, 1, "Tachicardia", main), "Allarme TACHICARDIA", false);
                     } else if (value < 60) {
-                        new DefaultJDialog(new Alarm(1, "Brachicardia", main), "Allarme BRACHICARDIA", false);
+                        new DefaultJDialog(new Alarm(paziente, 1, "Brachicardia", main), "Allarme BRACHICARDIA", false);
                     }
                     break;
                 case "DBP":
                     if (value >= 140) {
-                        new DefaultJDialog(new Alarm(2, "Ipertensione", main), "Allarme IPERTENSIONE", false);
+                        new DefaultJDialog(new Alarm(paziente, 2, "Ipertensione", main), "Allarme IPERTENSIONE", false);
                     }
                     break;
                 case "SBP":
                     if (value <= 60) {
-                        new DefaultJDialog(new Alarm(2, "Ipotensione", main), "Allarme IPOTENSIONE", false);
+                        new DefaultJDialog(new Alarm(paziente, 2, "Ipotensione", main), "Allarme IPOTENSIONE", false);
                     }
             }
         }

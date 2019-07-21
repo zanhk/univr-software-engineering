@@ -1,5 +1,6 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
@@ -10,24 +11,29 @@ import javax.swing.JOptionPane;
 
 public class Alarm extends javax.swing.JPanel implements ActionListener {
 
+    String nome;
     int livello;
     int tempoIniziale;
     String tempo;
     MainWindow main;
+    Paziente paziente;
+    Timer timer;
 
-    public Alarm(int livello, String nome, MainWindow main) {
+    public Alarm(Paziente paziente, int livello, String nome, MainWindow main) {
         initComponents();
         jButton1.addActionListener(this);
         setVisible(true);
 
         this.main = main;
         this.livello = livello;
+        this.paziente = paziente;
+        this.nome = nome;
         tempoIniziale = getCountdown();
 
         this.livelloLabel.setText(String.valueOf(livello));
         this.tipoLabel.setText(nome);
         this.tempoLabel.setText(tempoIniziale + "minuti");
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new countDown(this, tempoIniziale), 0, 1000);
 
     }
@@ -45,6 +51,9 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
 
         @Override
         public void run() {
+
+            paziente.setStatus(nome);
+            main.updateGUI();
 
             if (secondi == 0) {
                 secondi = 59;
@@ -64,6 +73,9 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
         switch (message) {
             case "Conferma":
                 if (canConferm()) {
+                    timer.cancel();
+                    paziente.setStatus("OK");
+                    main.updateGUI();
                     Utility.chiudiDialog(e);
                 }
                 break;

@@ -641,6 +641,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         int count = 0;
         for (CartellaClinica cartella : pazientiInCura) {
             tabellaPazienti.setValueAt(cartella.getPaziente(), count, 0);
+            tabellaPazienti.setValueAt(cartella.getPaziente().getStatus(), count, 5);
             count++;
         }
         numeroPazientiLabel.setText(String.valueOf(count));

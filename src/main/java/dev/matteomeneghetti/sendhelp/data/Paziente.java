@@ -19,6 +19,7 @@ public class Paziente {
     private Date dataDiNascita;
     private Date dataDiRicovero;
     private String luogoDiNascita;
+    private String status;
 
     private String diagnosiDiIngresso;  //diagnosi da compilare a cura del medico
 
@@ -28,8 +29,17 @@ public class Paziente {
     }
 
     public Paziente() {
+        setStatus("OK");
         setCodiceSanitario(generaCodiceSanitario());
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }    
 
     public CodiceFiscale getCodiceFiscale() {
         return codiceFiscale;
