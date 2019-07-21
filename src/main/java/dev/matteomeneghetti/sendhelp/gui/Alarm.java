@@ -1,5 +1,6 @@
 package dev.matteomeneghetti.sendhelp.gui;
 
+import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,67 +8,85 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 
-
 public class Alarm extends javax.swing.JPanel implements ActionListener {
-    
+
     int livello;
     int tempoIniziale;
     String tempo;
+    MainWindow main;
 
-    public Alarm(int livello, String nome) {
+    public Alarm(int livello, String nome, MainWindow main) {
         initComponents();
         jButton1.addActionListener(this);
         setVisible(true);
-        
+
+        this.main = main;
         this.livello = livello;
         tempoIniziale = getCountdown();
-        
+
         this.livelloLabel.setText(String.valueOf(livello));
         this.tipoLabel.setText(nome);
         this.tempoLabel.setText(tempoIniziale + "minuti");
         Timer timer = new Timer();
         timer.schedule(new countDown(this, tempoIniziale), 0, 1000);
-               
+
     }
+
     private class countDown extends TimerTask {
+
         Alarm alarm;
         Integer minuti;
-        Integer secondi=0;
-        
-        public countDown(Alarm alarm, int tempoIniziale){
+        Integer secondi = 0;
+
+        public countDown(Alarm alarm, int tempoIniziale) {
             this.alarm = alarm;
             this.minuti = tempoIniziale;
         }
+
         @Override
-        public void run(){
-            
-            if(secondi == 0)
-            {
+        public void run() {
+
+            if (secondi == 0) {
                 secondi = 59;
                 minuti--;
             }
             secondi--;
-            if(minuti == 0)
+            if (minuti == 0) {
                 this.alarm.tempoLabel.setText(secondi.toString() + " secondi");
-            else
+            } else {
                 this.alarm.tempoLabel.setText(minuti.toString() + " minuti e " + secondi.toString());
+            }
         }
     }
+
     public void actionPerformed(ActionEvent e) {
-            String message = e.getActionCommand();
-            switch(message) {
-                case "Conferma":
-                   if(canConferm())
-                       Utility.chiudiDialog(e);      
-                   else
-                       JOptionPane.showMessageDialog(null, "Non è stata inserita l'operazione effettuata sul paziente.", "Errore", JOptionPane.ERROR_MESSAGE);
+        String message = e.getActionCommand();
+        switch (message) {
+            case "Conferma":
+                if (canConferm()) {
+                    Utility.chiudiDialog(e);
+                }
                 break;
-            }
+        }
     }
-    
-    public boolean canConferm(){
-           return !jTextArea1.getText().isEmpty();
+
+    public boolean canConferm() {
+        Utente utenteLoggato = main.getUtenteCorrente();
+        if (utenteLoggato == null) {
+            JOptionPane.showMessageDialog(null, "Nessun utente loggato", "Errore", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (utenteLoggato.getRuolo() == Utente.RUOLO.INF) {
+            JOptionPane.showMessageDialog(null, "L'utente non ha i privilegi necessari per fermare l'allarme", "Errore", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (jTextArea1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Inserire l'operazione effettuata sul paziente", "Errore", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -174,10 +193,13 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
     // End of variables declaration//GEN-END:variables
 
     private int getCountdown() {
-        switch(livello) {
-            case 3: return 1;
-            case 2: return 2;
-            case 1: return 3;
+        switch (livello) {
+            case 3:
+                return 1;
+            case 2:
+                return 2;
+            case 1:
+                return 3;
         }
         return 5;
     }

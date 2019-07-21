@@ -88,28 +88,28 @@ public class AnalisiManager extends Thread {
             switch (type) {
                 case "TEMP":
                     if (value >= 38) {
-                        new DefaultJDialog(new Alarm(2, "Ipertermia"), "Allarme IPERTERMIA");
+                        new DefaultJDialog(new Alarm(2, "Ipertermia", main), "Allarme IPERTERMIA", false);
                     } else if (value <= 34) {
-                        new DefaultJDialog(new Alarm(2, "Ipotermia"), "Allarme IPOTERMIA");
+                        new DefaultJDialog(new Alarm(2, "Ipotermia", main), "Allarme IPOTERMIA", false);
                     }
                     break;
                 case "BPM":
                     if (value >= 120) {
-                        new DefaultJDialog(new Alarm(3, "Fibrillazione ventricolare"), "Allarme FIBRILLAZIONE VENTRICOLARE");
+                        new DefaultJDialog(new Alarm(3, "Fibrillazione ventricolare", main), "Allarme FIBRILLAZIONE VENTRICOLARE", false);
                     } else if (value >= 110) {
-                        new DefaultJDialog(new Alarm(1, "Tachicardia"), "Allarme TACHICARDIA");
+                        new DefaultJDialog(new Alarm(1, "Tachicardia", main), "Allarme TACHICARDIA", false);
                     } else if (value < 60) {
-                        new DefaultJDialog(new Alarm(1, "Brachicardia"), "Allarme BRACHICARDIA");
+                        new DefaultJDialog(new Alarm(1, "Brachicardia", main), "Allarme BRACHICARDIA", false);
                     }
                     break;
                 case "DBP":
                     if (value >= 140) {
-                        new DefaultJDialog(new Alarm(2, "Ipertensione"), "Allarme IPERTENSIONE");
+                        new DefaultJDialog(new Alarm(2, "Ipertensione", main), "Allarme IPERTENSIONE", false);
                     }
                     break;
                 case "SBP":
                     if (value <= 60) {
-                        new DefaultJDialog(new Alarm(2, "Ipotensione"), "Allarme IPOTENSIONE");
+                        new DefaultJDialog(new Alarm(2, "Ipotensione", main), "Allarme IPOTENSIONE", false);
                     }
             }
         }
@@ -119,7 +119,7 @@ public class AnalisiManager extends Thread {
             Message msg = generaMessaggio();
             msg.generaValore();
             salvaSuFile(msg);
-            //notifica(msg);
+            notifica(msg);
         }
 
     }

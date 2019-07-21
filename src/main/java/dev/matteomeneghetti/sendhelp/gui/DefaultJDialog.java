@@ -28,4 +28,15 @@ public class DefaultJDialog extends JDialog {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+    
+        public DefaultJDialog(JPanel contenuto, String titolo, boolean isModal) {
+        setTitle(titolo);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setModal(isModal);
+        setContentPane(contenuto);
+        pack();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
 }
