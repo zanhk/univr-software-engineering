@@ -435,7 +435,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 doDiagnosi();
                 break;
             case "Report settimanale":
-                new Report(this);
+                new DefaultJDialog(new ReportTest(this), "Report settimanale");
                 break;
         }
     }
@@ -647,12 +647,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             pazienteLabel.setText(nomePaziente);
             path += paziente + File.separator;
             CSVManager wr = new CSVManager(path + "SBP.csv", ";");
-            String[] sbp = wr.find("SBP");
-            String[] dbp = wr.find("DBP");
-            String[] bpm = wr.find("BPM");
-            String[] temp = wr.find("TEMP");
 
-            int i = 0;
+            int i;
             for (i = 0; i < 7 && i < wr.getNumberOfRows(); i++) {
                 tabellaTelemetria.setValueAt(Integer.parseInt(wr.getLineAt(wr.getNumberOfRows() - i - 1)), i, 0);
             }
@@ -686,6 +682,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     //read this https://www.javamex.com/tutorials/threads/invokelater.shtml
     public void updateAnalisi(String path, int position, String key, String nomePaziente) {
         SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 CSVManager wr = new CSVManager(path, ";");
 

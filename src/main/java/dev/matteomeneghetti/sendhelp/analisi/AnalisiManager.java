@@ -6,14 +6,8 @@ import dev.matteomeneghetti.sendhelp.gui.DefaultJDialog;
 import dev.matteomeneghetti.sendhelp.gui.MainWindow;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AnalisiManager extends Thread {
 
