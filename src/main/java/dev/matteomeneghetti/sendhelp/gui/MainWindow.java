@@ -5,13 +5,13 @@ import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
 import dev.matteomeneghetti.sendhelp.utility.CSVManager;
-import dev.matteomeneghetti.sendhelp.utility.Report;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
@@ -414,8 +414,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         String actionCommand = e.getActionCommand();
         switch (actionCommand) {
             case "Nuovo Paziente":
-                new DefaultJDialog(new NuovoPaziente(this));
-                updateGUI();
+                doNuovoPaziente();
                 break;
             case "Login":
                 doLogin();
@@ -453,6 +452,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
 
+    private void doNuovoPaziente() {
+        if (pazientiInCura.size() >= 10) {
+            JOptionPane.showMessageDialog(null,
+                    "Impossibile inserire oltre 10 pazienti in reparto",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        new DefaultJDialog(new NuovoPaziente(this));
+        updateGUI();
+    }
+
     private void doProperties() {
         new DefaultJDialog(new PropertiesSetter(), "Properties");
         for (CartellaClinica cartella : pazientiInCura) {
@@ -461,7 +472,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }
 
     private void doLogin() {
-        new DefaultJDialog(new Login(this));
+        new DefaultJDialog(new Login(this), "Login");
         updateGUI();
     }
 
@@ -471,58 +482,64 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }
 
     private void doTelemetriaDettagliata() {
-        int row = tabellaPazienti.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
+        Paziente paziente = getPazienteSelezionato();
         if (paziente != null) {
             telemetriaDettagliata = new TelemetriaDettagliata(paziente, this);
             new DefaultJDialog(telemetriaDettagliata, "Telemetria " + paziente.toString());
+        } else {
+            mostraDialogErrore();
         }
     }
 
     private void doNuovaPrescrizione() {
-        int row = tabellaPazienti.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
+        Paziente paziente = getPazienteSelezionato();
         if (paziente != null) {
-            new DefaultJDialog(new NuovaPrescrizione(paziente, this));
+            new DefaultJDialog(new NuovaPrescrizione(paziente, this), "Nuova Prescrizione");
+        } else {
+            mostraDialogErrore();
         }
     }
 
     private void doNuovaSomministrazione() {
-        int row = tabellaPazienti.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
+        Paziente paziente = getPazienteSelezionato();
         if (paziente != null) {
-            new DefaultJDialog(new NuovaSomministrazione(paziente, this));
+            new DefaultJDialog(new NuovaSomministrazione(paziente, this), "Nuova Somministrazione");
+        } else {
+            mostraDialogErrore();
         }
     }
 
     private void doDimettiPaziente() {
-        int row = tabellaPazienti.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
+        Paziente paziente = getPazienteSelezionato();
         if (paziente != null) {
             new DefaultJDialog(new DimettiPaziente(this, paziente), "Dimetti paziente");
+        } else {
+            mostraDialogErrore();
         }
     }
 
-    private void doDiagnosi() {
+    private Paziente getPazienteSelezionato() {
         int row = tabellaPazienti.getSelectedRow();
         if (row < 0) {
-            return;
+            return null;
         }
         Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
+        return paziente;
+    }
+
+    private void mostraDialogErrore() {
+        JOptionPane.showMessageDialog(null,
+                "Seleziona un paziente dalla Lista Pazienti",
+                "Errore",
+                JOptionPane.WARNING_MESSAGE);
+    }
+
+    private void doDiagnosi() {
+        Paziente paziente = getPazienteSelezionato();
         if (paziente != null) {
             new DefaultJDialog(new Diagnosi(paziente), "Diagnosi paziente");
+        } else {
+            mostraDialogErrore();
         }
     }
 
@@ -637,24 +654,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
 
-    /*
-    private void updateTelemetria(int position, String key) {
-        String path = "resources" + File.separator + "Pazienti" + File.separator;
-        int row = tabellaPazienti.getSelectedRow();
-        if (row < 0) {
-            return;
-        }
-        Paziente paziente = (Paziente) tabellaPazienti.getValueAt(row, 0);
-        if (paziente != null) {
-            String nomePaziente = paziente.toString();
-            pazienteLabel.setText(nomePaziente);
-            path += paziente + File.separator + "Analisi.csv";
-            CSVManager wr = new CSVManager(path, ";");
-            String[] str = wr.find(key);
-            int n = 7;
-            tabellaTelemetria.setValueAt(Integer.parseInt(str[str.length - 1]), n - 1, position-1);
-        }
-    }*/
     private void updateTelemetria() {
         String path = "resources" + File.separator + "Pazienti" + File.separator;
         int row = tabellaPazienti.getSelectedRow();

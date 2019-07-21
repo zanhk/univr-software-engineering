@@ -207,15 +207,12 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
     }
 
     private void updateGUI(JSlider slider) {
-
         if (slider != null && (slider.equals(SBPSlider) || slider.equals(DBPSlider)) && sincroButton.isSelected()) {
             SBPSlider.setValue(slider.getValue());
-            DBPSlider.setValue(slider.getValue());                    
+            DBPSlider.setValue(slider.getValue());
             SBPLabel.setText(String.valueOf(slider.getValue()));
             DBPLabel.setText(String.valueOf(slider.getValue()));
-
         }
-
         SBPLabel.setText(String.valueOf(SBPSlider.getValue()));
         DBPLabel.setText(String.valueOf(DBPSlider.getValue()));
         BPMLabel.setText(String.valueOf(BPMSlider.getValue()));
