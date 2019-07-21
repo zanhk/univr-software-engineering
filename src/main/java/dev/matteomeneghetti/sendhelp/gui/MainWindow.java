@@ -36,6 +36,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         dimettiButton.addActionListener(this);
         diagnosiButton.addActionListener(this);
         reportButton.addActionListener(this);
+        propertiesButton.addActionListener(this);
         setVisible(true);
         updateGUI();
     }
@@ -65,6 +66,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         ruoloLabel = new javax.swing.JLabel();
+        propertiesButton = new javax.swing.JButton();
         somministrazioneButton = new javax.swing.JButton();
         diagnosiButton = new javax.swing.JButton();
         prescrizioneButton = new javax.swing.JButton();
@@ -211,6 +213,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         ruoloLabel.setText("Guest");
 
+        propertiesButton.setText("Properties");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -219,19 +223,22 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ruoloLabel))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(utenteLabel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ruoloLabel))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(utenteLabel)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(propertiesButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +252,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jLabel4)
                     .addComponent(ruoloLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginButton)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginButton)
+                    .addComponent(propertiesButton))
                 .addGap(29, 29, 29))
         );
 
@@ -390,6 +399,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton nuovoPazienteButton;
     private javax.swing.JLabel pazienteLabel;
     private javax.swing.JButton prescrizioneButton;
+    private javax.swing.JButton propertiesButton;
     private javax.swing.JButton rapportoButton;
     private javax.swing.JButton reportButton;
     private javax.swing.JLabel ruoloLabel;
@@ -437,6 +447,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             case "Report settimanale":
                 new DefaultJDialog(new ReportTest(this), "Report settimanale");
                 break;
+            case "Properties":
+                doProperties();
+                break;
+        }
+    }
+
+    private void doProperties() {
+        new DefaultJDialog(new PropertiesSetter(), "Properties");
+        for (CartellaClinica cartella : pazientiInCura) {
+            cartella.getManager().aggiornaTimer();
         }
     }
 
@@ -678,7 +698,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }
         }
     }
-    
+
     //read this https://www.javamex.com/tutorials/threads/invokelater.shtml
     public void updateAnalisi(String path, int position, String key, String nomePaziente) {
         SwingUtilities.invokeLater(new Runnable() {

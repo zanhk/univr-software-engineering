@@ -57,10 +57,10 @@ public class PropertyManager {
     }
     
     private void setDefaultValues() {
-        setValue("SBP", "1200");
-        setValue("DBP", "1200");
-        setValue("BPM", "3000");
-        setValue("TEMP", "1800");        
+        setValue("SBP", "120");
+        setValue("DBP", "120");
+        setValue("BPM", "300");
+        setValue("TEMP", "180");        
         saveProperties();
     }
 }

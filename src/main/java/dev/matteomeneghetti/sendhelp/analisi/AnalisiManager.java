@@ -27,13 +27,23 @@ public class AnalisiManager extends Thread {
         return timer;
     }
 
-    @Override
-    public void run() {        
+    public void aggiornaTimer() {
+        timer.cancel();
         timer = new Timer();
-        timer.schedule(new SendMessage("BPM"), 0, Integer.parseInt(properties.getValue("BPM")));
-        timer.schedule(new SendMessage("SBP"), 0, Integer.parseInt(properties.getValue("SBP")));
-        timer.schedule(new SendMessage("DBP"), 0, Integer.parseInt(properties.getValue("DBP")));
-        timer.schedule(new SendMessage("TEMP"), 0, Integer.parseInt(properties.getValue("TEMP")));
+        setTimer();
+    }
+
+    private void setTimer() {
+        timer.schedule(new SendMessage("BPM"), 0, Integer.parseInt(properties.getValue("BPM"))*1000);
+        timer.schedule(new SendMessage("SBP"), 0, Integer.parseInt(properties.getValue("SBP"))*1000);
+        timer.schedule(new SendMessage("DBP"), 0, Integer.parseInt(properties.getValue("DBP"))*1000);
+        timer.schedule(new SendMessage("TEMP"), 0, Integer.parseInt(properties.getValue("TEMP"))*1000);
+    }
+
+    @Override
+    public void run() {
+        timer = new Timer();
+        setTimer();
     }
 
     public class SendMessage extends TimerTask {
