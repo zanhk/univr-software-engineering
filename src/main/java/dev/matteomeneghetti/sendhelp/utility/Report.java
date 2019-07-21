@@ -119,6 +119,9 @@ public class Report {
             }
             testo += "</ul>";
         }
+        else {
+            testo+="<p>Nessun paziente dimesso</p>";
+        }
         text += testo;
     }
 

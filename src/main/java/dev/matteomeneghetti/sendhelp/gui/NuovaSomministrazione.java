@@ -298,8 +298,8 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         Prescrizione currPres = (Prescrizione) listModel.getElementAt(listaPrescrizioni.getSelectedIndex());
         farmacoLabel.setText(currPres.getNomeFarmaco());
         doseLabel.setText(String.valueOf(currPres.getQuantitaDose()));
-        dataInizioLabel.setText(Utility.date2String(currPres.getDataPrescrizione()));
-        dataFineLabel.setText(Utility.date2String(currPres.getDataFineTerapia()));
+        dataInizioLabel.setText(Utility.date2ReadableString(currPres.getDataPrescrizione()));
+        dataFineLabel.setText(Utility.date2ReadableString(currPres.getDataFineTerapia()));
         medicoLabel.setText(currPres.getMedico());
     }
 }
