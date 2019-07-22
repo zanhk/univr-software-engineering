@@ -12,10 +12,10 @@ import java.util.TimerTask;
 
 public class AnalisiManager extends Thread {
 
-    Paziente paziente;
-    Timer timer;
-    MainWindow main;
-    PropertyManager properties;
+    private Paziente paziente;
+    private Timer timer;
+    private MainWindow main;
+    private PropertyManager properties;
 
     public AnalisiManager(Paziente paziente, MainWindow main) {
         this.paziente = paziente;
@@ -48,7 +48,7 @@ public class AnalisiManager extends Thread {
 
     public class SendMessage extends TimerTask {
 
-        String type;
+        private String type;
 
         public SendMessage(String type) {
             this.type = type;
