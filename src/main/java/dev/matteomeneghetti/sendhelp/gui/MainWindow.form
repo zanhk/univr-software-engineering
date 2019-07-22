@@ -253,7 +253,7 @@
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <Component id="statusLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="rapportoButton" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -271,7 +271,7 @@
                           <Component id="pazienteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rapportoButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="statusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="154" max="-2" attributes="0"/>
@@ -349,7 +349,7 @@
                 <Property name="text" type="java.lang.String" value="Status:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="statusLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel5"/>
               </Properties>

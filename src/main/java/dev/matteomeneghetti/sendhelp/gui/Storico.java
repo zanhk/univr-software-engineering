@@ -158,6 +158,12 @@ public class Storico extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        nomeLabel.setText("");
+        cognomeLabel.setText("");
+        dataNascitaLabel.setText("");
+        dataRicoveroLabel.setText("");
+        dataDimissioneLabel.setText("");
     }
     
     private void aggiorna() {

@@ -1,6 +1,7 @@
 package dev.matteomeneghetti.sendhelp;
 
 import dev.matteomeneghetti.sendhelp.gui.MainWindow;
+import java.io.File;
 import javax.swing.SwingUtilities;
 
 public class Main {
@@ -24,6 +25,10 @@ public class Main {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+                
+        new File("resources/Pazienti").mkdirs();
+        new File("resources/Pazienti_dimessi").mkdirs();
+                
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new MainWindow();

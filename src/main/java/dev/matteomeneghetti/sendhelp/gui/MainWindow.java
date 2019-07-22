@@ -59,7 +59,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         pazienteLabel = new javax.swing.JLabel();
         rapportoButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        statusLabel = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
         utenteLabel = new javax.swing.JLabel();
@@ -164,7 +164,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jLabel3.setText("Status:");
 
-        jLabel5.setText("jLabel5");
+        statusLabel.setText("jLabel5");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -181,7 +181,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                         .addGap(43, 43, 43)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(statusLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rapportoButton)))
                 .addContainerGap())
@@ -195,7 +195,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(pazienteLabel)
                     .addComponent(rapportoButton)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(statusLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -384,7 +384,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -404,6 +403,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton reportButton;
     private javax.swing.JLabel ruoloLabel;
     private javax.swing.JButton somministrazioneButton;
+    private javax.swing.JLabel statusLabel;
     private javax.swing.JButton storicoButton;
     public javax.swing.JTable tabellaPazienti;
     private javax.swing.JTable tabellaTelemetria;
@@ -696,6 +696,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             for (; i < 7; i++) {
                 tabellaTelemetria.setValueAt(null, i, 3);
             }
+            statusLabel.setText(paziente.getStatus());
         }
     }
 

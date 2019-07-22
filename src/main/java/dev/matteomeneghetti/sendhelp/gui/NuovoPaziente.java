@@ -17,19 +17,18 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class NuovoPaziente extends javax.swing.JPanel {
-    
+
     private MainWindow main;
     private Paziente paziente;
-    private Controller defaultController = new Controller();
     private NuovoPazienteController controller = new NuovoPazienteController();
 
     public NuovoPaziente(MainWindow main) {
         initComponents();
         this.main = main;
-        
+
         isMedico(this.main.getUtenteCorrente());
 
-        annullaButton.addActionListener(defaultController);
+        annullaButton.addActionListener(controller);
         confermaButton.addActionListener(controller);
         nomeField.getDocument().addDocumentListener(controller);
         cognomeField.getDocument().addDocumentListener(controller);
@@ -38,7 +37,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
         luogoField.getDocument().addDocumentListener(controller);
         dataNascitaSpinner.setEditor(new JSpinner.DateEditor(dataNascitaSpinner, "dd/MM/yyyy"));
         dataNascitaSpinner.addChangeListener(controller);
-        
+
         paziente = new Paziente();
         codiceSanitarioLabel.setText(paziente.getCodiceSanitario());
     }
@@ -251,43 +250,44 @@ public class NuovoPaziente extends javax.swing.JPanel {
     private javax.swing.JRadioButton maschioRadio;
     private javax.swing.JTextField nomeField;
     // End of variables declaration//GEN-END:variables
-    
+
     private boolean saveToFile() {
-        if(!canConfirm()){
-            JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE   );
+        if (!canConfirm()) {
+            JOptionPane.showMessageDialog(null, "Dati incompleti", "Errore", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         paziente.setDataDiRicovero(new Date());
-        
-        CSVManager writer = new CSVManager("resources"+File.separator+"lista-pazienti.csv", ";");
+
+        CSVManager writer = new CSVManager("resources" + File.separator + "lista-pazienti.csv", ";");
         String linea = Utility.paziente2String(paziente);
         writer.append(linea);
-        try{
-            boolean file = new File("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()).mkdirs();
-            if(!file)
+        try {
+            boolean file = new File("resources" + File.separator + "Pazienti" + File.separator + paziente.getCodiceFiscale()).mkdirs();
+            if (!file) {
                 return false;
-            writer.setPathToFile("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+File.separator+"Analisi.csv");
+            }
+            writer.setPathToFile("resources" + File.separator + "Pazienti" + File.separator + paziente.getCodiceFiscale() + File.separator + "Analisi.csv");
             writer.append(linea);
-            writer.setPathToFile("resources"+File.separator+"Pazienti"+File.separator+paziente.getCodiceFiscale()+File.separator+"Diagnosi.txt");
+            writer.setPathToFile("resources" + File.separator + "Pazienti" + File.separator + paziente.getCodiceFiscale() + File.separator + "Diagnosi.txt");
             writer.append(diagnosiField.getText());
             main.aggiungiPazienteInCura(new CartellaClinica(paziente));
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Impossible creare nuovo paziente");
             return false;
         }
         return true;
     }
-    
+
     private boolean canConfirm() {
-        return  !nomeField.getText().isEmpty()
-                &&!cognomeField.getText().isEmpty()
-                &&!luogoField.getText().isEmpty();
+        return !nomeField.getText().isEmpty()
+                && !cognomeField.getText().isEmpty()
+                && !luogoField.getText().isEmpty();
     }
-    
+
     private void isMedico(Utente utente) {
         diagnosiField.setEnabled(!(utente.getRuolo() == Utente.RUOLO.INF));
     }
-    
+
     private class NuovoPazienteController implements DocumentListener, ChangeListener, ActionListener {
 
         @Override
@@ -304,7 +304,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
         public void changedUpdate(DocumentEvent arg0) {
             update();
         }
-        
+
         @Override
         public void stateChanged(ChangeEvent arg0) {
             update();
@@ -312,30 +312,34 @@ public class NuovoPaziente extends javax.swing.JPanel {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            switch(arg0.getActionCommand()) {
+            switch (arg0.getActionCommand()) {
                 case "Conferma":
-                    if(saveToFile())
+                    if (saveToFile()) {
                         Utility.chiudiDialog(arg0);
+                    }
+                    break;
+                case "Annulla":
+                    Utility.chiudiDialog(arg0);
                     break;
                 default:
                     update();
             }
         }
-        
+
         private void update() {
             paziente.setNome(nomeField.getText());
             paziente.setCognome(cognomeField.getText());
             paziente.setGenere(buttonGroup1.getSelection().getActionCommand().charAt(0));
-            paziente.setDataDiNascita((Date)dataNascitaSpinner.getValue());
-            try{
+            paziente.setDataDiNascita((Date) dataNascitaSpinner.getValue());
+            try {
                 paziente.setLuogoDiNascita(luogoField.getText().toLowerCase());
                 paziente.generaCodiceFiscale();
                 codiceFiscaleLabel.setText(paziente.getCodiceFiscale().toString());
-            }catch(Exception e){
+            } catch (Exception e) {
                 codiceFiscaleLabel.setText("CF");
                 paziente.setLuogoDiNascita("Roma");
             }
-            
+
         }
     }
 }
