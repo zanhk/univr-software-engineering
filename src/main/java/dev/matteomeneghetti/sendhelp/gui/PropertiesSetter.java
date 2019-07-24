@@ -47,6 +47,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         confermaButton = new javax.swing.JButton();
         annullaButton = new javax.swing.JButton();
         sincroButton = new javax.swing.JToggleButton();
+        alarmCheckbox = new javax.swing.JCheckBox();
 
         SBPSlider.setMaximum(300);
         SBPSlider.setMinimum(1);
@@ -85,6 +86,8 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         annullaButton.setText("Annulla");
 
         sincroButton.setText("SBP & DBP");
+
+        alarmCheckbox.setText("Allarmi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,16 +129,24 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
                         .addComponent(annullaButton)))
                 .addGap(0, 18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(alarmCheckbox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(sincroButton)
                 .addGap(145, 145, 145))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(sincroButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addComponent(sincroButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(alarmCheckbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TEMPSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -183,6 +194,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
     private javax.swing.JSlider SBPSlider;
     private javax.swing.JLabel TEMPLabel;
     private javax.swing.JSlider TEMPSlider;
+    private javax.swing.JCheckBox alarmCheckbox;
     private javax.swing.JButton annullaButton;
     private javax.swing.JButton confermaButton;
     private javax.swing.JLabel jLabel1;
@@ -203,6 +215,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         DBPSlider.setValue(Integer.parseInt(properties.getValue("DBP")));
         BPMSlider.setValue(Integer.parseInt(properties.getValue("BPM")));
         TEMPSlider.setValue(Integer.parseInt(properties.getValue("TEMP")));
+        alarmCheckbox.setSelected(properties.getValue("alarm").equals("on"));
         updateGUI(null);
     }
 
@@ -224,6 +237,10 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         properties.setValue("DBP", String.valueOf(DBPSlider.getValue()));
         properties.setValue("BPM", String.valueOf(BPMSlider.getValue()));
         properties.setValue("TEMP", String.valueOf(TEMPSlider.getValue()));
+        if(alarmCheckbox.isSelected())
+            properties.setValue("alarm", "on");
+        else
+            properties.setValue("alarm", "off");
     }
 
     @Override

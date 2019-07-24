@@ -3,6 +3,7 @@ package dev.matteomeneghetti.sendhelp.gui;
 import dev.matteomeneghetti.sendhelp.utility.Report;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class ReportTest extends javax.swing.JPanel implements ActionListener {
 
@@ -79,6 +80,7 @@ public class ReportTest extends javax.swing.JPanel implements ActionListener {
         switch (command) {
             case "Stampa":
                 report.createFile();
+                JOptionPane.showMessageDialog(null, "Report creato con successo!", "Operazione completata", JOptionPane.PLAIN_MESSAGE);
                 break;
         }
     }

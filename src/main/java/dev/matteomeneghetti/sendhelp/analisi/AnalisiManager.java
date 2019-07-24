@@ -34,10 +34,10 @@ public class AnalisiManager extends Thread {
     }
 
     private void setTimer() {
-        timer.schedule(new SendMessage("BPM"), 0, Integer.parseInt(properties.getValue("BPM"))*1000);
-        timer.schedule(new SendMessage("SBP"), 0, Integer.parseInt(properties.getValue("SBP"))*1000);
-        timer.schedule(new SendMessage("DBP"), 0, Integer.parseInt(properties.getValue("DBP"))*1000);
-        timer.schedule(new SendMessage("TEMP"), 0, Integer.parseInt(properties.getValue("TEMP"))*1000);
+        timer.schedule(new SendMessage("BPM"), 0, Integer.parseInt(properties.getValue("BPM")) * 1000);
+        timer.schedule(new SendMessage("SBP"), 0, Integer.parseInt(properties.getValue("SBP")) * 1000);
+        timer.schedule(new SendMessage("DBP"), 0, Integer.parseInt(properties.getValue("DBP")) * 1000);
+        timer.schedule(new SendMessage("TEMP"), 0, Integer.parseInt(properties.getValue("TEMP")) * 1000);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class AnalisiManager extends Thread {
                     } else if (value >= 110) {
                         new DefaultJDialog(new Alarm(paziente, 1, "Tachicardia", main), "Allarme TACHICARDIA", false);
                     } else if (value < 60) {
-                        new DefaultJDialog(new Alarm(paziente, 1, "Brachicardia", main), "Allarme BRACHICARDIA", false);
+                        new DefaultJDialog(new Alarm(paziente, 1, "Aritmia", main), "Allarme BRACHICARDIA", false);
                     }
                     break;
                 case "DBP":
@@ -119,7 +119,9 @@ public class AnalisiManager extends Thread {
             Message msg = generaMessaggio();
             msg.generaValore();
             salvaSuFile(msg);
-            notifica(msg);
+            if (properties.getValue("alarm").equals("on")) {
+                notifica(msg);
+            }
         }
 
     }

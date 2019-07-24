@@ -60,7 +60,8 @@ public class PropertyManager {
         setValue("SBP", "120");
         setValue("DBP", "120");
         setValue("BPM", "300");
-        setValue("TEMP", "180");        
+        setValue("TEMP", "180");
+        setValue("alarm", "off");
         saveProperties();
     }
 }

@@ -77,7 +77,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         reportButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Send Help");
+        setTitle("Monitoraggio Terapia Intensiva");
 
         tabellaPazienti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,8 +163,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         rapportoButton.setText("Rapp. dettagliato");
 
         jLabel3.setText("Status:");
-
-        statusLabel.setText("jLabel5");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -460,7 +458,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-        new DefaultJDialog(new NuovoPaziente(this));
+        new DefaultJDialog(new NuovoPaziente(this), "Nuovo paziente");
         updateGUI();
     }
 
@@ -529,7 +527,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
     private void mostraDialogErrore() {
         JOptionPane.showMessageDialog(null,
-                "Seleziona un paziente dalla Lista Pazienti",
+                "Seleziona un paziente dalla Tabella Pazienti",
                 "Errore",
                 JOptionPane.WARNING_MESSAGE);
     }
@@ -575,6 +573,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             somministrazioneButton.setEnabled(false);
             nuovoPazienteButton.setEnabled(false);
             reportButton.setEnabled(false);
+            rapportoButton.setEnabled(false);
             return;
         }
 
@@ -585,7 +584,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             case MED:
                 diagnosiButton.setEnabled(true);
                 prescrizioneButton.setEnabled(true);
+                rapportoButton.setEnabled(true);
+                storicoButton.setEnabled(true);
+                somministrazioneButton.setEnabled(false);
+                nuovoPazienteButton.setEnabled(false);
+                break;
             case INF:
+                rapportoButton.setEnabled(true);
                 storicoButton.setEnabled(true);
                 rapportoButton.setEnabled(true);
                 somministrazioneButton.setEnabled(true);

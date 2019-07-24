@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
 public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListener {
@@ -248,6 +249,7 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
         Date dataInizio = (Date) dataInizioSpinner.getValue();
         Date dataFine = (Date) dataFineSpinner.getValue();
         if (dataInizio.after(dataFine)) {
+            JOptionPane.showMessageDialog(null, "Durata terapia impossibile", "Errore", JOptionPane.ERROR_MESSAGE);
             return false;
         } else {
             return true;

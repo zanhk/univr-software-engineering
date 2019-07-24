@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class DimettiPaziente extends javax.swing.JPanel implements ActionListener {
 
@@ -120,8 +121,12 @@ public class DimettiPaziente extends javax.swing.JPanel implements ActionListene
                 Utility.chiudiDialog(ae);
                 break;
             case "Conferma":
+                if (!paziente.getStatus().equals("OK")) {
+                    JOptionPane.showMessageDialog(null, "Impossibile dimettere un paziente in fase di allarme", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 generaLettera();
-                move(   new File("resources" + File.separator + "Pazienti" + File.separator + paziente.toString()),
+                move(new File("resources" + File.separator + "Pazienti" + File.separator + paziente.toString()),
                         new File("resources" + File.separator + "Pazienti_dimessi" + File.separator + paziente.toString()));
                 main.rimuoviPazienteInCura(paziente);
                 Utility.chiudiDialog(ae);
@@ -131,11 +136,11 @@ public class DimettiPaziente extends javax.swing.JPanel implements ActionListene
 
     private void init() {
         nomePazienteLabel.setText(paziente.getCodiceFiscale().toString());
-        dataRicoveroLabel.setText(paziente.getDataDiNascita().toString());
+        dataRicoveroLabel.setText(Utility.date2ReadableString(paziente.getDataDiNascita()));
     }
-    
+
     private void generaLettera() {
-        CSVManager wr = new CSVManager("resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator + "Dimissione.txt",";");
+        CSVManager wr = new CSVManager("resources" + File.separator + "Pazienti" + File.separator + paziente + File.separator + "Dimissione.txt", ";");
         wr.append(Utility.date2String(new Date()));
         wr.append(textArea.getText());
     }

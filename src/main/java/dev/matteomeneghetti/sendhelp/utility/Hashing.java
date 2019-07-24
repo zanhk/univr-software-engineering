@@ -62,7 +62,7 @@ public class Hashing {
         byte[] testHash = skf.generateSecret(spec).getEncoded();
         */
             String testHash = genHash(originalPassword, salt);
-            System.out.println(testHash);
+            //System.out.println(testHash);
            return testHash.equals(storedPassword);
     }
 

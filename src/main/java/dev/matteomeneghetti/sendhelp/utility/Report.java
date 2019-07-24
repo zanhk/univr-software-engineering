@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Report {
@@ -21,7 +22,7 @@ public class Report {
         this.main = main;
         generaTesto();
     }
-    
+
     public String getTesto() {
         return text;
     }
@@ -72,17 +73,20 @@ public class Report {
                 testo += "<li>" + "Somministrazioni" + "</li>";
                 testo += "<ul>";
                 for (Somministrazione somministrazione : cartella.getSomministrazioni()) {
-                    testo += "<li>" + somministrazione.toString() + "</li>";
-                    testo += "<ul>";
-                    testo += "<li>" + "Farmaco: " + somministrazione.getNomeFarmaco() + "</li>";
-                    testo += "<li>" + "Dose: " + somministrazione.getDoseSomministrata() + "</li>";
-                    testo += "<li>" + "Data di somministrazione: " + Utility.date2ReadableString(somministrazione.getDataSomministrazione()) + "</li>";
-                    testo += "<li>" + "Note: " + somministrazione.getNote() + "</li>";
-                    testo += "</ul>";
+                    if (last7Days(somministrazione.getDataSomministrazione())) {
+                        testo += "<li>" + somministrazione.toString() + "</li>";
+                        testo += "<ul>";
+                        testo += "<li>" + "Farmaco: " + somministrazione.getNomeFarmaco() + "</li>";
+                        testo += "<li>" + "Dose: " + somministrazione.getDoseSomministrata() + "</li>";
+                        testo += "<li>" + "Data di somministrazione: " + Utility.date2ReadableString(somministrazione.getDataSomministrazione()) + "</li>";
+                        testo += "<li>" + "Note: " + somministrazione.getNote() + "</li>";
+                        testo += "</ul>";
+                    }
                 }
                 testo += "</ul>";
                 testo += "<br/>";
             }
+            testo += "</ul>";
 
         }
         testo += "</ul>";
@@ -97,7 +101,11 @@ public class Report {
             for (File name : file) {
                 String dataPaziente = new CSVManager(path + File.separator + name.getName() + File.separator + "Analisi.csv", ";").getLineAt(0);
                 CartellaClinica paziente = new CartellaClinica(Utility.string2Paziente(dataPaziente));
-                pazientiDimessi.add(paziente);
+
+                String path2 = "resources" + File.separator + "Pazienti_dimessi" + File.separator + paziente.getPaziente() + File.separator + "Dimissione.txt";
+                Date dataDimissione = Utility.string2Date(new CSVManager(path2, ";").getLineAt(0));
+                if (last7Days(dataDimissione))
+                    pazientiDimessi.add(paziente);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,9 +126,8 @@ public class Report {
                 testo += "</ul>";
             }
             testo += "</ul>";
-        }
-        else {
-            testo+="<p>Nessun paziente dimesso</p>";
+        } else {
+            testo += "<p>Nessun paziente dimesso</p>";
         }
         text += testo;
     }
@@ -143,5 +150,11 @@ public class Report {
             ioe.printStackTrace();
         }
 
+    }
+
+    private boolean last7Days(Date dataInEsame) {
+        Date now = new Date();
+        long diff = now.getTime() - dataInEsame.getTime();
+        return ((diff / 1000) <= 604800);
     }
 }

@@ -38,7 +38,7 @@ public class CSVManager {
             }
             br.close();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            
         }
         return null;
     }
@@ -55,7 +55,7 @@ public class CSVManager {
             }
             br.close();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            
         }
         return null;
     }
@@ -69,7 +69,7 @@ public class CSVManager {
             wr.newLine();
             wr.close();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            
         }
     }
     /**
@@ -94,7 +94,7 @@ public class CSVManager {
             }
             br.close();
         }catch(IOException e){
-            System.err.println(e.getMessage());
+            
         }
         return false;
     }
@@ -112,7 +112,7 @@ public class CSVManager {
             }
             br.close();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            
         }
         return numberOfRows;
     }

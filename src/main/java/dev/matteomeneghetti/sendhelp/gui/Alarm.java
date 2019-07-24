@@ -2,9 +2,12 @@ package dev.matteomeneghetti.sendhelp.gui;
 
 import dev.matteomeneghetti.sendhelp.data.Paziente;
 import dev.matteomeneghetti.sendhelp.data.Utente;
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
 import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
@@ -73,6 +76,7 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
         switch (message) {
             case "Conferma":
                 if (canConferm()) {
+                    save();
                     timer.cancel();
                     paziente.setStatus("OK");
                     main.updateGUI();
@@ -97,6 +101,13 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
             return false;
         }
         return true;
+    }
+    
+    private void save() {
+        String path = "resources" +File.separator+"Pazienti"+File.separator+paziente.toString()+File.separator+"Allarmi.csv";
+        CSVManager writer = new CSVManager(path, ";");
+        String data = nome+";"+Utility.date2StringDettagliata(new Date())+";"+jTextArea1.getText();
+        writer.append(data);
     }
 
     @SuppressWarnings("unchecked")

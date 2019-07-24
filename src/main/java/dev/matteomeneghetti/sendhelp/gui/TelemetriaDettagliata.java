@@ -22,6 +22,9 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         this.main = main;
 
         pazienteLabel.setText(paziente.toString());
+        nomePazienteLabel.setText(paziente.getNome() + " " + paziente.getCognome());
+        dataNascitaLabel.setText(Utility.date2ReadableString(paziente.getDataDiNascita()));
+        dataRicoveroLabel.setText(Utility.date2ReadableString(paziente.getDataDiRicovero()));
         farmacoLabel.setText("");
         doseLabel.setText("");
         dataLabel.setText("");
@@ -48,6 +51,12 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         dataLabel = new javax.swing.JLabel();
         pazienteLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        nomePazienteLabel = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        dataRicoveroLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        dataNascitaLabel = new javax.swing.JLabel();
 
         tabella.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,7 +143,7 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         tabella.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabella);
 
-        jLabel1.setText("Paziente");
+        jLabel1.setText("Paziente:");
 
         listaSomministrazioni.setModel(new DefaultListModel());
         listaSomministrazioni.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -181,7 +190,7 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
                     .addComponent(dataLabel)
                     .addComponent(doseLabel)
                     .addComponent(farmacoLabel))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,6 +214,18 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
 
         jLabel6.setText("Somministrazioni");
 
+        jLabel7.setText("Nome:");
+
+        nomePazienteLabel.setText("jLabel8");
+
+        jLabel8.setText("Data di ricovero:");
+
+        dataRicoveroLabel.setText("jLabel9");
+
+        jLabel9.setText("Data di nascita:");
+
+        dataNascitaLabel.setText("jLabel10");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,38 +236,55 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel6)
-                                .addGap(15, 15, 15)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel7))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nomePazienteLabel)
+                                            .addComponent(pazienteLabel))))))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(166, 166, 166)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pazienteLabel)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dataNascitaLabel)
+                            .addComponent(dataRicoveroLabel)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(166, 166, 166)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(pazienteLabel))
-                .addGap(26, 26, 26)
+                    .addComponent(pazienteLabel)
+                    .addComponent(jLabel8)
+                    .addComponent(dataRicoveroLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(nomePazienteLabel)
+                    .addComponent(jLabel9)
+                    .addComponent(dataNascitaLabel))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -268,6 +306,8 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dataLabel;
+    private javax.swing.JLabel dataNascitaLabel;
+    private javax.swing.JLabel dataRicoveroLabel;
     private javax.swing.JLabel doseLabel;
     private javax.swing.JLabel farmacoLabel;
     private javax.swing.JLabel jLabel1;
@@ -276,10 +316,14 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listaSomministrazioni;
+    private javax.swing.JLabel nomePazienteLabel;
     private javax.swing.JLabel pazienteLabel;
     private javax.swing.JTable tabella;
     // End of variables declaration//GEN-END:variables
