@@ -86,24 +86,29 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         setTitle("Monitoraggio Terapia Intensiva");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel6.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel6.setBackground(new java.awt.Color(102, 0, 102));
 
-        jPanel3.setBackground(new java.awt.Color(51, 0, 102));
+        jPanel3.setBackground(new java.awt.Color(102, 0, 102));
 
         nuovoPazienteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_plus_25px.png"))); // NOI18N
         nuovoPazienteButton.setText("Nuovo Paziente");
+        nuovoPazienteButton.setBorderPainted(false);
 
         somministrazioneButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_treatment_plan_25px.png"))); // NOI18N
         somministrazioneButton.setText("Somministrazione");
+        somministrazioneButton.setBorderPainted(false);
 
         diagnosiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_health_checkup_filled_25px.png"))); // NOI18N
         diagnosiButton.setText("Diagnosi");
+        diagnosiButton.setBorderPainted(false);
 
         prescrizioneButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_pill_filled_25px.png"))); // NOI18N
         prescrizioneButton.setText("Prescrizione");
+        prescrizioneButton.setBorderPainted(false);
 
         dimettiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_remove_user_group_man_man_filled_25px.png"))); // NOI18N
         dimettiButton.setText("Dimetti paziente");
+        dimettiButton.setBorderPainted(false);
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,6 +124,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         reportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_report_card_25px.png"))); // NOI18N
         reportButton.setText("Report settimanale");
+        reportButton.setBorderPainted(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -196,9 +202,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 210, 530));
 
-        jPanel8.setBackground(new java.awt.Color(190, 222, 249));
+        jPanel8.setBackground(new java.awt.Color(255, 247, 247));
 
-        jPanel4.setBackground(new java.awt.Color(190, 222, 249));
+        jPanel4.setBackground(new java.awt.Color(255, 247, 247));
 
         tabellaTelemetria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,6 +237,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         pazienteLabel.setText("selezionare paz.");
 
         rapportoButton.setText("Rapp. dettagliato");
+        rapportoButton.setBorderPainted(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Status:");
@@ -272,7 +279,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(190, 222, 249));
+        jPanel1.setBackground(new java.awt.Color(255, 247, 247));
 
         tabellaPazienti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -321,6 +328,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jLabel1.setText("Numero pazienti: ");
 
         storicoButton.setText("Visualizza storico");
+        storicoButton.setBorderPainted(false);
         storicoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 storicoButtonActionPerformed(evt);
@@ -442,22 +450,29 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
 
-        loginButton.setBackground(new java.awt.Color(51, 51, 51));
-        loginButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        loginButton.setBackground(new java.awt.Color(102, 0, 102));
+        loginButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_lock_25px.png"))); // NOI18N
         loginButton.setText("Login");
+        loginButton.setBorderPainted(false);
 
-        propertiesButton.setBackground(new java.awt.Color(102, 102, 102));
-        propertiesButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        propertiesButton.setBackground(new java.awt.Color(102, 0, 102));
+        propertiesButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        propertiesButton.setForeground(new java.awt.Color(255, 255, 255));
         propertiesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_settings_3_25px.png"))); // NOI18N
         propertiesButton.setText("Properties");
+        propertiesButton.setBorderPainted(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(propertiesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(loginButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(propertiesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,12 +492,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

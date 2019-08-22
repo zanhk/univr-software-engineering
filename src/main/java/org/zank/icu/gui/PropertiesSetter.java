@@ -49,14 +49,19 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         sincroButton = new javax.swing.JToggleButton();
         alarmCheckbox = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(255, 247, 247));
+
+        SBPSlider.setBackground(new java.awt.Color(255, 247, 247));
         SBPSlider.setMaximum(300);
         SBPSlider.setMinimum(1);
         SBPSlider.setValue(120);
 
+        BPMSlider.setBackground(new java.awt.Color(255, 247, 247));
         BPMSlider.setMaximum(300);
         BPMSlider.setMinimum(1);
         BPMSlider.setValue(300);
 
+        DBPSlider.setBackground(new java.awt.Color(255, 247, 247));
         DBPSlider.setMaximum(300);
         DBPSlider.setMinimum(1);
         DBPSlider.setValue(120);
@@ -69,6 +74,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
 
         jLabel4.setText("TEMP");
 
+        TEMPSlider.setBackground(new java.awt.Color(255, 247, 247));
         TEMPSlider.setMaximum(300);
         TEMPSlider.setMinimum(1);
         TEMPSlider.setValue(180);
@@ -81,12 +87,21 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
 
         TEMPLabel.setText("180");
 
+        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
+        confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
+        confermaButton.setBorderPainted(false);
 
+        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
         annullaButton.setText("Annulla");
+        annullaButton.setBorderPainted(false);
 
+        sincroButton.setBackground(new java.awt.Color(255, 247, 247));
         sincroButton.setText("SBP & DBP");
+        sincroButton.setBorderPainted(false);
 
+        alarmCheckbox.setBackground(new java.awt.Color(255, 247, 247));
         alarmCheckbox.setText("Allarmi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -94,10 +109,26 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGap(40, 40, 40)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TEMPSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BPMSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(30, 30, 30)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(BPMLabel)
+                                .addComponent(TEMPLabel)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(alarmCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sincroButton))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -109,44 +140,21 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(DBPLabel)
-                                    .addComponent(SBPLabel)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TEMPSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BPMSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BPMLabel)
-                                    .addComponent(TEMPLabel)))))
+                                    .addComponent(SBPLabel)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(confermaButton)
-                        .addGap(39, 39, 39)
-                        .addComponent(annullaButton)))
-                .addGap(0, 18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(alarmCheckbox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sincroButton)
-                .addGap(145, 145, 145))
+                        .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(16, Short.MAX_VALUE)
-                        .addComponent(sincroButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(alarmCheckbox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sincroButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(alarmCheckbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TEMPSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -176,11 +184,11 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TEMPLabel)))))
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confermaButton)
-                    .addComponent(annullaButton))
-                .addContainerGap())
+                    .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
 

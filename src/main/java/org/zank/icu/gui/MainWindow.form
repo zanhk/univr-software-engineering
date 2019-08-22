@@ -29,7 +29,7 @@
     <Container class="javax.swing.JPanel" name="jPanel6">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="33" red="0" type="rgb"/>
+          <Color blue="66" green="0" red="66" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -62,7 +62,7 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="0" red="33" type="rgb"/>
+              <Color blue="66" green="0" red="66" type="rgb"/>
             </Property>
           </Properties>
 
@@ -144,6 +144,7 @@
                   <Image iconType="3" name="/icons8_plus_25px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nuovo Paziente"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="somministrazioneButton">
@@ -152,6 +153,7 @@
                   <Image iconType="3" name="/icons8_treatment_plan_25px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Somministrazione"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="diagnosiButton">
@@ -160,6 +162,7 @@
                   <Image iconType="3" name="/icons8_health_checkup_filled_25px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Diagnosi"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="prescrizioneButton">
@@ -168,6 +171,7 @@
                   <Image iconType="3" name="/icons8_pill_filled_25px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Prescrizione"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="dimettiButton">
@@ -176,6 +180,7 @@
                   <Image iconType="3" name="/icons8_remove_user_group_man_man_filled_25px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dimetti paziente"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -217,6 +222,7 @@
                   <Image iconType="3" name="/icons8_report_card_25px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Report settimanale"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -226,7 +232,7 @@
     <Container class="javax.swing.JPanel" name="jPanel8">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="f9" green="de" red="be" type="rgb"/>
+          <Color blue="f7" green="f7" red="ff" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -270,7 +276,7 @@
         <Container class="javax.swing.JPanel" name="jPanel4">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="de" red="be" type="rgb"/>
+              <Color blue="f7" green="f7" red="ff" type="rgb"/>
             </Property>
           </Properties>
 
@@ -387,6 +393,7 @@
             <Component class="javax.swing.JButton" name="rapportoButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rapp. dettagliato"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -404,7 +411,7 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="de" red="be" type="rgb"/>
+              <Color blue="f7" green="f7" red="ff" type="rgb"/>
             </Property>
           </Properties>
 
@@ -528,6 +535,7 @@
             <Component class="javax.swing.JButton" name="storicoButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizza storico"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storicoButtonActionPerformed"/>
@@ -562,14 +570,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jPanel7" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
-                  <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Component id="jLabel5" min="-2" pref="106" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
+              <Component id="jPanel5" alignment="0" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -687,8 +692,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="loginButton" alignment="1" max="32767" attributes="0"/>
-                  <Component id="propertiesButton" alignment="0" pref="130" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="loginButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="propertiesButton" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -707,29 +717,37 @@
             <Component class="javax.swing.JButton" name="loginButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="33" red="33" type="rgb"/>
+                  <Color blue="66" green="0" red="66" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/icons8_lock_25px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Login"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="propertiesButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
+                  <Color blue="66" green="0" red="66" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/icons8_settings_3_25px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Properties"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
