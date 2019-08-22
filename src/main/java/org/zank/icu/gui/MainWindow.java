@@ -1,6 +1,6 @@
 package org.zank.icu.gui;
 
-import org.zank.icu.analisi.AnalisiManager;
+import org.zank.icu.analysis.AnalisiManager;
 import org.zank.icu.data.CartellaClinica;
 import org.zank.icu.data.Paziente;
 import org.zank.icu.data.Utente;

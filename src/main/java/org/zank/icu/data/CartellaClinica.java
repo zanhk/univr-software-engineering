@@ -1,6 +1,6 @@
 package org.zank.icu.data;
 
-import org.zank.icu.analisi.AnalisiManager;
+import org.zank.icu.analysis.AnalisiManager;
 import org.zank.icu.utility.CSVManager;
 import org.zank.icu.utility.Utility;
 import java.io.File;

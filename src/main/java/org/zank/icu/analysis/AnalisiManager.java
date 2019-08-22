@@ -1,4 +1,4 @@
-package org.zank.icu.analisi;
+package org.zank.icu.analysis;
 
 import org.zank.icu.data.Paziente;
 import org.zank.icu.gui.Alarm;

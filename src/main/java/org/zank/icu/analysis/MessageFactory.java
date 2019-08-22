@@ -1,4 +1,4 @@
-package org.zank.icu.analisi;
+package org.zank.icu.analysis;
 
 public class MessageFactory {
     

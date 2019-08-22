@@ -1,15 +1,15 @@
-package org.zank.icu.analisi;
+package org.zank.icu.analysis;
 
 import java.util.Random;
 
-public class BPMMessage implements Message {
+public class SBPMessage implements Message {
     
     Integer value;
 
     @Override
     public void generaValore() {
         Random rand = new Random();
-        value = rand.nextInt(80) + 40;
+        value = rand.nextInt(40)+80;
     }
 
     @Override
