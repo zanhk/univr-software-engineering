@@ -97,6 +97,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         somministrazioneButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_treatment_plan_25px.png"))); // NOI18N
         somministrazioneButton.setText("Somministrazione");
         somministrazioneButton.setBorderPainted(false);
+        somministrazioneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                somministrazioneButtonActionPerformed(evt);
+            }
+        });
 
         diagnosiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_health_checkup_filled_25px.png"))); // NOI18N
         diagnosiButton.setText("Diagnosi");
@@ -105,6 +110,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         prescrizioneButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_pill_filled_25px.png"))); // NOI18N
         prescrizioneButton.setText("Prescrizione");
         prescrizioneButton.setBorderPainted(false);
+        prescrizioneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prescrizioneButtonActionPerformed(evt);
+            }
+        });
 
         dimettiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_remove_user_group_man_man_filled_25px.png"))); // NOI18N
         dimettiButton.setText("Dimetti paziente");
@@ -125,6 +135,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         reportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_report_card_25px.png"))); // NOI18N
         reportButton.setText("Report settimanale");
         reportButton.setBorderPainted(false);
+        reportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -520,6 +535,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void storicoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storicoButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_storicoButtonActionPerformed
+
+    private void prescrizioneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prescrizioneButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prescrizioneButtonActionPerformed
+
+    private void somministrazioneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_somministrazioneButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_somministrazioneButtonActionPerformed
+
+    private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton diagnosiButton;

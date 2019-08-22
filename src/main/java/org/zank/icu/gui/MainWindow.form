@@ -151,6 +151,9 @@
                 <Property name="text" type="java.lang.String" value="Somministrazione"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="somministrazioneButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="diagnosiButton">
               <Properties>
@@ -169,6 +172,9 @@
                 <Property name="text" type="java.lang.String" value="Prescrizione"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prescrizioneButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="dimettiButton">
               <Properties>
@@ -220,6 +226,9 @@
                 <Property name="text" type="java.lang.String" value="Report settimanale"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reportButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

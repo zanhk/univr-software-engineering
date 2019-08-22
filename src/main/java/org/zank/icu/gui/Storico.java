@@ -62,19 +62,19 @@ public class Storico extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Data di dimissione");
 
-        nomeLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nomeLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nomeLabel.setText("jLabel8");
 
-        cognomeLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cognomeLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cognomeLabel.setText("jLabel8");
 
-        dataNascitaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dataNascitaLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         dataNascitaLabel.setText("jLabel8");
 
-        dataDimissioneLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dataDimissioneLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         dataDimissioneLabel.setText("jLabel8");
 
-        dataRicoveroLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dataRicoveroLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         dataRicoveroLabel.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -93,7 +93,7 @@ public class Storico extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6))
-                        .addGap(31, 31, 31)
+                        .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dataRicoveroLabel)
                             .addComponent(dataDimissioneLabel)
@@ -101,36 +101,38 @@ public class Storico extends javax.swing.JPanel {
                             .addComponent(cognomeLabel)
                             .addComponent(nomeLabel)))
                     .addComponent(jLabel2))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel2)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(nomeLabel))
+                        .addComponent(nomeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cognomeLabel))
+                        .addComponent(cognomeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(dataNascitaLabel))
+                        .addComponent(dataNascitaLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(dataRicoveroLabel))
+                        .addComponent(dataRicoveroLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(dataDimissioneLabel)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dataDimissioneLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
