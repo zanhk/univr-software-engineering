@@ -1,6 +1,6 @@
-package org.zank.sendhelp.gui;
+package dev.matteomeneghetti.sendhelp.gui;
 
-import org.zank.sendhelp.utility.Report;
+import dev.matteomeneghetti.sendhelp.utility.Report;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;

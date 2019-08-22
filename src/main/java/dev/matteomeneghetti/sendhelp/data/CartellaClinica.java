@@ -1,8 +1,8 @@
-package org.zank.sendhelp.data;
+package dev.matteomeneghetti.sendhelp.data;
 
-import org.zank.sendhelp.analisi.AnalisiManager;
-import org.zank.sendhelp.utility.CSVManager;
-import org.zank.sendhelp.utility.Utility;
+import dev.matteomeneghetti.sendhelp.analisi.AnalisiManager;
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.io.File;
 import java.util.ArrayList;
 

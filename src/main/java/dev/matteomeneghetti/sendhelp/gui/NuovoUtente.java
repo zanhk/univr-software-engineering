@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.zank.sendhelp.gui;
+package dev.matteomeneghetti.sendhelp.gui;
 
-import org.zank.sendhelp.data.Utente;
-import org.zank.sendhelp.utility.CSVManager;
-import org.zank.sendhelp.utility.Hashing;
-import org.zank.sendhelp.utility.Utility;
+import dev.matteomeneghetti.sendhelp.data.Utente;
+import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import dev.matteomeneghetti.sendhelp.utility.Hashing;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,7 +1,7 @@
-package org.zank.sendhelp.gui;
+package dev.matteomeneghetti.sendhelp.gui;
 
-import org.zank.sendhelp.utility.PropertyManager;
-import org.zank.sendhelp.utility.Utility;
+import dev.matteomeneghetti.sendhelp.utility.PropertyManager;
+import dev.matteomeneghetti.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JSlider;

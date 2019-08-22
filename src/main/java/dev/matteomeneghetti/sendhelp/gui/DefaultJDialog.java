@@ -1,4 +1,4 @@
-package org.zank.sendhelp.gui;
+package dev.matteomeneghetti.sendhelp.gui;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;

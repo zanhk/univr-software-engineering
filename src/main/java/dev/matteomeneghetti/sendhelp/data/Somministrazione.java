@@ -1,4 +1,4 @@
-package org.zank.sendhelp.data;
+package dev.matteomeneghetti.sendhelp.data;
 
 import java.util.Date;
 

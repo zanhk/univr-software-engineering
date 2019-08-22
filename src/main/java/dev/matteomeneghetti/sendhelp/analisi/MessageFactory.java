@@ -1,4 +1,4 @@
-package org.zank.sendhelp.analisi;
+package dev.matteomeneghetti.sendhelp.analisi;
 
 public class MessageFactory {
     

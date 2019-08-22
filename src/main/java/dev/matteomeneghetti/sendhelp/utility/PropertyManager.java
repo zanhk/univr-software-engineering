@@ -1,4 +1,4 @@
-package org.zank.sendhelp.utility;
+package dev.matteomeneghetti.sendhelp.utility;
 
 import java.io.File;
 import java.io.FileInputStream;
