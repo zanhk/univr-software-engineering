@@ -1,9 +1,9 @@
-package dev.matteomeneghetti.sendhelp.gui;
+package org.zank.sendhelp.gui;
 
-import dev.matteomeneghetti.sendhelp.data.Paziente;
-import dev.matteomeneghetti.sendhelp.data.Utente;
-import dev.matteomeneghetti.sendhelp.utility.CSVManager;
-import dev.matteomeneghetti.sendhelp.utility.Utility;
+import org.zank.sendhelp.data.Paziente;
+import org.zank.sendhelp.data.Utente;
+import org.zank.sendhelp.utility.CSVManager;
+import org.zank.sendhelp.utility.Utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;

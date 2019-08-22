@@ -1,11 +1,11 @@
-package dev.matteomeneghetti.sendhelp.analisi;
+package org.zank.sendhelp.analisi;
 
-import dev.matteomeneghetti.sendhelp.data.Paziente;
-import dev.matteomeneghetti.sendhelp.gui.Alarm;
-import dev.matteomeneghetti.sendhelp.gui.DefaultJDialog;
-import dev.matteomeneghetti.sendhelp.gui.MainWindow;
-import dev.matteomeneghetti.sendhelp.utility.CSVManager;
-import dev.matteomeneghetti.sendhelp.utility.PropertyManager;
+import org.zank.sendhelp.data.Paziente;
+import org.zank.sendhelp.gui.Alarm;
+import org.zank.sendhelp.gui.DefaultJDialog;
+import org.zank.sendhelp.gui.MainWindow;
+import org.zank.sendhelp.utility.CSVManager;
+import org.zank.sendhelp.utility.PropertyManager;
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;

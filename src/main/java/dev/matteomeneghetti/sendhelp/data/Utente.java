@@ -1,4 +1,4 @@
-package dev.matteomeneghetti.sendhelp.data;
+package org.zank.sendhelp.data;
 
 /*
     L'utente si identifica con colui che sta al momento utilizzando il sistema.

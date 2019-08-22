@@ -1,6 +1,6 @@
-package dev.matteomeneghetti.sendhelp.data;
+package org.zank.sendhelp.data;
 
-import dev.matteomeneghetti.sendhelp.utility.CSVManager;
+import org.zank.sendhelp.utility.CSVManager;
 import java.io.File;
 import java.util.Date;
 import java.util.Set;

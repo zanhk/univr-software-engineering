@@ -1,5 +1,5 @@
 
-package dev.matteomeneghetti.sendhelp.utility;
+package org.zank.sendhelp.utility;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;

@@ -1,9 +1,9 @@
-package dev.matteomeneghetti.sendhelp.utility;
+package org.zank.sendhelp.utility;
 
-import dev.matteomeneghetti.sendhelp.data.CartellaClinica;
-import dev.matteomeneghetti.sendhelp.data.Prescrizione;
-import dev.matteomeneghetti.sendhelp.data.Somministrazione;
-import dev.matteomeneghetti.sendhelp.gui.MainWindow;
+import org.zank.sendhelp.data.CartellaClinica;
+import org.zank.sendhelp.data.Prescrizione;
+import org.zank.sendhelp.data.Somministrazione;
+import org.zank.sendhelp.gui.MainWindow;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

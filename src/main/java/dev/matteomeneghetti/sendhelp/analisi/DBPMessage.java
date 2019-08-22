@@ -1,4 +1,4 @@
-package dev.matteomeneghetti.sendhelp.analisi;
+package org.zank.sendhelp.analisi;
 
 import java.util.Random;
 

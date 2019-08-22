@@ -1,6 +1,6 @@
-package dev.matteomeneghetti.sendhelp;
+package org.zank.sendhelp;
 
-import dev.matteomeneghetti.sendhelp.gui.MainWindow;
+import org.zank.sendhelp.gui.MainWindow;
 import java.io.File;
 import javax.swing.SwingUtilities;
 

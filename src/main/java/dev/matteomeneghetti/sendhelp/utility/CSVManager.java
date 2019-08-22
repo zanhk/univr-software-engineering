@@ -1,4 +1,4 @@
-package dev.matteomeneghetti.sendhelp.utility;
+package org.zank.sendhelp.utility;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
