@@ -86,15 +86,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         setTitle("Monitoraggio Terapia Intensiva");
         setBackground(new java.awt.Color(255, 247, 247));
 
-        jPanel6.setBackground(new java.awt.Color(61, 0, 61));
+        jPanel6.setBackground(new java.awt.Color(0, 57, 175));
 
-        jPanel11.setBackground(new java.awt.Color(61, 0, 61));
+        jPanel11.setBackground(new java.awt.Color(0, 57, 175));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Utente");
 
-        utenteLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        utenteLabel.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         utenteLabel.setForeground(new java.awt.Color(255, 255, 255));
         utenteLabel.setText("Guest");
 
@@ -102,7 +102,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ruolo");
 
-        ruoloLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        ruoloLabel.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         ruoloLabel.setForeground(new java.awt.Color(255, 255, 255));
         ruoloLabel.setText("Guest");
 
@@ -132,17 +132,24 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        propertiesButton.setBackground(new java.awt.Color(102, 0, 102));
+        propertiesButton.setBackground(new java.awt.Color(0, 57, 175));
         propertiesButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         propertiesButton.setForeground(new java.awt.Color(255, 255, 255));
+        propertiesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Settings_25px.png"))); // NOI18N
         propertiesButton.setText("Properties");
         propertiesButton.setBorderPainted(false);
 
-        loginButton.setBackground(new java.awt.Color(102, 0, 102));
+        loginButton.setBackground(new java.awt.Color(0, 83, 255));
         loginButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         loginButton.setForeground(new java.awt.Color(255, 255, 255));
+        loginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Enter_25px.png"))); // NOI18N
         loginButton.setText("Login");
         loginButton.setBorderPainted(false);
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -167,23 +174,25 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel7.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel7.setBackground(new java.awt.Color(0, 75, 225));
 
-        jPanel8.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel8.setBackground(new java.awt.Color(0, 75, 225));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Opzioni infermiere");
 
-        nuovoPazienteButton.setBackground(new java.awt.Color(131, 0, 131));
+        nuovoPazienteButton.setBackground(new java.awt.Color(0, 83, 255));
         nuovoPazienteButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         nuovoPazienteButton.setForeground(new java.awt.Color(255, 255, 255));
+        nuovoPazienteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add User Male_25px.png"))); // NOI18N
         nuovoPazienteButton.setText("Nuovo Paziente");
         nuovoPazienteButton.setBorderPainted(false);
 
-        somministrazioneButton.setBackground(new java.awt.Color(131, 0, 131));
+        somministrazioneButton.setBackground(new java.awt.Color(0, 83, 255));
         somministrazioneButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         somministrazioneButton.setForeground(new java.awt.Color(255, 255, 255));
+        somministrazioneButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pill_25px.png"))); // NOI18N
         somministrazioneButton.setText("Aggiungi somministrazione");
         somministrazioneButton.setBorderPainted(false);
         somministrazioneButton.addActionListener(new java.awt.event.ActionListener() {
@@ -215,21 +224,23 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jPanel9.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel9.setBackground(new java.awt.Color(0, 75, 225));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Opzioni medico");
 
-        diagnosiButton.setBackground(new java.awt.Color(131, 0, 131));
+        diagnosiButton.setBackground(new java.awt.Color(0, 83, 255));
         diagnosiButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         diagnosiButton.setForeground(new java.awt.Color(255, 255, 255));
+        diagnosiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Stethoscope_25px.png"))); // NOI18N
         diagnosiButton.setText("Diagnosi");
         diagnosiButton.setBorderPainted(false);
 
-        prescrizioneButton.setBackground(new java.awt.Color(131, 0, 131));
+        prescrizioneButton.setBackground(new java.awt.Color(0, 83, 255));
         prescrizioneButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         prescrizioneButton.setForeground(new java.awt.Color(255, 255, 255));
+        prescrizioneButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Treatment_25px.png"))); // NOI18N
         prescrizioneButton.setText("Aggiungi prescrizione");
         prescrizioneButton.setBorderPainted(false);
 
@@ -256,21 +267,23 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        jPanel10.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel10.setBackground(new java.awt.Color(0, 75, 225));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Opzioni primario");
 
-        dimettiButton.setBackground(new java.awt.Color(131, 0, 131));
+        dimettiButton.setBackground(new java.awt.Color(0, 83, 255));
         dimettiButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         dimettiButton.setForeground(new java.awt.Color(255, 255, 255));
+        dimettiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Denied_25px.png"))); // NOI18N
         dimettiButton.setText("Dimetti paziente");
         dimettiButton.setBorderPainted(false);
 
-        reportButton.setBackground(new java.awt.Color(131, 0, 131));
+        reportButton.setBackground(new java.awt.Color(0, 83, 255));
         reportButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         reportButton.setForeground(new java.awt.Color(255, 255, 255));
+        reportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Schedule_25px.png"))); // NOI18N
         reportButton.setText("Report settimanale");
         reportButton.setBorderPainted(false);
 
@@ -318,7 +331,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Telemetria Paziente"));
+        jPanel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        tabellaTelemetria.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tabellaTelemetria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -390,6 +405,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        tabellaPazienti.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tabellaPazienti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -536,6 +552,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         updateTelemetria();
     }//GEN-LAST:event_tabellaPazientiMouseClicked
 
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton diagnosiButton;
     private javax.swing.JButton dimettiButton;
@@ -570,7 +590,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton somministrazioneButton;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JButton storicoButton;
-    private javax.swing.JTable tabellaPazienti;
+    public javax.swing.JTable tabellaPazienti;
     private javax.swing.JTable tabellaTelemetria;
     private javax.swing.JLabel utenteLabel;
     // End of variables declaration//GEN-END:variables
@@ -722,10 +742,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             this.utenteLabel.setText(utenteCorrente.getNome());
             this.ruoloLabel.setText(utenteCorrente.getRuolo().toString());
             loginButton.setText("Logout");
+            loginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Exit_25px.png")));
         } else {
             utenteLabel.setText("Guest");
             ruoloLabel.setText("Guest");
             loginButton.setText("Login");
+            loginButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Enter_25px.png")));
         }
     }
 

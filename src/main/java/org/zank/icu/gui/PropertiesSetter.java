@@ -49,59 +49,63 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         sincroButton = new javax.swing.JToggleButton();
         alarmCheckbox = new javax.swing.JCheckBox();
 
-        setBackground(new java.awt.Color(255, 247, 247));
-
-        SBPSlider.setBackground(new java.awt.Color(255, 247, 247));
         SBPSlider.setMaximum(300);
         SBPSlider.setMinimum(1);
         SBPSlider.setValue(120);
 
-        BPMSlider.setBackground(new java.awt.Color(255, 247, 247));
         BPMSlider.setMaximum(300);
         BPMSlider.setMinimum(1);
         BPMSlider.setValue(300);
 
-        DBPSlider.setBackground(new java.awt.Color(255, 247, 247));
         DBPSlider.setMaximum(300);
         DBPSlider.setMinimum(1);
         DBPSlider.setValue(120);
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel1.setText("SBP");
 
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setText("DBP");
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel3.setText("BPM");
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel4.setText("TEMP");
 
-        TEMPSlider.setBackground(new java.awt.Color(255, 247, 247));
         TEMPSlider.setMaximum(300);
         TEMPSlider.setMinimum(1);
         TEMPSlider.setValue(180);
 
+        SBPLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         SBPLabel.setText("120");
 
+        DBPLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         DBPLabel.setText("120");
 
+        BPMLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BPMLabel.setText("300");
 
+        TEMPLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         TEMPLabel.setText("180");
 
-        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
-        confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        confermaButton.setBackground(new java.awt.Color(0, 83, 255));
+        confermaButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
 
         annullaButton.setBackground(new java.awt.Color(255, 247, 247));
+        annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
         sincroButton.setBackground(new java.awt.Color(255, 247, 247));
+        sincroButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         sincroButton.setText("SBP & DBP");
         sincroButton.setBorderPainted(false);
 
-        alarmCheckbox.setBackground(new java.awt.Color(255, 247, 247));
+        alarmCheckbox.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         alarmCheckbox.setText("Allarmi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -125,10 +129,10 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
                                 .addComponent(BPMLabel)
                                 .addComponent(TEMPLabel)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(alarmCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(sincroButton))
+                                .addComponent(sincroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -145,7 +149,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
                         .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

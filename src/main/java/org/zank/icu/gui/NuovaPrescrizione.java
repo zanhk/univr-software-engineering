@@ -53,19 +53,21 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
         setBackground(new java.awt.Color(255, 247, 247));
         setToolTipText("");
 
-        jPanel3.setBackground(new java.awt.Color(255, 247, 247));
-        jPanel3.setMinimumSize(null);
         jPanel3.setName(""); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(255, 247, 247));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dosologia"));
+        jPanel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel6.setText("Dose (g)");
 
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel5.setText("Dosi giornaliere");
 
+        quantitaDoseSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         quantitaDoseSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0f, 0.0f, null, 0.1f));
 
+        numeroDosiSpinnner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         numeroDosiSpinnner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -99,25 +101,28 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
-        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
+        confermaButton.setBackground(new java.awt.Color(0, 83, 255));
         confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 247, 247));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Durata prescrizione"));
+        jPanel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel3.setText("Data inizio");
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel4.setText("Data fine");
 
+        dataInizioSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         dataInizioSpinner.setModel(new javax.swing.SpinnerDateModel());
 
+        dataFineSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         dataFineSpinner.setModel(new javax.swing.SpinnerDateModel());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -149,9 +154,12 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        farmacoField.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setText("Nome farmaco");
 
-        pazienteLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        pazienteLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         pazienteLabel.setText("jLabel8");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

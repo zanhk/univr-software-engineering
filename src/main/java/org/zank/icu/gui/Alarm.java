@@ -125,10 +125,8 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
         jLabel6 = new javax.swing.JLabel();
         tipoLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 247, 247));
-
-        jButton1.setBackground(new java.awt.Color(102, 0, 102));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(0, 83, 255));
+        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Conferma");
         jButton1.setBorderPainted(false);
@@ -137,24 +135,25 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel1.setText("Inserire nell'area sottostante l'operazione effettuata sul paziente");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setText("Tempo rimanente:");
 
-        tempoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tempoLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         tempoLabel.setText("sometext");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setText("Livello");
 
-        livelloLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        livelloLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         livelloLabel.setText("livelloLabel");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setText("Descrizione");
 
-        tipoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tipoLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         tipoLabel.setText("tipoLabel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -179,7 +178,7 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 10, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -205,7 +204,7 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

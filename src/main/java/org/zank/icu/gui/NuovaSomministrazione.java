@@ -63,30 +63,28 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         jLabel8 = new javax.swing.JLabel();
         pazienteLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 247, 247));
-
+        listaPrescrizioni.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         listaPrescrizioni.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(listaPrescrizioni);
 
-        jPanel1.setBackground(new java.awt.Color(255, 247, 247));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dosologia"));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setText("Dose");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Farmaco");
 
-        farmacoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        farmacoLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         farmacoLabel.setText("jLabel3");
 
-        doseLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        doseLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         doseLabel.setText("jLabel4");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setText("Prescritta da");
 
-        medicoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        medicoLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         medicoLabel.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -129,44 +127,46 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         );
 
         noteTextArea.setColumns(20);
+        noteTextArea.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         noteTextArea.setRows(5);
         noteTextArea.setText("Note");
         jScrollPane2.setViewportView(noteTextArea);
 
-        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
-        confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        confermaButton.setBackground(new java.awt.Color(0, 83, 255));
+        confermaButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
 
-        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
+        annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Prescrizioni");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setText("Dose somministrata (g)");
 
+        doseSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         doseSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0f, 0.0f, null, 0.1f));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setText("Data Inizio");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel7.setText("Data fine");
 
-        dataInizioLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dataInizioLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         dataInizioLabel.setText("jLabel8");
 
-        dataFineLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dataFineLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         dataFineLabel.setText("jLabel9");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel8.setText("Paziente");
 
-        pazienteLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        pazienteLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         pazienteLabel.setText("jLabel9");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -243,7 +243,7 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

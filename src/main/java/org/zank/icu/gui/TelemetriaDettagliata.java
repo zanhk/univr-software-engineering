@@ -58,8 +58,7 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         dataNascitaLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 247, 247));
-
+        tabella.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tabella.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -145,10 +144,10 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         tabella.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabella);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Paziente:");
 
-        listaSomministrazioni.setBackground(new java.awt.Color(255, 247, 247));
+        listaSomministrazioni.setBackground(new java.awt.Color(240, 240, 240));
         listaSomministrazioni.setModel(new DefaultListModel());
         listaSomministrazioni.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -157,22 +156,28 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(listaSomministrazioni);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Telemetria ultime 2 ore");
 
-        jPanel1.setBackground(new java.awt.Color(255, 247, 247));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dati somministrazione"));
+        jPanel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel3.setText("Farmaco");
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel4.setText("Dose (g)");
 
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel5.setText("Data");
 
+        farmacoLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         farmacoLabel.setText("farmacoLabel");
 
+        doseLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         doseLabel.setText("doseLabel");
 
+        dataLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         dataLabel.setText("dataLabel");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -213,22 +218,22 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         pazienteLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pazienteLabel.setText("pazienteLabel");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setText("Somministrazioni");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel7.setText("Nome:");
 
         nomePazienteLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         nomePazienteLabel.setText("jLabel8");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel8.setText("Data di ricovero:");
 
         dataRicoveroLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         dataRicoveroLabel.setText("jLabel9");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel9.setText("Data di nascita:");
 
         dataNascitaLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -293,13 +298,13 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
                     .addComponent(nomePazienteLabel)
                     .addComponent(jLabel9)
                     .addComponent(dataNascitaLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

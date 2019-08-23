@@ -67,68 +67,72 @@ public class NuovoPaziente extends javax.swing.JPanel {
         diagnosiField = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 247, 247));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Nome");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setText("Cognome");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Genere");
 
-        maschioRadio.setBackground(new java.awt.Color(255, 247, 247));
         buttonGroup1.add(maschioRadio);
+        maschioRadio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         maschioRadio.setSelected(true);
         maschioRadio.setText("Maschio");
         maschioRadio.setActionCommand("m");
 
-        femminaRadio.setBackground(new java.awt.Color(255, 247, 247));
         buttonGroup1.add(femminaRadio);
+        femminaRadio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         femminaRadio.setText("Femmina");
         femminaRadio.setActionCommand("f");
 
         nomeField.setColumns(10);
+        nomeField.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         cognomeField.setColumns(10);
+        cognomeField.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setText("Data di nascita");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setText("Comune di Nascita");
 
         luogoField.setColumns(10);
+        luogoField.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
-        confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        confermaButton.setBackground(new java.awt.Color(0, 83, 255));
+        confermaButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
         confermaButton.setPreferredSize(new java.awt.Dimension(90, 28));
 
-        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
+        annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
         annullaButton.setPreferredSize(new java.awt.Dimension(90, 28));
 
+        codiceFiscaleLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         codiceFiscaleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         codiceFiscaleLabel.setText("CF");
         codiceFiscaleLabel.setFocusable(false);
         codiceFiscaleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        dataNascitaSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         dataNascitaSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(631148400000L), null, null, java.util.Calendar.DAY_OF_MONTH));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setText("Paziente num.");
 
         diagnosiField.setColumns(20);
+        diagnosiField.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         diagnosiField.setRows(5);
         diagnosiField.setEnabled(false);
         jScrollPane1.setViewportView(diagnosiField);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel8.setText("Diagnosi di ingresso");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -159,16 +163,16 @@ public class NuovoPaziente extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(77, 77, 77)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(maschioRadio)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                                             .addComponent(femminaRadio))
                                         .addComponent(nomeField)
-                                        .addComponent(cognomeField))
-                                    .addComponent(dataNascitaSpinner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(luogoField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(cognomeField)
+                                        .addComponent(luogoField, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(dataNascitaSpinner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +208,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
                 .addComponent(codiceSanitarioLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)

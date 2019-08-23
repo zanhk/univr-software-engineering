@@ -27,17 +27,16 @@ public class ReportTest extends javax.swing.JPanel implements ActionListener {
         jLabel2 = new javax.swing.JLabel();
         stampaButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 247, 247));
-
         testoLabel.setBackground(new java.awt.Color(255, 247, 247));
+        testoLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         testoLabel.setText("placeholder");
         jScrollPane1.setViewportView(testoLabel);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel2.setText("Report Settimanale");
 
-        stampaButton.setBackground(new java.awt.Color(102, 0, 102));
-        stampaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        stampaButton.setBackground(new java.awt.Color(0, 83, 255));
+        stampaButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         stampaButton.setForeground(new java.awt.Color(255, 255, 255));
         stampaButton.setText("Stampa");
         stampaButton.setBorderPainted(false);
