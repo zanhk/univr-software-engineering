@@ -85,6 +85,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monitoraggio Terapia Intensiva");
         setBackground(new java.awt.Color(255, 247, 247));
+        setResizable(false);
 
         jPanel6.setBackground(new java.awt.Color(0, 57, 175));
 
