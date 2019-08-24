@@ -63,6 +63,8 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         jLabel8 = new javax.swing.JLabel();
         pazienteLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         listaPrescrizioni.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         listaPrescrizioni.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(listaPrescrizioni);
