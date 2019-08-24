@@ -52,9 +52,9 @@ public class Login extends javax.swing.JPanel {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButton3.setText("Nuovo Utente");
         jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 83, 255), 1, true));
         jButton3.setBorderPainted(false);
-        jButton3.setLabel("Crea nuovo Utente");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 83, 255)));
