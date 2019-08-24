@@ -58,6 +58,8 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         dataNascitaLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         tabella.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tabella.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,7 +149,6 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Paziente:");
 
-        listaSomministrazioni.setBackground(new java.awt.Color(240, 240, 240));
         listaSomministrazioni.setModel(new DefaultListModel());
         listaSomministrazioni.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -159,6 +160,7 @@ public class TelemetriaDettagliata extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Telemetria ultime 2 ore");
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dati somministrazione"));
         jPanel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 

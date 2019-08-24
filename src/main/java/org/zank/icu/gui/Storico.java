@@ -34,6 +34,8 @@ public class Storico extends javax.swing.JPanel {
         dataDimissioneLabel = new javax.swing.JLabel();
         dataRicoveroLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         listaPazienti.setModel(new DefaultListModel());
         listaPazienti.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {

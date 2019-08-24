@@ -67,6 +67,8 @@ public class NuovoPaziente extends javax.swing.JPanel {
         diagnosiField = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Nome");
 
@@ -76,12 +78,14 @@ public class NuovoPaziente extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Genere");
 
+        maschioRadio.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(maschioRadio);
         maschioRadio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         maschioRadio.setSelected(true);
         maschioRadio.setText("Maschio");
         maschioRadio.setActionCommand("m");
 
+        femminaRadio.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(femminaRadio);
         femminaRadio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         femminaRadio.setText("Femmina");

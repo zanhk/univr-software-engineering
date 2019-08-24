@@ -49,14 +49,19 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         sincroButton = new javax.swing.JToggleButton();
         alarmCheckbox = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        SBPSlider.setBackground(new java.awt.Color(255, 255, 255));
         SBPSlider.setMaximum(300);
         SBPSlider.setMinimum(1);
         SBPSlider.setValue(120);
 
+        BPMSlider.setBackground(new java.awt.Color(255, 255, 255));
         BPMSlider.setMaximum(300);
         BPMSlider.setMinimum(1);
         BPMSlider.setValue(300);
 
+        DBPSlider.setBackground(new java.awt.Color(255, 255, 255));
         DBPSlider.setMaximum(300);
         DBPSlider.setMinimum(1);
         DBPSlider.setValue(120);
@@ -73,6 +78,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel4.setText("TEMP");
 
+        TEMPSlider.setBackground(new java.awt.Color(255, 255, 255));
         TEMPSlider.setMaximum(300);
         TEMPSlider.setMinimum(1);
         TEMPSlider.setValue(180);
@@ -95,16 +101,19 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
 
-        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
+        annullaButton.setBackground(new java.awt.Color(255, 255, 255));
         annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
-        sincroButton.setBackground(new java.awt.Color(0, 83, 255));
+        sincroButton.setBackground(new java.awt.Color(0, 0, 0));
         sincroButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         sincroButton.setText("SBP & DBP");
+        sincroButton.setBorder(null);
+        sincroButton.setBorderPainted(false);
         sincroButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        alarmCheckbox.setBackground(new java.awt.Color(255, 255, 255));
         alarmCheckbox.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         alarmCheckbox.setText("Allarmi");
 

@@ -27,7 +27,9 @@ public class ReportTest extends javax.swing.JPanel implements ActionListener {
         jLabel2 = new javax.swing.JLabel();
         stampaButton = new javax.swing.JButton();
 
-        testoLabel.setBackground(new java.awt.Color(255, 247, 247));
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        testoLabel.setBackground(new java.awt.Color(255, 255, 255));
         testoLabel.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         testoLabel.setText("placeholder");
         jScrollPane1.setViewportView(testoLabel);
