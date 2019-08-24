@@ -114,11 +114,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(utenteLabel)
-                    .addComponent(jLabel4)
-                    .addComponent(ruoloLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ruoloLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(0, 88, Short.MAX_VALUE))
+                    .addComponent(utenteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,6 +370,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         rapportoButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rapportoButton.setText("Rapp. dettagliato");
+        rapportoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rapportoButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel3.setText("Status:");
@@ -556,6 +564,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void rapportoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rapportoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rapportoButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton diagnosiButton;

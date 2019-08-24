@@ -101,14 +101,20 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
         confermaButton.setBackground(new java.awt.Color(0, 83, 255));
-        confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        confermaButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
+        confermaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confermaButtonActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Durata prescrizione"));
         jPanel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -232,6 +238,10 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void confermaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confermaButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confermaButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
