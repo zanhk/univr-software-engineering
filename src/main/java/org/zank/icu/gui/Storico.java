@@ -34,7 +34,7 @@ public class Storico extends javax.swing.JPanel {
         dataDimissioneLabel = new javax.swing.JLabel();
         dataRicoveroLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 247, 247));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         listaPazienti.setModel(new DefaultListModel());
         listaPazienti.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -44,37 +44,37 @@ public class Storico extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(listaPazienti);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel2.setText("Pazienti dimessi");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel3.setText("Nome");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Cognome");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel5.setText("Data di nascita");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setText("Data di ricovero");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel7.setText("Data di dimissione");
 
-        nomeLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nomeLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         nomeLabel.setText("jLabel8");
 
-        cognomeLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cognomeLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         cognomeLabel.setText("jLabel8");
 
-        dataNascitaLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        dataNascitaLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         dataNascitaLabel.setText("jLabel8");
 
-        dataDimissioneLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        dataDimissioneLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         dataDimissioneLabel.setText("jLabel8");
 
-        dataRicoveroLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        dataRicoveroLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         dataRicoveroLabel.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -101,7 +101,7 @@ public class Storico extends javax.swing.JPanel {
                             .addComponent(cognomeLabel)
                             .addComponent(nomeLabel)))
                     .addComponent(jLabel2))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +121,7 @@ public class Storico extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -132,8 +132,8 @@ public class Storico extends javax.swing.JPanel {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

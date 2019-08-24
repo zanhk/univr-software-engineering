@@ -53,19 +53,23 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
         setBackground(new java.awt.Color(255, 247, 247));
         setToolTipText("");
 
-        jPanel3.setBackground(new java.awt.Color(255, 247, 247));
-        jPanel3.setMinimumSize(null);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setName(""); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(255, 247, 247));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dosologia"));
+        jPanel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel6.setText("Dose (g)");
 
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel5.setText("Dosi giornaliere");
 
+        quantitaDoseSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         quantitaDoseSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0f, 0.0f, null, 0.1f));
 
+        numeroDosiSpinnner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         numeroDosiSpinnner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -77,7 +81,7 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                         .addComponent(numeroDosiSpinnner, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -99,25 +103,36 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
+        annullaButton.setBackground(new java.awt.Color(255, 255, 255));
+        annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
-        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
-        confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        confermaButton.setBackground(new java.awt.Color(0, 83, 255));
+        confermaButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
+        confermaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confermaButtonActionPerformed(evt);
+            }
+        });
 
-        jPanel1.setBackground(new java.awt.Color(255, 247, 247));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Durata prescrizione"));
+        jPanel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel3.setText("Data inizio");
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel4.setText("Data fine");
 
+        dataInizioSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         dataInizioSpinner.setModel(new javax.swing.SpinnerDateModel());
 
+        dataFineSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         dataFineSpinner.setModel(new javax.swing.SpinnerDateModel());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -149,9 +164,12 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        farmacoField.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setText("Nome farmaco");
 
-        pazienteLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        pazienteLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         pazienteLabel.setText("jLabel8");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -162,28 +180,28 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(pazienteLabel))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(jLabel2)
-                            .addGap(10, 10, 10)
-                            .addComponent(farmacoField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(34, 34, 34)
-                            .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(pazienteLabel))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2)
+                        .addGap(10, 10, 10)
+                        .addComponent(farmacoField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,9 +231,7 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,6 +240,10 @@ public class NuovaPrescrizione extends javax.swing.JPanel implements ActionListe
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void confermaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confermaButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confermaButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

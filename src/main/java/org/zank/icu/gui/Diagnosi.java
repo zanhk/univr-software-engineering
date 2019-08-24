@@ -30,12 +30,12 @@ public class Diagnosi extends javax.swing.JPanel implements ActionListener{
         confermaButton = new javax.swing.JButton();
         annullaButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 247, 247));
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("Paziente");
 
-        pazienteLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        pazienteLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         pazienteLabel.setText("jLabel2");
 
         textArea.setColumns(20);
@@ -43,13 +43,14 @@ public class Diagnosi extends javax.swing.JPanel implements ActionListener{
         textArea.setBorder(null);
         jScrollPane1.setViewportView(textArea);
 
-        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
+        confermaButton.setBackground(new java.awt.Color(0, 83, 255));
         confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
 
-        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
+        annullaButton.setBackground(new java.awt.Color(255, 255, 255));
+        annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
@@ -87,7 +88,7 @@ public class Diagnosi extends javax.swing.JPanel implements ActionListener{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(annullaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

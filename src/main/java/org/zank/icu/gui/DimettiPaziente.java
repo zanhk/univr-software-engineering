@@ -37,32 +37,33 @@ public class DimettiPaziente extends javax.swing.JPanel implements ActionListene
         confermaButton = new javax.swing.JButton();
         annullaButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 247, 247));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         textArea.setColumns(20);
         textArea.setRows(5);
         textArea.setBorder(null);
         jScrollPane1.setViewportView(textArea);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("Paziente");
 
-        nomePazienteLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nomePazienteLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         nomePazienteLabel.setText("jLabel2");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel3.setText("Data di ricovero");
 
-        dataRicoveroLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        dataRicoveroLabel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         dataRicoveroLabel.setText("jLabel4");
 
-        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
-        confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        confermaButton.setBackground(new java.awt.Color(0, 83, 255));
+        confermaButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
 
-        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
+        annullaButton.setBackground(new java.awt.Color(255, 255, 255));
+        annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
@@ -100,7 +101,7 @@ public class DimettiPaziente extends javax.swing.JPanel implements ActionListene
                     .addComponent(jLabel3)
                     .addComponent(dataRicoveroLabel))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)

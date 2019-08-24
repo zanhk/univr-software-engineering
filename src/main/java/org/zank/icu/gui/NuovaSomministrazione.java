@@ -63,30 +63,31 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         jLabel8 = new javax.swing.JLabel();
         pazienteLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 247, 247));
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        listaPrescrizioni.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         listaPrescrizioni.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(listaPrescrizioni);
 
-        jPanel1.setBackground(new java.awt.Color(255, 247, 247));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dosologia"));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setText("Dose");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Farmaco");
 
-        farmacoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        farmacoLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         farmacoLabel.setText("jLabel3");
 
-        doseLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        doseLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         doseLabel.setText("jLabel4");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setText("Prescritta da");
 
-        medicoLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        medicoLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         medicoLabel.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -97,17 +98,17 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(133, 133, 133)
-                        .addComponent(doseLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(113, 113, 113)
+                        .addGap(73, 73, 73)
                         .addComponent(farmacoLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(93, 93, 93)
-                        .addComponent(medicoLabel)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(doseLabel)
+                            .addComponent(medicoLabel))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,44 +130,46 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
         );
 
         noteTextArea.setColumns(20);
+        noteTextArea.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         noteTextArea.setRows(5);
         noteTextArea.setText("Note");
         jScrollPane2.setViewportView(noteTextArea);
 
-        confermaButton.setBackground(new java.awt.Color(102, 0, 102));
-        confermaButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        confermaButton.setBackground(new java.awt.Color(0, 83, 255));
+        confermaButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
 
-        annullaButton.setBackground(new java.awt.Color(255, 247, 247));
+        annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Prescrizioni");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setText("Dose somministrata (g)");
 
+        doseSpinner.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         doseSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0f, 0.0f, null, 0.1f));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setText("Data Inizio");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel7.setText("Data fine");
 
-        dataInizioLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dataInizioLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         dataInizioLabel.setText("jLabel8");
 
-        dataFineLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dataFineLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         dataFineLabel.setText("jLabel9");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel8.setText("Paziente");
 
-        pazienteLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        pazienteLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         pazienteLabel.setText("jLabel9");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -185,7 +188,7 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addGap(63, 63, 63)
+                                .addGap(29, 29, 29)
                                 .addComponent(pazienteLabel)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,8 +209,8 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
                         .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -230,20 +233,20 @@ public class NuovaSomministrazione extends javax.swing.JPanel implements ActionL
                             .addComponent(jLabel4)
                             .addComponent(doseSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(pazienteLabel))
                         .addGap(50, 50, 50)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
