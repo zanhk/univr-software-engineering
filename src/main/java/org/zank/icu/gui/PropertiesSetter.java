@@ -100,10 +100,10 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
 
-        sincroButton.setBackground(new java.awt.Color(255, 247, 247));
+        sincroButton.setBackground(new java.awt.Color(0, 83, 255));
         sincroButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         sincroButton.setText("SBP & DBP");
-        sincroButton.setBorderPainted(false);
+        sincroButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         alarmCheckbox.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         alarmCheckbox.setText("Allarmi");
@@ -149,12 +149,12 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
                         .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(sincroButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                     .addComponent(alarmCheckbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -188,7 +188,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TEMPLabel)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(annullaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
