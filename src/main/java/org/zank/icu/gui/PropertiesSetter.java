@@ -32,6 +32,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
         SBPSlider = new javax.swing.JSlider();
         BPMSlider = new javax.swing.JSlider();
         DBPSlider = new javax.swing.JSlider();
@@ -47,8 +48,9 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         confermaButton = new javax.swing.JButton();
         annullaButton = new javax.swing.JButton();
         alarmCheckbox = new javax.swing.JCheckBox();
-        jPanel1 = new javax.swing.JPanel();
-        sincroButton = new javax.swing.JToggleButton();
+        SBPandDBP_Checkbox = new javax.swing.JCheckBox();
+
+        jCheckBox1.setText("jCheckBox1");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -111,31 +113,14 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         alarmCheckbox.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         alarmCheckbox.setText("Allarmi");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 83, 255)));
-
-        sincroButton.setBackground(new java.awt.Color(255, 255, 255));
-        sincroButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        sincroButton.setText("SBP & DBP");
-        sincroButton.setBorder(null);
-        sincroButton.setBorderPainted(false);
-        sincroButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        sincroButton.addActionListener(new java.awt.event.ActionListener() {
+        SBPandDBP_Checkbox.setBackground(new java.awt.Color(255, 255, 255));
+        SBPandDBP_Checkbox.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        SBPandDBP_Checkbox.setText("SBP & DBP");
+        SBPandDBP_Checkbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sincroButtonActionPerformed(evt);
+                SBPandDBP_CheckboxActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sincroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sincroButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -148,7 +133,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(alarmCheckbox)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(SBPandDBP_Checkbox))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
@@ -183,10 +168,10 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(alarmCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SBPandDBP_Checkbox))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TEMPSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,9 +210,9 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sincroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sincroButtonActionPerformed
+    private void SBPandDBP_CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SBPandDBP_CheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sincroButtonActionPerformed
+    }//GEN-LAST:event_SBPandDBP_CheckboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,17 +222,17 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
     private javax.swing.JSlider DBPSlider;
     private javax.swing.JLabel SBPLabel;
     private javax.swing.JSlider SBPSlider;
+    private javax.swing.JCheckBox SBPandDBP_Checkbox;
     private javax.swing.JLabel TEMPLabel;
     private javax.swing.JSlider TEMPSlider;
     private javax.swing.JCheckBox alarmCheckbox;
     private javax.swing.JButton annullaButton;
     private javax.swing.JButton confermaButton;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JToggleButton sincroButton;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -266,7 +251,7 @@ public class PropertiesSetter extends javax.swing.JPanel implements ChangeListen
     }
 
     private void updateGUI(JSlider slider) {
-        if (slider != null && (slider.equals(SBPSlider) || slider.equals(DBPSlider)) && sincroButton.isSelected()) {
+        if (slider != null && (slider.equals(SBPSlider) || slider.equals(DBPSlider)) && SBPandDBP_Checkbox.isSelected()) {
             SBPSlider.setValue(slider.getValue());
             DBPSlider.setValue(slider.getValue());
             SBPLabel.setText(String.valueOf(slider.getValue()));
