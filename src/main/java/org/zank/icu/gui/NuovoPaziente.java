@@ -284,7 +284,7 @@ public class NuovoPaziente extends javax.swing.JPanel {
     }
 
     private void isMedico(Utente utente) {
-        diagnosiField.setEnabled(!(utente.getRuolo() == Utente.RUOLO.INF));
+        diagnosiField.setEnabled(!(utente.getRuolo() == Utente.RUOLO.Infermiere));
     }
 
     private class NuovoPazienteController implements DocumentListener, ChangeListener, ActionListener {

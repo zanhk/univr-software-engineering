@@ -23,7 +23,7 @@ package org.zank.icu.data;
 
 public class Utente {
     
-    public static enum RUOLO {INF, MED, PRM};  //Infermiere, Medico, Primario
+    public static enum RUOLO {Infermiere, Medico, Primario};  //Infermiere, Medico, Primario
     private String nome;
     private String cognome;
     private String id;

@@ -92,7 +92,7 @@ public class Alarm extends javax.swing.JPanel implements ActionListener {
             JOptionPane.showMessageDialog(null, "Nessun utente loggato", "Errore", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if (utenteLoggato.getRuolo() == Utente.RUOLO.INF) {
+        if (utenteLoggato.getRuolo() == Utente.RUOLO.Infermiere) {
             JOptionPane.showMessageDialog(null, "L'utente non ha i privilegi necessari per fermare l'allarme", "Errore", JOptionPane.ERROR_MESSAGE);
             return false;
         }
