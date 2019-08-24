@@ -37,6 +37,8 @@ public class DimettiPaziente extends javax.swing.JPanel implements ActionListene
         confermaButton = new javax.swing.JButton();
         annullaButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         textArea.setColumns(20);
         textArea.setRows(5);
         textArea.setBorder(null);
@@ -60,6 +62,7 @@ public class DimettiPaziente extends javax.swing.JPanel implements ActionListene
         confermaButton.setText("Conferma");
         confermaButton.setBorderPainted(false);
 
+        annullaButton.setBackground(new java.awt.Color(255, 255, 255));
         annullaButton.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         annullaButton.setText("Annulla");
         annullaButton.setBorderPainted(false);
