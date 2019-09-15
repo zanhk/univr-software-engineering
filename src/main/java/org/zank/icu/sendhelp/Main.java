@@ -1,4 +1,4 @@
-package org.zank.icu.main;
+package org.zank.icu.sendhelp;
 
 import org.zank.icu.gui.MainWindow;
 import java.io.File;
