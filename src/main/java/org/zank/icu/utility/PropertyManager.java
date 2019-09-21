@@ -24,7 +24,7 @@ public class PropertyManager {
 
     public static synchronized PropertyManager getInstance() {
         if (istanza == null) {
-            istanza = new PropertyManager("sendhelp.properties");
+            istanza = new PropertyManager("main.properties");
         }
         return istanza;
     }
